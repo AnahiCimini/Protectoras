@@ -1,0 +1,104 @@
+/* HEADER */
+
+/* Imagenes de perro */
+.header-image, .footer-image{
+    width: 70%;
+    margin: 0 auto;
+}
+
+header>.row{
+    text-align: center;
+}
+
+.img-left {
+    transform: scaleX(1); /* Imagen izquierda */
+}
+
+.img-right {
+    transform: scaleX(-1); /* Imagen derecha volteada */
+}
+
+/* Botones de registro y login */
+
+#registro_login{
+    text-align: right;
+    right: 20%;
+    position: absolute;
+}
+
+
+/* Posicionamiento del menú principal */
+
+.header_central{
+    height: 100%;
+    overflow-y: auto;
+}
+
+.header_central>.container, #menu_principal{
+    height: 80%;
+}
+
+#menu_nosotros {
+    margin: 0 -22px 0 22px;
+}
+
+#menu_protectoras {
+    margin: 0 22px 0 -22px;
+}
+
+#menu_home {
+    padding: 0;
+}
+
+.menu_lateral, .menu-link{
+    padding: 22px 0
+}
+
+/* Estilo del menú principal */
+
+#menu_nosotros, #menu_protectoras {
+    background-color: #016e10;
+}
+
+.img_menu_home {
+    height: auto;
+    width: 100%;
+}
+
+#menu_home {
+    position: relative;
+    text-align: center;
+}
+
+.menu-link div {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5em;
+    font-family: inherit;
+}
+
+
+/* FOOTER */
+
+/* Estilo */
+.copy {
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #000;
+    margin: 2% 0 0 0;
+}
+
+.footer-image{
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+}
+
+.mail_footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
