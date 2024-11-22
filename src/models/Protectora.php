@@ -23,11 +23,10 @@ class Protectora {
 
     //Buscar en la BBDD por email
     public function getProtectoraByEmail($email) {
-        $query = "SELECT * FROM protectoras WHERE email = :email LIMIT 1";
+        $query = "SELECT * FROM protectoras WHERE email = :email";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->execute();
-        
+
         if ($stmt->execute()) {
             return $stmt->fetch(PDO::FETCH_ASSOC); // Devuelve un array con los datos de la protectora
         }
@@ -45,12 +44,23 @@ class Protectora {
         return $result['count'] > 0;
     }
 
-    public function registerProtectora() {
+    public function emailExists($email) {
+        $query = "SELECT COUNT(*) as count FROM protectoras WHERE email = :email";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'] > 0;
+    }
+
+    public function registerProtectora($data) {
+        
         // SQL para insertar los datos en la tabla protectoras
         $sql = "INSERT INTO protectoras (nombre_protectora, direccion, telefono, email, id_provincia, poblacion, web, email_visible, password_user) 
         VALUES (:nombre_protectora, :direccion, :telefono, :email, :id_provincia, :poblacion, :web, :email_visible, :password_user)";
 
-        
+        $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+
         $stmt = $this->conn->prepare($sql);
         
         // Bind de parámetros
@@ -63,8 +73,9 @@ class Protectora {
         $stmt->bindParam(':web', $this->web);
         //$stmt->bindParam(':logo', $this->logo);
         $stmt->bindParam(':email_visible', $this->email_visible);
-        $stmt->bindParam(':password_user', $this->password_user);
+        $stmt->bindParam(':password_user', $hashedPassword, PDO::PARAM_STR);
 
+        
         // Ejecuta la inserción y retorna el resultado
         return $stmt->execute();
     }

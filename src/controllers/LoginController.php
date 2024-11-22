@@ -1,5 +1,7 @@
 <?php
 require_once PROJECT_ROOT . '/src/models/Protectora.php';
+require_once PROJECT_ROOT . '/src/views/loginView.php';
+
 
 class LoginController {
     private $conn;
@@ -16,8 +18,8 @@ class LoginController {
 
         //Comprobar si el formulario se ha enviado
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-            $password = trim($_POST['password']);
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
             if (empty($email) || empty($password)) {
                 $error = "Por favor, rellena todos los campos.";
@@ -25,28 +27,28 @@ class LoginController {
                 return;
             }
             
-
             // Buscar protectora por email
             $protectora = new Protectora($this->conn);
-            $result = $protectora->getProtectoraByEmail($email);
+            $user = $protectora->getProtectoraByEmail($email);
 
-            if ($result && password_verify($password, $result['password_user'])) {
+            if (!$user) {
+                echo "<script>alert('El usuario no existe. Verifica el correo electrónico ingresado.');</script>";
+                exit;
+            }
+
+            if ($user && password_verify($password, $user['password_user'])) {
                 // Credenciales válidas: iniciar sesión
-                $_SESSION['id_protectora'] = $result['id_protectora'];
-                $_SESSION['nombre_protectora'] = $result['nombre_protectora'];
-                $_SESSION['email'] = $result['email'];
+                $_SESSION['email'] = $user['email'];
 
-                "<script>
-                    var redirectUrl = '" . dirname($_SERVER['PHP_SELF']) . "/index.php?case=home';
-                    window.location.href = redirectUrl;
-                </script>";                exit;
+                header('Location: /Protectoras2/public_html/index.php?page=home');
+                exit;
 
             } else {
                 // Credenciales inválidas
-                $error = "<script>
-                        alert('Email o contraseña incorrectos. Inténtalo de nuevo.');
-                        window.history.back();
-                    </script>";
+                echo "<script>
+                    alert('Email o contraseña incorrectos. Inténtalo de nuevo.');
+                    window.history.back();
+                </script>";
                 exit;
             }
         }
