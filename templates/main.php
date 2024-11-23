@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="../public_html/assets/css/customStyle.css">
     <link rel="stylesheet" href="../public_html/assets/css/templates.css">
     <link rel="stylesheet" href="../public_html/assets/css/forms.css">
+    <link rel="stylesheet" href="../public_html/assets/css/slider.css">
+    <link rel="stylesheet" href="../public_html/assets/css/buscadores.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
     <script src="../public_html/assets/js/customScript.js" defer> </script>
+    <script src="../public_html/assets/js/slider.js" defer> </script>
     
 </head>
 <body>

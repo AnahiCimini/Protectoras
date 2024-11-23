@@ -15,7 +15,7 @@ body {
 }
 
 main {
-    padding: 60px 20px;
+    padding: 30px 0;
     text-align: center;
     flex-grow: 1; /* El contenido ocupa el espacio disponible */
 }
@@ -31,4 +31,13 @@ main {
 
 a{
     text-decoration: none !important;
+}
+
+.content_image_home{
+    padding: 15px;
+    margin: 10px;
+}
+
+.content_image_home img {
+    width: 100%;
 }

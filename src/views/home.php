@@ -1,6 +1,9 @@
-<h1>HOME</h1>
+<!-- SLIDER -->
+<div class="slider">
+    <?php include 'sliderView.php'; ?>
+</div>
+<div>
+    <?php include 'especiesView.php'; ?>
+</div>
 
-<h2>SLIDER</h2>
 
-<a href="index.php?page=animal">Animales</a>
-<a href="index.php?page=especie">Especies</a>

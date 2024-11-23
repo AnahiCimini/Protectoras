@@ -14,12 +14,6 @@
                 <!-- Menú registros -->
                  <div class="row" id="registro_login">
                     <div class="registerButtons">
-
-                            <?php 
-                            // Depurar la sesión para verificar si está disponible
-                            var_dump($_SESSION); 
-                            ?>
-
                         <?php if (isset($_SESSION['email'])): ?>
                             <!-- Si está logueado, mostrar el botón de Logout -->
                             <a href="../public_html/router.php?action=logout" class="btn btn-dark">Logout</a>

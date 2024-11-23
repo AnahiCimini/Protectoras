@@ -1,0 +1,69 @@
+
+#carouselExample{
+    background-color: #016e10;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+.carousel-item img.custom-slider-img {
+    margin: 0 auto;
+    aspect-ratio: 2 / 1; /* Relación de 2:1 (ancho:alto) */
+    object-fit: cover; /* Asegura que las imágenes llenen el espacio */
+    border-radius: 8px; /* Opcional: Bordes redondeados */
+    display: block; /* Asegura que el margen auto funcione */ 
+}
+
+
+/* Contenedor de cada item */
+.carousel-content {
+    display: flex; /* Flex para dividir la imagen y los datos */
+    align-items: center; /* Centrado vertical */
+    justify-content: space-between; /* Espaciado entre la imagen y los datos */
+    gap: 20px; /* Espacio entre las secciones */
+    max-width: 90%; /* Limitar el ancho total del contenido */
+    margin: 0 auto; /* Centrar el contenido */
+}
+
+.carousel-image img {
+    max-width: 100%; /* Imagen ajusta a su contenedor */
+    height: auto; /* Mantener proporción */
+    border-radius: 10px; /* Bordes redondeados (opcional) */
+}
+
+.carousel-data {
+    flex: 1; /* La sección de datos ocupa el espacio restante */
+    padding: 20px; /* Espaciado interno */
+    background-color: #dcfcc7;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.carousel-data h3 {
+    font-size: 1.5rem; /* Tamaño del título */
+    margin-bottom: 10px;
+    color: #016e10; /* Color del texto */
+}
+
+.carousel-data p {
+    font-size: 1rem;
+    color: #016e10; /* Color del texto */
+}
+
+.carousel-navigation{
+    width: 6%;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .carousel-content {
+        flex-direction: column; /* Columnas en pantallas pequeñas */
+        gap: 10px; /* Reducir espacio */
+    }
+    .carousel-data {
+        padding: 15px;
+    }
+    .carousel-item img.custom-slider-img {
+        width: 90%; /* Las imágenes ocupan más espacio en pantallas pequeñas */
+        height: calc(40vw); /* Proporción más pequeña para pantallas móviles */
+        max-height: 300px; /* Limita la altura */
+    }
+}
