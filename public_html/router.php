@@ -23,6 +23,9 @@
             $loginController->login();
             break;
 
+        case 'logout':
+            $loginController->logout();
+            break;
         // Otros casos para diferentes acciones
         default:
             echo "Acción no encontrada.";

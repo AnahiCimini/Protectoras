@@ -32,7 +32,10 @@ class LoginController {
             $user = $protectora->getProtectoraByEmail($email);
 
             if (!$user) {
-                echo "<script>alert('El usuario no existe. Verifica el correo electrónico ingresado.');</script>";
+                echo "<script>
+                    alert('El usuario no existe. Verifica el correo electrónico ingresado.');
+                    window.history.back();
+                </script>";
                 exit;
             }
 
@@ -49,6 +52,7 @@ class LoginController {
                     alert('Email o contraseña incorrectos. Inténtalo de nuevo.');
                     window.history.back();
                 </script>";
+                
                 exit;
             }
         }
@@ -57,12 +61,12 @@ class LoginController {
     }
 
     public function logout() {
-        // Destruir la sesión
-        session_unset();
+        session_start(); // Asegura que la sesión está activa
+        session_unset(); // Elimina todas las variables de sesión
         session_destroy();
 
         // Redirigir al usuario a la página de inicio
-        header('Location: ' . PROJECT_ROOT . '/public_html/index.php?case=home');
+        header('Location: /Protectoras2/public_html/index.php?case=home');
                 exit;
     }
 }

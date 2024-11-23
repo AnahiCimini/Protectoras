@@ -20,9 +20,9 @@
                             var_dump($_SESSION); 
                             ?>
 
-                        <?php if (isset($_SESSION['protectora_id'])): ?>
+                        <?php if (isset($_SESSION['email'])): ?>
                             <!-- Si está logueado, mostrar el botón de Logout -->
-                            <a href="index.php?page=logout" class="btn btn-dark">Logout</a>
+                            <a href="../public_html/router.php?action=logout" class="btn btn-dark">Logout</a>
                         <?php else: ?>
                             <!-- Si no está logueado, mostrar los botones de Regístrate y Login -->
                             <a href="index.php?page=registro" class="btn btn-dark">Regístrate</a>
