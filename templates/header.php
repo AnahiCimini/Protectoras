@@ -41,7 +41,7 @@
                     </div>
                 
                     <div class="col-4">
-                        <a href="index.php?page=protectora" class="menu-link">
+                        <a href="index.php?page=protectoras" class="menu-link">
                         <div id="menu_protectoras" class="menu_lateral">PROTECTORAS</div>    
                         </a>
                     </div> 

@@ -41,3 +41,8 @@ a{
 .content_image_home img {
     width: 100%;
 }
+
+.especiesHome .row{
+    margin-bottom: 75px !important;
+}
+

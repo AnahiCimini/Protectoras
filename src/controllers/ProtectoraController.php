@@ -57,7 +57,7 @@ class ProtectoraController {
             // Llama al método para registrar la protectora
             if ($protectora->registerProtectora($data)) {
                 echo "<script>
-                        var redirectUrl = '" . dirname($_SERVER['PHP_SELF']) . "/index.php?case=home';
+                        var redirectUrl = '" . dirname($_SERVER['PHP_SELF']) . "/index.php?page=home';
                         alert('Registro exitoso. Serás redirigido a la página principal.');
                         window.location.href = redirectUrl;
                 </script>";

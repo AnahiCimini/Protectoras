@@ -2,7 +2,9 @@
 <script>
     session_start();
     if (!isset($_SESSION['protectora_id'])) {
-        header('Location: /Protectoras/public_html/index.php?case=login');
+        header('Location: /Protectoras/public_html/index.php?page=login');
         exit;
     }
 </script>
+
+

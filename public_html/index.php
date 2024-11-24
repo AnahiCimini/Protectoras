@@ -18,32 +18,38 @@ session_start();
     $page = $_GET['page'] ?? 'home';
 
     switch ($page) {
-        case 'animal':
-            $view = '../src/views/animalView.php';
-            break;
-        case 'especie':
-            $view = '../src/views/especieView.php';
-            break;
-        case 'protectora':
-            $view = '../src/views/protectoraView.php';
-            break;
         case 'nosotros':
             $view = '../src/views/nosotrosView.php';
             break;
-        case 'registro':
-            $view = '../src/views/registroView.php';
+        case 'protectoras':
+            $view = '../src/views/listadoProtectorasView.php';
+            break;
+        case 'busquedaEspecies':
+            $view = '../src/views/especiesResultadosView.php';
+            break;
+        case 'animalDetalle':
+            $view = '../src/views/animalDetailView.php';
             break;
         case 'login':
             $view = '../src/views/loginView.php';
             break;
-        case 'protectoraIndividual':
-            $view = '../src/views/protectoraIndividualView.php.php';
+        case 'registro':
+            $view = '../src/views/registroView.php';
             break;
-        case 'caso':
-            $view = '../src/views/casoView.php';
+        case 'homeProtectora':
+            $view = '../src/views/homeProtectoraView.php';
+            break;
+        case 'nuevoCaso':
+            $view = '../src/views/nuevoCasoView.php';
+            break;
+        case 'datosProtectora':
+            $view = '../src/views/datosProtectoraView.php';
+            break;
+        case 'home':
+            $view = '../src/views/home.php';
             break;
         default:
-            $view = '../src/views/home.php';
+            $view = '../src/views/error404View.php';
     }
 
     include PROJECT_ROOT . '/templates/main.php'; 
