@@ -46,7 +46,7 @@ class LoginController {
                 $_SESSION['id_protectora'] = $user['id_protectora'];
 
                 ob_end_clean();
-                header('Location: /Protectoras/public_html/index.php?page=homeProtectora');
+                header('Location: index.php?page=busquedaProtectora');
                 exit;
 
             } else {
@@ -70,7 +70,7 @@ class LoginController {
 
         // Redirigir al usuario a la página de inicio
         ob_end_clean();
-        header('Location: /Protectoras/public_html/index.php?page=home');
+        header('Location: index.php?page=home');
         exit;
     }
 }

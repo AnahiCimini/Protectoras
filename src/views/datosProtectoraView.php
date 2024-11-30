@@ -1,4 +1,4 @@
-<h1>Perfil Protectoras</h1>
+<!--<h1>Perfil Protectoras</h1>
 <script>
     session_start();
     if (!isset($_SESSION['protectora_id'])) {
@@ -8,3 +8,4 @@
 </script>
 
 
+-->

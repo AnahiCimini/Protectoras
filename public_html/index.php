@@ -1,24 +1,24 @@
 <?php
-    define('PROJECT_ROOT', dirname(__DIR__));
+
+    if (!defined('PROJECT_ROOT')) {
+        define('PROJECT_ROOT', dirname(__DIR__));
+    }
+    
     require_once PROJECT_ROOT . '/config/config.php';
     require_once PROJECT_ROOT . '/src/models/Animal.php';
     require_once PROJECT_ROOT . '/src/models/Provincias.php';
     require_once PROJECT_ROOT . '/src/models/Protectora.php';    
     require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
 
-	if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+    //session_start();
 	
-    $id_protectora = $_SESSION['id_protectora'] ?? null;   
+    //$email = $_SESSION['email'] ?? null;   
 
     $database = new Database();
     $conn = $database->getConnection();
     
     $provinciasController = new Provincias($conn);
     $provincias = $provinciasController->getProvincias();
-    $especie = $_GET['especie'] ?? '';
-
 
     $page = $_GET['page'] ?? 'home';
 
@@ -37,7 +37,6 @@
             break;
         case 'busquedaEspecies':
             $view = '../src/views/buscarPorEspecieView.php';
-            $animales = $_SESSION['animales'] ?? [];
             break;
         case 'busquedaProtectora':
             $view = '../src/views/buscarPorProtectoraView.php';

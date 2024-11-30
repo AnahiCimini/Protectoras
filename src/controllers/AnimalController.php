@@ -17,6 +17,7 @@ class AnimalController {
 
         // Pasar los resultados a la vista sin hacer require_once del index
         return $animales;  // Devolver los animales encontrados
+        
     }
 }
 ?>
