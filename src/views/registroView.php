@@ -1,10 +1,14 @@
+<?php
+    require_once PROJECT_ROOT . '/config/config.php';
+?>
+
 <?php if (isset($error)) : ?>
     <div class="alert alert-danger">
         <?= htmlspecialchars($error) ?>
     </div>
 <?php endif; ?>
 
-<form class="container mt-4" id="registro_protectora" action="/Protectoras2/public_html/router.php?action=register" method="POST" autocomplete="on">
+<form class="container mt-4" id="registro_protectora" action="<?php echo BASE_URL; ?>router.php?action=register" method="POST" autocomplete="on">
  
 <!-- Nombre de la protectora -->
     <div class="row mb-3 align-items-center">
@@ -104,4 +108,4 @@
     </div>
 
 </form>
-<script src="/public_html/assets/js/registro.js"></script>
+<script src="<?php echo BASE_URL; ?>assets/js/registro.js"></script>

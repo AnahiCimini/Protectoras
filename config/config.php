@@ -1,4 +1,12 @@
 <?php
+    if (!defined('PROJECT_ROOT')) {
+        define('PROJECT_ROOT', dirname(__DIR__));
+    }
+    // URL base dinámica para recursos web
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+    $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+    define('BASE_URL', $protocol . $host . rtrim($scriptDir, '/') . '/');
 
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'adopciones_animales');

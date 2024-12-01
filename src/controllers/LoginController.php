@@ -43,7 +43,7 @@ class LoginController {
                 // Credenciales válidas: iniciar sesión
                 $_SESSION['email'] = $user['email'];
 
-                header('Location: /Protectoras2/public_html/index.php?page=homeProtectora');
+                header('Location: <?php echo BASE_URL; ?>index.php?page=homeProtectora');
                 exit;
 
             } else {
@@ -66,7 +66,7 @@ class LoginController {
         session_destroy();
 
         // Redirigir al usuario a la página de inicio
-        header('Location: /Protectoras2/public_html/index.php?page=home');
+        header('Location: <?php echo BASE_URL; ?>?page=home');
                 exit;
     }
 }

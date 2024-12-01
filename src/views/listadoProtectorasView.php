@@ -1,8 +1,6 @@
-<h1>Protectoras</h1>
-<script>
-    session_start();
-    if (!isset($_SESSION['protectora_id'])) {
-        header('Location: /Protectoras/public_html/index.php?page=login');
-        exit;
-    }
-</script>
+<?php
+    require_once PROJECT_ROOT . '/config/config.php';
+?>
+
+<h1>Listado de protectoras</h1>
+

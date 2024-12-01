@@ -2,7 +2,7 @@
     require_once PROJECT_ROOT . '/config/config.php';
 ?>
 
-<h1>Error 404</h1>
+<h1>Detalles de la protectora</h1>
 
 
 <script>
@@ -13,4 +13,5 @@
     }
 */
 </script>
+
 

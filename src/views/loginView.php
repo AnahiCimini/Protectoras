@@ -1,7 +1,11 @@
+<?php
+    require_once PROJECT_ROOT . '/config/config.php';
+?>
+
 <h1>Login</h1>
 
 <div class="container" style="max-width: 400px; margin-top: 50px;">
-<form method="POST" action="../public_html/router.php?action=login">
+<form method="POST" action="<?php echo BASE_URL; ?>router.php?action=login">
       <div class="form-group">
         <input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico" autocomplete="email" required>
       </div>

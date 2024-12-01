@@ -1,7 +1,10 @@
 <?php
-session_start();
+    if (!defined('PROJECT_ROOT')) {
+        define('PROJECT_ROOT', dirname(__DIR__));
+    }
+    
+    session_start();
 
-    define('PROJECT_ROOT', dirname(__DIR__));
     require_once PROJECT_ROOT . '/config/config.php';
     require_once PROJECT_ROOT . '/src/models/Provincias.php';
     require_once PROJECT_ROOT . '/src/models/Protectora.php';    
