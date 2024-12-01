@@ -2,7 +2,7 @@
     if (!defined('PROJECT_ROOT')) {
         define('PROJECT_ROOT', dirname(__DIR__));
     }
-    
+
     session_start();
 
     require_once PROJECT_ROOT . '/config/config.php';
@@ -21,6 +21,9 @@
     $page = $_GET['page'] ?? 'home';
 
     switch ($page) {
+        case 'home':
+            $view = '../src/views/home.php';
+            break;
         case 'nosotros':
             $view = '../src/views/nosotrosView.php';
             break;
@@ -28,10 +31,19 @@
             $view = '../src/views/listadoProtectorasView.php';
             break;
         case 'busquedaEspecies':
-            $view = '../src/views/especiesResultadosView.php';
+            $view = '../src/views/resultadosEspeciesView.php';
             break;
-        case 'animalDetalle':
-            $view = '../src/views/animalDetailView.php';
+        case 'busquedaProtectoras':
+            $view = '../src/views/resultadosProtectorasView.php';
+            break;
+        case 'datosAnimal':
+            $view = '../src/views/detalleAnimalView.php';
+            break;
+        case 'datosProtectora':
+            $view = '../src/views/detalleProtectoraView.php';
+            break;
+        case 'nuevoCaso':
+            $view = '../src/views/nuevoCasoView.php';
             break;
         case 'login':
             $view = '../src/views/loginView.php';
@@ -39,18 +51,7 @@
         case 'registro':
             $view = '../src/views/registroView.php';
             break;
-        case 'homeProtectora':
-            $view = '../src/views/homeProtectoraView.php';
-            break;
-        case 'nuevoCaso':
-            $view = '../src/views/nuevoCasoView.php';
-            break;
-        case 'datosProtectora':
-            $view = '../src/views/datosProtectoraView.php';
-            break;
-        case 'home':
-            $view = '../src/views/home.php';
-            break;
+
         default:
             $view = '../src/views/error404View.php';
     }
