@@ -79,5 +79,18 @@ class Protectora {
         // Ejecuta la inserción y retorna el resultado
         return $stmt->execute();
     }
+
+    public function getProtectorasByCcaaId($ccaaId)
+    {
+        $stmt = $this->conn->prepare("
+            SELECT p.nombre AS protectora, p.provincia_id 
+            FROM protectoras p 
+            JOIN provincias pr ON p.provincia_id = pr.id 
+            WHERE pr.ccaa_id = ?
+        ");
+        $stmt->bind_param("i", $ccaaId);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>

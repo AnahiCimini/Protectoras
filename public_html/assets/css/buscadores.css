@@ -1,0 +1,36 @@
+/* Acordeón */
+.card {
+    margin-bottom: 10px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+}
+
+.card-body {
+    background-color: #e9ecef;
+    padding: 10px;
+}
+
+/* Botones de CCAA */
+.ccaa-button {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* Botones de Provincias */
+.provincia-button {
+    margin: 5px;
+    width: 100%;
+    text-align: left;
+}
+
+.provincia-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Acordeón activo */
+.ccaa-accordion .collapse.show {
+    background-color: #d4edda;
+}

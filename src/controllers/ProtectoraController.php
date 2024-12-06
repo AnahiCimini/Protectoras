@@ -1,4 +1,6 @@
 <?php
+require_once PROJECT_ROOT . '/config/config.php';
+require_once PROJECT_ROOT . '/src/models/Provincias.php';
 require_once PROJECT_ROOT . '/src/models/Protectora.php';
 
 class ProtectoraController {
@@ -69,6 +71,29 @@ class ProtectoraController {
         }
         // Pasar los datos a la vista
         require_once PROJECT_ROOT . '/src/views/registroView.php';
+    }
+
+    public function getProvinciasProtectoras()
+    {
+        if (isset($_POST['ccaa_id'])) {
+            $ccaaId = intval($_POST['ccaa_id']);
+
+            // Modelo de Provincias
+            $provinciasModel = new Provincias($this->conn);
+            $provincias = $provinciasModel->getProvinciasByCcaaId($ccaaId);
+
+            // Modelo de Protectoras
+            $protectorasModel = new Protectora($this->conn);
+            $protectoras = $protectorasModel->getProtectorasByCcaaId($ccaaId);
+
+            // Responder con JSON
+            echo json_encode([
+                'provincias' => $provincias,
+                'protectoras' => $protectoras
+            ]);
+        } else {
+            echo json_encode(['error' => 'No se proporcionó una CCAA válida.']);
+        }
     }
 }
 ?>

@@ -18,7 +18,7 @@
     <script src="<?php echo BASE_URL; ?>assets/js/customScript.js" defer> </script>
     <script src="<?php echo BASE_URL; ?>assets/js/buscadoresScript.js" defer> </script>
     <script src="<?php echo BASE_URL; ?>assets/js/registroScript.js" defer> </script>
-    <script src="<?php echo BASE_URL; ?>assets/js/slider.js" defer> </script>
+    <script src="<?php echo BASE_URL; ?>assets/js/sliderScript.js" defer> </script>
     
 </head>
 <body>
