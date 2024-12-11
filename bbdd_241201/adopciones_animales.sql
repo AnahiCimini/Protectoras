@@ -103,16 +103,16 @@ INSERT INTO `animales` (`id_animal`, `id_protectora`, `id_especie`, `nombre_anim
 DROP TABLE IF EXISTS `comunidades_autonomas`;
 CREATE TABLE IF NOT EXISTS `comunidades_autonomas` (
   `id_ccaa` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
+  `nombre_ccaa` varchar(50) NOT NULL,
   PRIMARY KEY (`id_ccaa`),
-  UNIQUE KEY `nombre` (`nombre`)
+  UNIQUE KEY `nombre_ccaa` (`nombre_ccaa`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `comunidades_autonomas`
 --
 
-INSERT INTO `comunidades_autonomas` (`id_ccaa`, `nombre`) VALUES
+INSERT INTO `comunidades_autonomas` (`id_ccaa`, `nombre_ccaa`) VALUES
 (1, 'Andalucía'),
 (2, 'Aragón'),
 (3, 'Asturias'),

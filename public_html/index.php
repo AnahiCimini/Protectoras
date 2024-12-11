@@ -8,6 +8,7 @@
     require_once PROJECT_ROOT . '/config/config.php';
     require_once PROJECT_ROOT . '/src/models/Provincias.php';
     require_once PROJECT_ROOT . '/src/models/Protectora.php';    
+    require_once PROJECT_ROOT . '/src/models/CCAA.php';    
     require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
 
 
@@ -16,6 +17,9 @@
 
     $protectoraController = new Provincias($conn);
     $provincias = $protectoraController->getProvincias();
+
+    $CCAAController = new CCAA($conn);
+    $ccaas = $CCAAController->getCCAA();
 
 
     $page = $_GET['page'] ?? 'home';

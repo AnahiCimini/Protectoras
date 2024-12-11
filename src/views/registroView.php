@@ -12,9 +12,9 @@
  
 <!-- Nombre de la protectora -->
     <div class="row mb-3 align-items-center">
-        <label for="nombreProtectora" class="col-4 col-form-label">Nombre de la Protectora <span class="text-danger">*</span></label>
+        <label for="nombre_protectora" class="col-4 col-form-label">Nombre de la Protectora <span class="text-danger">*</span></label>
         <div class="col-8">
-        <input type="text" class="form-control" id="nombreProtectora" name="nombreProtectora" autocomplete="organization" required>
+        <input type="text" class="form-control" id="nombre_protectora" name="nombre_protectora" autocomplete="organization" required>
         </div>
     </div>
 
@@ -26,9 +26,9 @@
         </div>
         <div class="col-1 d-flex justify-content-center align-items-center">
             <div class="col-1 d-flex flex-column justify-content-center align-items-center">
-                <label class="form-check-label" for="emailVisibility">Visible</label>
+                <label class="form-check-label" for="email_visible">Visible</label>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="emailVisibility" name="emailVisibility" checked>
+                    <input class="form-check-input" type="checkbox" id="email_visible" name="email_visible" checked>
                 </div>
             </div>
         </div>
@@ -108,4 +108,4 @@
     </div>
 
 </form>
-<script src="<?php echo BASE_URL; ?>assets/js/registro.js"></script>
+<script src="<?php echo BASE_URL; ?>assets/js/registroScript.js"></script>

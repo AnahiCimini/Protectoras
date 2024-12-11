@@ -5,11 +5,12 @@ class Provincias {
     public $id_ccaa;
     public $nombre_provincia;
    
-
+    // Constructor que recibe la conexión a la base de datos
     public function __construct($db) {
         $this->conn = $db;
     }
 
+    // Obtener todas las provincias
     public function getProvincias() {
         $query = "SELECT * FROM provincias ORDER BY nombre_provincia ASC";
         $stmt = $this->conn->prepare($query);
@@ -17,12 +18,17 @@ class Provincias {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProvinciasByCcaaId($ccaaId)
-    {
-        $stmt = $this->conn->prepare("SELECT id, nombre FROM provincias WHERE ccaa_id = ?");
-        $stmt->bind_param("i", $ccaaId);
+
+    // Obtener provincias por ID de CCAA usando array_filter
+    public function getProvinciasByCCAA($id_ccaa) {
+        $query = "SELECT * FROM provincias WHERE id_ccaa = :id_ccaa ORDER BY nombre_provincia ASC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id_ccaa', $id_ccaa);
         $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+     
+    
+
 }
 ?>

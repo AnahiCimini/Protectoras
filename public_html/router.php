@@ -14,7 +14,12 @@
         case 'register':
             require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
             $protectoraController = new ProtectoraController($conn);
-            $protectoraController->register();
+            
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $data = $_POST;
+                $protectoraController->register($data);
+                exit;
+            }
             break;
 
         case 'login':
@@ -32,16 +37,31 @@
         case 'buscarPorEspecie':
             require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
             $especie = isset($_GET['especie']) ? $_GET['especie'] : '';
-            // Llamar al controlador de animales
             $animalController = new AnimalController($conn);
             $animales = $animalController->buscarPorEspecie($especie);
             
-            // Establecer la página y pasar los datos
-            $_GET['page'] = 'busquedaEspecies'; // Página de búsqueda
+            $_GET['page'] = 'busquedaEspecies'; 
             $data = ['animales' => $animales, 'especie' => $especie];
             
-            include PROJECT_ROOT . '/public_html/index.php'; // Cargar el index para renderizar la vista
+            include PROJECT_ROOT . '/public_html/index.php';
             exit();
+
+        case 'listadoProvinciasbyCCAA':
+            $id_ccaa = $_GET['id_ccaa'] ?? null;
+            require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
+            $controller = new ProtectoraController($conn);
+            $controller->getProvinciasByCCAA($id_ccaa);
+            foreach ($provincias as $provincia) {
+                echo '<button class="btn btn-secondary">' . $provincia['nombre_provincia'] . '</button>';
+            }
+            break;
+
+        case 'listadoProtectoras':
+            $id_provincia = $_GET['id_provincia'] ?? null;
+            $controller = new ProtectoraController($conn);
+            $controller->getListadoProtectoras($id_provincia);
+                break;
+            
         // Otros casos para diferentes acciones
         default:
             echo "Acción no encontrada.";

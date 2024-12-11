@@ -1,5 +1,6 @@
-const carousel = document.getElementById('carouselExample');
-const bootstrapCarousel = new bootstrap.Carousel(carousel, {
-    wrap: true // Permitir bucles infinitos
+var myCarousel = document.getElementById('carouselExample')
+var carousel = new bootstrap.Carousel(myCarousel, {
+  interval: 8000,
+  ride: 'carousel'
 });
 
