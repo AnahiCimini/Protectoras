@@ -27,9 +27,18 @@ class LoginController {
                 return;
             }
             
+            
             // Buscar protectora por email
             $protectora = new Protectora($this->conn);
             $user = $protectora->getProtectoraByEmail($email);
+
+            if (!$user || empty($user['password_user'])) {
+                echo "<script>
+                    alert('El usuario no existe o tiene datos inválidos.');
+                    window.history.back();
+                </script>";
+                exit;
+            }
 
             if (!$user) {
                 echo "<script>
@@ -43,7 +52,7 @@ class LoginController {
                 // Credenciales válidas: iniciar sesión
                 $_SESSION['email'] = $user['email'];
 
-                header('Location: <?php echo BASE_URL; ?>index.php?page=homeProtectora');
+                header(header: 'Location: ' . BASE_URL . 'index.php?page=busquedaPorProtectoras');
                 exit;
 
             } else {
@@ -66,7 +75,7 @@ class LoginController {
         session_destroy();
 
         // Redirigir al usuario a la página de inicio
-        header('Location: <?php echo BASE_URL; ?>?page=home');
-                exit;
+        header(header: 'Location: ' . BASE_URL . 'index.php?page=home');
+        exit;
     }
 }

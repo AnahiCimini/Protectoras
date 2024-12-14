@@ -23,14 +23,15 @@ class Protectora {
         $query = "SELECT * FROM protectoras WHERE email = :email";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-
+    
         if ($stmt->execute()) {
-            return $stmt->fetch(PDO::FETCH_ASSOC); // Devuelve un array con los datos de la protectora
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            var_dump($user); 
+            return $user;
         }
     
-        return false; // Si no se encuentra el email o hay error
+        return false;
     }
-
     //Comprobar si el nombre ya existe
     public function nombreExists($nombre_protectora) {
         $query = "SELECT COUNT(*) as count FROM protectoras WHERE nombre_protectora = :nombre_protectora";
@@ -50,12 +51,13 @@ class Protectora {
     }
 
     public function registerProtectora() {
+        // Hash de la contraseña aquí
         $hashedPassword = password_hash($this->password_user, PASSWORD_BCRYPT);
-
+    
         $sql = "INSERT INTO protectoras (nombre_protectora, direccion, telefono, email, id_provincia, poblacion, web, email_visible, password_user) 
                 VALUES (:nombre_protectora, :direccion, :telefono, :email, :id_provincia, :poblacion, :web, :email_visible, :password_user)";
         $stmt = $this->conn->prepare($sql);
-
+    
         // Bind de parámetros
         $stmt->bindParam(':nombre_protectora', $this->nombre_protectora);
         $stmt->bindParam(':direccion', $this->direccion);
@@ -66,17 +68,18 @@ class Protectora {
         $stmt->bindParam(':web', $this->web);
         $stmt->bindParam(':email_visible', $this->email_visible);
         $stmt->bindParam(':password_user', $hashedPassword, PDO::PARAM_STR);
-
+    
         if ($stmt->execute()) {
             return true;
         }
         return false;
     }
+    
 
 
     // Obtener todas las protectoras
     public function getProtectoras() {
-        $query = "SELECT * FROM protector ORDER BY nombre_protectora ASC";
+        $query = "SELECT * FROM protectoras ORDER BY nombre_protectora ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

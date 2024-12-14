@@ -22,7 +22,7 @@ class ProtectoraController {
             $protectora->poblacion = $data['poblacion'];
             $protectora->web = $data['web'];
             $protectora->email_visible = isset($data['email_visible']) ? 1 : 0;
-            $protectora->password_user = password_hash($data['password'], PASSWORD_BCRYPT);
+            $protectora->password_user = $data['password']; // Se pasa tal cual, el modelo se encarga de hacer el hash
     
             // El nombre de la protectora ya existe: mostrar error
             if ($protectora->nombreExists($protectora->nombre_protectora)) {
@@ -36,18 +36,23 @@ class ProtectoraController {
             // El correo de la protectora ya existe: mostrar error
             if ($protectora->emailExists($protectora->email)) {
                 echo "<script>
-                    alert('El email de la protectora ya existe. Por favor, elige otro.');
+                    alert('Este email ya se ha registrado. Por favor, elige otro.');
                     window.history.back();
                 </script>";
                 exit;
             }
     
             // Llama al método para registrar la protectora
-            if ($protectora->registerProtectora($data)) {
-                echo "<script>
-                    alert('Protectora registrada exitosamente.');
-                    window.location.href = '" . BASE_URL . "/index.php?case=home';
-                </script>";
+            if ($protectora->registerProtectora()) {
+                // Iniciar sesión
+                session_start();
+                
+                // Almacenar el mensaje en la sesión
+                $_SESSION['message'] = 'Protectora registrada exitosamente.';
+                
+                // Redirigir a la página de inicio
+                header("Location: " . BASE_URL . "/index.php?case=home");
+                exit;
             } else {
                 echo "<script>
                     alert('No se pudo registrar la protectora.');

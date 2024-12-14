@@ -5,6 +5,15 @@
 
     session_start();
 
+    if (isset($_SESSION['message'])) {
+        echo "<script>
+            alert('" . $_SESSION['message'] . "');
+        </script>";
+        // Limpiar el mensaje después de mostrarlo
+        unset($_SESSION['message']);
+    }
+        
+
     require_once PROJECT_ROOT . '/config/config.php';
     require_once PROJECT_ROOT . '/src/models/Provincias.php';
     require_once PROJECT_ROOT . '/src/models/Protectora.php';    
@@ -34,11 +43,11 @@
         case 'protectoras':
             $view = '../src/views/listadoProtectorasView.php';
             break;
-        case 'busquedaEspecies':
-            $view = '../src/views/resultadosEspeciesView.php';
+        case 'busquedaPorEspecies':
+            $view = '../src/views/resultadosPorEspeciesView.php';
             break;
-        case 'busquedaProtectoras':
-            $view = '../src/views/resultadosProtectorasView.php';
+        case 'busquedaPorProtectoras':
+            $view = '../src/views/resultadosPorProtectorasView.php';
             break;
         case 'datosAnimal':
             $view = '../src/views/detalleAnimalView.php';
