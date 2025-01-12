@@ -58,7 +58,33 @@
             $controller = new ProtectoraController($conn);
             $controller->getProtectorasByProvincia($id_provincia);
                 break;
-            
+        
+        case 'detalleProtectora':
+            // Manejar la lógica para el detalle de protectora
+            $name = $_GET['name'] ?? null;
+    
+            if ($name) {
+                require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
+                $controller = new ProtectoraController($conn);
+    
+                // Obtener la información de la protectora por nombre
+                $protectora = $controller->getProtectoraByName($name);
+    
+                if ($protectora) {
+                    // Pasar los datos al índice para cargar la vista
+                    $_GET['page'] = 'datosProtectora';
+                    $_GET['protectora'] = $protectora;
+                    include PROJECT_ROOT . '/public_html/index.php';
+                    exit;
+                } else {
+                    echo "Protectora no encontrada.";
+                    exit;
+                }
+            } else {
+                echo "Nombre de protectora no especificado.";
+                exit;
+            }
+
         // Otros casos para diferentes acciones
         default:
             echo "Acción no encontrada.";

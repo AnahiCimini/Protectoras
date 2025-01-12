@@ -1,16 +1,29 @@
 <?php
     require_once PROJECT_ROOT . '/config/config.php';
+    if (isset($_GET['protectora'])) {
+        $protectora = $_GET['protectora'];
+    } else {
+        echo "No se encontraron datos para esta protectora.";
+        exit;
+    }
 ?>
 
 <div class="container">
-    <h2>Detalle de la Protectora</h2>
-    <?php if ($protectora): ?>
-        <p><strong>Nombre:</strong> <?php echo $protectora['nombre_protectora']; ?></p>
-        <p><strong>Descripción:</strong> <?php echo $protectora['descripcion']; ?></p>
-        <p><strong>Dirección:</strong> <?php echo $protectora['direccion']; ?></p>
-        <p><strong>Teléfono:</strong> <?php echo $protectora['telefono']; ?></p>
-        <p><strong>Email:</strong> <?php echo $protectora['email']; ?></p>
-    <?php else: ?>
-        <p>No se encontró la protectora.</p>
-    <?php endif; ?>
+    <h1>Detalle de la Protectora</h1>
+    <p><strong>Nombre:</strong> 
+        <?php echo isset($protectora['nombre_protectora']) 
+            ? htmlspecialchars($protectora['nombre_protectora']) 
+            : 'No disponible'; ?>
+    </p>
+    <p><strong>Dirección:</strong> 
+        <?php echo isset($protectora['direccion']) 
+            ? htmlspecialchars($protectora['direccion']) 
+            : 'No disponible'; ?>
+    </p>
+    <p><strong>Teléfono:</strong> 
+        <?php echo isset($protectora['telefono']) 
+            ? htmlspecialchars($protectora['telefono']) 
+            : 'No disponible'; ?>
+    </p>
 </div>
+

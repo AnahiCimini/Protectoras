@@ -90,6 +90,23 @@ class ProtectoraController {
         
         return $protectoras;
     }
+
+
+    public function getProtectoraByName($name)
+    {
+        try {
+            $query = "SELECT * FROM protectoras WHERE nombre_protectora = :name";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error al obtener la protectora por nombre: " . $e->getMessage();
+            return false;
+        }
+    }
+    
+
     
 }
 ?>
