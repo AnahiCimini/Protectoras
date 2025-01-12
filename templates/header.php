@@ -17,7 +17,7 @@
                         <?php if (isset($_SESSION['email'])): ?>
                             <!-- Si está logueado, mostrar el botón de Logout -->
                             <a href="<?php echo BASE_URL; ?>router.php?action=logout" class="btn btn-dark">Logout</a>
-                            <a href="<?php echo BASE_URL; ?>router.php?action=detalleProtectora&name=<?php echo urlencode($_SESSION['protectora_name']); ?>" class="btn btn-dark">Mi perfil</a>
+                            <a href="<?php echo BASE_URL; ?>router.php?action=detalleProtectora&name=<?php echo urlencode($_SESSION['nombre_protectora']); ?>" class="btn btn-dark">Mi perfil</a>
                         <?php else: ?>
                             <!-- Si no está logueado, mostrar los botones de Regístrate y Login -->
                             <a href="<?php echo BASE_URL; ?>?page=registro" class="btn btn-dark">Regístrate</a>
