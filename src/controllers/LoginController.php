@@ -1,6 +1,6 @@
 <?php
- PROJECT_ROOT . '/src/models/Protectora.php';
- PROJECT_ROOT . '/src/views/loginView.php';
+require_once PROJECT_ROOT . '/src/models/Protectora.php';
+require_once PROJECT_ROOT . '/src/views/loginView.php';
 
 
 class LoginController {
@@ -23,7 +23,7 @@ class LoginController {
 
             if (empty($email) || empty($password)) {
                 $error = "Por favor, rellena todos los campos.";
-                 PROJECT_ROOT . '/src/views/loginView.php';
+                require_once PROJECT_ROOT . '/src/views/loginView.php';
                 return;
             }
             
@@ -66,7 +66,7 @@ class LoginController {
             }
         }
         // Mostrar la vista de login
-         PROJECT_ROOT . '/src/views/loginView.php';
+        require_once PROJECT_ROOT . '/src/views/loginView.php';
     }
 
     public function logout() {
