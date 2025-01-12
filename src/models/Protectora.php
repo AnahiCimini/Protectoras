@@ -87,10 +87,11 @@ class Protectora {
 
     // Obtener las protectoras por provincia usando array_filter
     public function getProtectorasByProvincia($id_provincia) {
-        $query = "SELECT * FROM protectoras WHERE id_provincia = :id_provincia ORDER BY nombre_protectora ASC";
+        $query = "SELECT * FROM protectoras WHERE id_provincia = :id_provincia";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id_provincia', $id_provincia);
+        $stmt->bindParam(':id_provincia', $id_provincia, PDO::PARAM_INT);
         $stmt->execute();
+        
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     

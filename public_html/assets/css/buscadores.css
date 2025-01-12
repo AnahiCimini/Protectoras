@@ -1,6 +1,8 @@
 /* Acordeón */
 .card {
     margin-bottom: 10px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .card-header {
@@ -9,28 +11,48 @@
 
 .card-body {
     background-color: #e9ecef;
-    padding: 10px;
+    padding:0;
+    border-radius: 0;
+
 }
 
-/* Botones de CCAA */
-.ccaa-button {
-    margin-bottom: 10px;
-    width: 100%;
+.rows_ccaa{
+    padding: 0;
 }
 
-/* Botones de Provincias */
-.provincia-button {
-    margin: 5px;
-    width: 100%;
-    text-align: left;
+
+/*botones ccaa*/
+
+.btn-ccaa {
+    padding: 8px 20px;
+    background-color: #016e10;
+    color: #dcfcc7;
+    margin-bottom: 15px;
 }
 
-.provincia-button:hover {
-    background-color: #007bff;
-    color: white;
+.btn-ccaa:hover {
+    background-color: #dcfcc7;
+    color: #016e10;
 }
 
-/* Acordeón activo */
-.ccaa-accordion .collapse.show {
-    background-color: #d4edda;
+
+/*botones provincias*/
+
+.provincias_collapse {
+    width: 100%;  /* Ocupa todo el ancho disponible de la página */
+    background-color: #dcfcc7;
+    padding: 20px 0 0 0;
+    margin: 0 0 20px;
+}
+
+.btn-provincia {
+    padding: 8px 20px;
+    background-color: rgb(248, 192, 159); /* Color de fondo del botón activo */
+    color:rgb(255, 115, 0);
+    margin-bottom: 15px;
+}
+
+.btn-provincia:hover {
+    background-color: rgb(255, 115, 0);
+    color:  rgb(248, 192, 159);
 }

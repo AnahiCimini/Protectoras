@@ -40,7 +40,7 @@
             $animalController = new AnimalController($conn);
             $animales = $animalController->buscarPorEspecie($especie);
             
-            $_GET['page'] = 'busquedaEspecies'; 
+            $_GET['page'] = 'busquedaPorEspecies'; 
             $data = ['animales' => $animales, 'especie' => $especie];
             
             include PROJECT_ROOT . '/public_html/index.php';
@@ -50,16 +50,13 @@
             $id_ccaa = $_GET['id_ccaa'] ?? null;
             require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
             $controller = new ProtectoraController($conn);
-            $controller->getProvinciasByCCAA($id_ccaa);
-            foreach ($provincias as $provincia) {
-                echo '<button class="btn btn-secondary">' . $provincia['nombre_provincia'] . '</button>';
-            }
+            $controller->getProvinciasByCCAA($id_ccaa); 
             break;
-
+            
         case 'listadoProtectoras':
             $id_provincia = $_GET['id_provincia'] ?? null;
             $controller = new ProtectoraController($conn);
-            $controller->getListadoProtectoras($id_provincia);
+            $controller->getProtectorasByProvincia($id_provincia);
                 break;
             
         // Otros casos para diferentes acciones

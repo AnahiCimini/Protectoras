@@ -71,31 +71,25 @@ class ProtectoraController {
 
     public function getProvinciasByCCAA($id_ccaa) {
         $provinciaModel = new Provincias($this->conn);
-        $provincias = $provinciaModel->getProvinciasByCCAA($id_ccaa); // Obtener las provincias desde el modelo
-
-        // Comprobar si hay provincias disponibles
-        if (count($provincias) > 0) {
-            foreach ($provincias as $provincia) {
-                echo '<button type="button" class="btn btn-secondary provincia-button" data-id="' . $provincia['id_provincia'] . '">' . htmlspecialchars($provincia['nombre_provincia']) . '</button>';
-            }
-        } else {
-            echo '<p>No hay provincias disponibles para esta Comunidad Autónoma.</p>';
-        }
+        $ccaaModel = new CCAA($this->conn);
+    
+        // Obtener todas las CCAA
+        $ccaas = $ccaaModel->getCCAA();
+    
+        // Obtener todas las provincias filtradas por CCAA
+        $provincias = $provinciaModel->getProvinciasByCCAA($id_ccaa);
+    
+        // Pasamos las CCAA y las Provincias a la vista
+        require_once PROJECT_ROOT . '/src/views/listadoProvinciasView.php';
     }
 
-    public function getListadoProtectoras($id_provincia) {
+    
+    public function getProtectorasByProvincia($id_provincia) {
         $protectoraModel = new Protectora($this->conn);
-        $protectoras = $protectoraModel->getProtectorasByProvincia($id_provincia);
-
-        // Renderizar solo el listado de protectoras
-        foreach ($protectoras as $protectora) {
-            echo '<div class="card mt-2">
-                    <div class="card-body">
-                        <h5 class="card-title">' . htmlspecialchars($protectora['nombre_protectora']) . '</h5>
-                        <p class="card-text">' . htmlspecialchars($protectora['descripcion']) . '</p>
-                    </div>
-                  </div>';
-        }
+        $protectoras = $protectoraModel->getProtectorasByProvincia($id_provincia); // Método para obtener protectoras de la provincia
+        
+        return $protectoras;
     }
+    
 }
 ?>
