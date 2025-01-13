@@ -44,29 +44,37 @@ class ProtectoraController {
     
             // Llama al método para registrar la protectora
             if ($protectora->registerProtectora()) {
-                // Iniciar sesión
-                session_start();
+
+                $user = $protectora->getProtectoraByEmail($data['email']);
                 
-                // Almacenar el mensaje en la sesión
-                $_SESSION['message'] = 'Protectora registrada exitosamente.';
-                
-                // Redirigir a la página de inicio
-                header("Location: " . BASE_URL . "/index.php?case=home");
-                exit;
+                if ($user) {
+                    // Iniciar sesión automáticamente
+                    session_start();
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['nombre_protectora'] = $user['nombre_protectora'];
+
+                    header(header: 'Location: ' . BASE_URL . 'index.php?page=busquedaPorProtectoras');
+
+                    // Mensaje de éxito y redirección
+                    $_SESSION['message'] = 'Protectora registrada exitosamente. Bienvenida a la plataforma.';
+                    header(header: 'Location: ' . BASE_URL . 'index.php?page=busquedaPorProtectoras');
+                    exit;
+                } else {
+                    $_SESSION['error'] = 'No se pudo iniciar sesión tras el registro. Por favor, inicia sesión manualmente.';
+                    header("Location: " . BASE_URL . "/login.php");
+                    exit;
+                }
             } else {
-                echo "<script>
-                    alert('No se pudo registrar la protectora.');
-                    window.history.back();
-                </script>";
+                $_SESSION['error'] = 'No se pudo registrar la protectora. Inténtalo de nuevo más tarde.';
+                header("Location: " . BASE_URL . "/registro.php");
+                exit;
             }
+        } else {
+            // Manejo de método no permitido
+            $_SESSION['error'] = 'Método no permitido.';
+            header("Location: " . BASE_URL . "/registro.php");
             exit;
         }
-        // Si no es POST, simplemente retornamos un error de solicitud incorrecta
-        echo "<script>
-            alert('Método no permitido.');
-            window.history.back();
-        </script>";
-        exit;
     }
 
     public function getProvinciasByCCAA($id_ccaa) {
