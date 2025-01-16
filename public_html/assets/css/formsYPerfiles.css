@@ -1,0 +1,119 @@
+/* Logo */
+
+.logoProte img{
+    width: 40%;
+    padding: 20px;
+}
+
+/* Botón adopciones */
+
+.btn-adopciones{
+    padding: 23px 50px;
+    background-color: #016e10;
+    color: #dcfcc7;
+    margin-bottom: 15px;
+    margin: 0 auto;
+    font-size: 2.5rem;   
+}
+
+.btn-adopciones h4 {
+    font-size: 2rem;   
+
+}
+
+
+/* Detalle Protectoras */
+
+.container-profileProte .row {
+    margin-bottom: 20px;
+}
+
+.datosProte {
+    text-align: left;
+    padding: 0 80px;
+}
+
+.datosProte h4 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 1.5em;   
+}
+
+.datosProte p {
+    font-size: 1.2em;
+}
+
+
+/* Formulario Prote */
+
+.form-switch {
+    text-align: center;
+}
+
+.formProte, .datosProte {
+    padding: 22px 106px 35px;
+}
+
+.formProte>div, .datosProte>div {
+    padding: 40px 35px 35px;
+    background: #dcfcc7;
+    height: 100%;
+}
+
+.formProte h2 {
+    color: rgb(255, 115, 0);
+    font-weight: 500;
+    margin: 10px 0;
+
+}
+
+.formProte button{
+    padding: 13px 25px;
+    background-color: #016e10;
+    color: #dcfcc7;
+    margin-bottom: 15px;
+    margin: 0 auto;
+}
+
+.btn-adopciones:hover {
+    background-color: #dcfcc7;
+    color: #016e10;
+}
+
+.formProte button h5{
+    margin: 0;
+}
+
+.formProte button:hover{
+    background-color: rgb(255, 244, 237);
+    color:rgb(255, 115, 0);
+    font-weight: 500;
+}
+
+.formProte input, .formProte textarea {
+    text-align: center;
+    padding: 5px 0;
+}
+
+.formProte input {
+    width: 100%;
+    margin: 15px 0 10px;
+  }
+  
+.formProte textarea {
+    width: 100%;
+    margin: 10px 0 25px;
+  }
+  
+
+  /* Sombreados */
+
+  .shadow-right {
+    box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  .shadow-left {
+    box-shadow: -15px 15px 10px rgba(0, 0, 0, 0.4);
+  }
+  

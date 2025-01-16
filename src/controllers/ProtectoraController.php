@@ -21,9 +21,36 @@ class ProtectoraController {
             $protectora->id_provincia = $data['provincias'];
             $protectora->poblacion = $data['poblacion'];
             $protectora->web = $data['web'];
-            $protectora->email_visible = isset($data['email_visible']) ? 1 : 0;
+            //$protectora->email_visible = isset($data['email_visible']) ? 1 : 0;
             $protectora->password_user = $data['password']; // Se pasa tal cual, el modelo se encarga de hacer el hash
     
+            // Verificar si se subió un archivo
+            if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = PROJECT_ROOT . '/public_html/assets/img/uploads/protectoras/';
+                $uploadedFile = $uploadDir . basename($_FILES['logo']['name']);
+                
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+            
+                $fileName = uniqid('logo_') . '.' . pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION);
+                $filePath = $uploadDir . $fileName;
+            
+                if (move_uploaded_file($_FILES['logo']['tmp_name'], $filePath)) {
+                    $protectora->logo = $fileName;
+                } else {
+                    $_SESSION['error'] = 'Error al subir el logo. Inténtalo de nuevo.';
+                    header("Location: " . BASE_URL . "/registro.php");
+                    exit;
+                }
+            } else {
+                $protectora->logo = null; // Si no se sube nada, la propiedad logo se establece como null
+            }
+
+            if ($_FILES['logo']['error'] !== UPLOAD_ERR_OK) {
+                error_log("Error en la subida: " . $_FILES['logo']['error']);
+            }
+
             // El nombre de la protectora ya existe: mostrar error
             if ($protectora->nombreExists($protectora->nombre_protectora)) {
                 echo "<script>
@@ -52,8 +79,6 @@ class ProtectoraController {
                     session_start();
                     $_SESSION['email'] = $user['email'];
                     $_SESSION['nombre_protectora'] = $user['nombre_protectora'];
-
-                    header(header: 'Location: ' . BASE_URL . 'index.php?page=busquedaPorProtectoras');
 
                     // Mensaje de éxito y redirección
                     $_SESSION['message'] = 'Protectora registrada exitosamente. Bienvenida a la plataforma.';

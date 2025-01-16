@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `protectoras` (
   `poblacion` varchar(50) NOT NULL,
   `web` varchar(100) DEFAULT NULL,
   `logo` longblob,
-  `email_visible` tinyint(1) DEFAULT '1',
+  /*`email_visible` tinyint(1) DEFAULT '1',*/
   `password_user` varchar(255) NOT NULL,
   PRIMARY KEY (`id_protectora`),
   KEY `id_provincia` (`id_provincia`)
@@ -187,12 +187,12 @@ CREATE TABLE IF NOT EXISTS `protectoras` (
 -- Volcado de datos para la tabla `protectoras`
 --
 
-INSERT INTO `protectoras` (`id_protectora`, `nombre_protectora`, `direccion`, `telefono`, `email`, `id_provincia`, `poblacion`, `web`, `logo`, `email_visible`, `password_user`) VALUES
-(1, 'Protectora de Animales La Paz', 'Calle Ficticia 123, Ciudad', '123456789', 'contacto@lapaz.org', 1, 'Ciudad Ficticia', 'www.lapaz.org', NULL, 1, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm'),
-(2, 'Fundación Animalista Vida', 'Avenida Verde 456, Barrio', '987654321', 'fundacion@vida.org', 2, 'Barrio Animalista', 'www.vida.org', NULL, 1, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm'),
-(3, 'Protectora Huellas de Esperanza', 'Calle Esperanza 789, Pueblo', '555555555', 'info@huellas.org', 3, 'Pueblo Esperanza', 'www.huellas.org', NULL, 1, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm'),
-(4, 'Asociación Animal Solidario', 'Plaza Animal 101, Zona Norte', '444444444', 'solidaridad@animal.org', 4, 'Zona Norte', 'www.animal.org', NULL, 1, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm'),
-(5, 'Protectora Refugio Esperanza', 'Calle Refugio 112, Capital', '333333333', 'test@test.es', 5, 'Capital Esperanza', 'www.refugio.org', NULL, 1, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm');
+INSERT INTO `protectoras` (`id_protectora`, `nombre_protectora`, `direccion`, `telefono`, `email`, `id_provincia`, `poblacion`, `web`, `logo`, `password_user`) VALUES
+(1, 'Protectora de Animales La Paz', 'Calle Ficticia 123, Ciudad', '123456789', 'contacto@lapaz.org', 1, 'Ciudad Ficticia', 'www.lapaz.org', NULL, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm'),
+(2, 'Fundación Animalista Vida', 'Avenida Verde 456, Barrio', '987654321', 'fundacion@vida.org', 2, 'Barrio Animalista', 'www.vida.org', NULL, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm'),
+(3, 'Protectora Huellas de Esperanza', 'Calle Esperanza 789, Pueblo', '555555555', 'info@huellas.org', 3, 'Pueblo Esperanza', 'www.huellas.org', NULL, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm'),
+(4, 'Asociación Animal Solidario', 'Plaza Animal 101, Zona Norte', '444444444', 'solidaridad@animal.org', 4, 'Zona Norte', 'www.animal.org', NULL, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm'),
+(5, 'Protectora Refugio Esperanza', 'Calle Refugio 112, Capital', '333333333', 'test@test.es', 5, 'Capital Esperanza', 'www.refugio.org', NULL, '$2y$10$LO/jbdbAVl2IM96SWJxVhOZ33DZDDFLoQmCJnDGOGY0DSwOQAXPdm');
 
 -- --------------------------------------------------------
 

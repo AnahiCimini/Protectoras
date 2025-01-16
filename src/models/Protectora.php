@@ -9,8 +9,8 @@ class Protectora {
     public $id_provincia;
     public $poblacion;
     public $web;
-    //public $logo;
-    public $email_visible;
+    public $logo;
+    //public $email_visible;
     public $password_user;
 
 
@@ -54,8 +54,8 @@ class Protectora {
         // Hash de la contraseña aquí
         $hashedPassword = password_hash($this->password_user, PASSWORD_BCRYPT);
     
-        $sql = "INSERT INTO protectoras (nombre_protectora, direccion, telefono, email, id_provincia, poblacion, web, email_visible, password_user) 
-                VALUES (:nombre_protectora, :direccion, :telefono, :email, :id_provincia, :poblacion, :web, :email_visible, :password_user)";
+        $sql = "INSERT INTO protectoras (nombre_protectora, direccion, telefono, email, id_provincia, poblacion, web, logo, password_user) 
+                VALUES (:nombre_protectora, :direccion, :telefono, :email, :id_provincia, :poblacion, :web, :logo, :password_user)";
         $stmt = $this->conn->prepare($sql);
     
         // Bind de parámetros
@@ -66,9 +66,10 @@ class Protectora {
         $stmt->bindParam(':id_provincia', $this->id_provincia);
         $stmt->bindParam(':poblacion', $this->poblacion);
         $stmt->bindParam(':web', $this->web);
-        $stmt->bindParam(':email_visible', $this->email_visible);
+        $stmt->bindParam(':logo', $this->logo);
+        //$stmt->bindParam(':email_visible', $this->email_visible);
         $stmt->bindParam(':password_user', $hashedPassword, PDO::PARAM_STR);
-    
+
         if ($stmt->execute()) {
             return true;
         }

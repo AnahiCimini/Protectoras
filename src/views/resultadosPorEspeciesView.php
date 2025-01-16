@@ -4,6 +4,7 @@
 
 <!-- buscarPorEspecieView.php -->
 <h1><?php echo htmlspecialchars($especie); ?> en adopción</h1>
+<br>
 
 <div id="animales-list" class="container">
     <div id="animales-container" class="row">
