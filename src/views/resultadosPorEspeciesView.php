@@ -14,7 +14,7 @@
             <!-- Aquí se cargarán los animales dinámicamente con PHP -->
             <?php foreach ($animales as $animal): ?>
                 <div class="col-md-3 mb-3">
-                    <div class="animal">
+                    <div class="animal card p-3 shadow-sm">
                         <h3><?php echo htmlspecialchars($animal['nombre_animal']); ?></h3>
                         <p>Raza / especie: <?php echo htmlspecialchars($animal['raza']); ?></p>
                         <p>Edad: <?php echo htmlspecialchars($animal['edad']); ?></p>

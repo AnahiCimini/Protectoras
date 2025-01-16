@@ -16,6 +16,11 @@
             // Llamar al modelo de animales para obtener los resultados
             return $this->animalmodel->getAnimalesPorFiltro('especie', $especie);
         }
+
+        public function buscarPorProtectora($nombre_protectora) {
+            // Llamar al modelo de animales para obtener los resultados
+            return $this->animalmodel->getAnimalesPorFiltro('protectora', $nombre_protectora);
+        }
     }
 
 

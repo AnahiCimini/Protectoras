@@ -34,31 +34,6 @@
             $loginController->logout();
             break;
 
-        case 'buscarPorEspecie':
-            require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
-            $especie = isset($_GET['especie']) ? $_GET['especie'] : '';
-            $animalController = new AnimalController($conn);
-            $animales = $animalController->buscarPorEspecie($especie);
-            
-            $_GET['page'] = 'busquedaPorEspecies'; 
-            $data = ['animales' => $animales, 'especie' => $especie];
-            
-            include PROJECT_ROOT . '/public_html/index.php';
-            exit();
-
-        case 'listadoProvinciasbyCCAA':
-            $id_ccaa = $_GET['id_ccaa'] ?? null;
-            require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
-            $controller = new ProtectoraController($conn);
-            $controller->getProvinciasByCCAA($id_ccaa); 
-            break;
-            
-        case 'listadoProtectoras':
-            $id_provincia = $_GET['id_provincia'] ?? null;
-            $controller = new ProtectoraController($conn);
-            $controller->getProtectorasByProvincia($id_provincia);
-                break;
-        
         case 'detalleProtectora':
             // Manejar la lógica para el detalle de protectora
             $name = $_GET['name'] ?? null;
@@ -84,6 +59,53 @@
                 echo "Nombre de protectora no especificado.";
                 exit;
             }
+        
+        case 'addCase':
+            exit;
+
+        case 'buscarPorEspecie':
+            require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
+            $especie = isset($_GET['especie']) ? $_GET['especie'] : '';
+            $animalController = new AnimalController($conn);
+            $animales = $animalController->buscarPorEspecie($especie);
+            
+            $_GET['page'] = 'busquedaPorEspecies'; 
+            $data = ['animales' => $animales, 'especie' => $especie];
+            
+            include PROJECT_ROOT . '/public_html/index.php';
+            exit();
+
+        case 'buscarPorProtectora':
+            require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
+        
+            // Obtener el nombre de la protectora desde los parámetros de la URL
+            $nombre_protectora = isset($_GET['protectora']) ? $_GET['protectora'] : '';
+        
+            // Instanciar el controlador de animales y buscar los animales de esa protectora
+            $animalController = new AnimalController($conn);
+            $animales = $animalController->buscarPorProtectora($nombre_protectora);
+        
+            $_GET['page'] = 'busquedaPorProtectoras';
+            $data = ['animales' => $animales, 'nombre_protectora' => $nombre_protectora];
+
+            // Incluir la vista pasando las variables necesarias
+            include PROJECT_ROOT . '/public_html/index.php';
+            exit();
+            
+
+        case 'listadoProvinciasbyCCAA':
+            $id_ccaa = $_GET['id_ccaa'] ?? null;
+            require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
+            $controller = new ProtectoraController($conn);
+            $controller->getProvinciasByCCAA($id_ccaa); 
+            break;
+            
+        case 'listadoProtectoras':
+            $id_provincia = $_GET['id_provincia'] ?? null;
+            $controller = new ProtectoraController($conn);
+            $controller->getProtectorasByProvincia($id_provincia);
+                break;
+        
 
         // Otros casos para diferentes acciones
         default:

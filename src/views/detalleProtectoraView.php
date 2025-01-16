@@ -14,12 +14,12 @@
         <div class="col-6 align-self-center logoProte">
             <?php if (!empty($protectora['logo'])): ?>
                 <img src="<?= BASE_URL . 'assets/img/uploads/protectoras/' . htmlspecialchars($protectora['logo']) ?>" alt="Logo de la protectora">
-            <?php else: ?>
-                <img src="<?= BASE_URL . 'assets/img/huella_blancoYnegro.png' ?>">
             <?php endif; ?>
         </div>
         <div class="col-6 btn-adopta">
-            <button class="btn-adopciones rounded-4 shadow-right"><h4>Adopciones</h4></button>
+            <a href="<?php echo BASE_URL; ?>router.php?action=buscarPorProtectora&protectora=<?php echo urlencode($protectora['nombre_protectora']); ?>">
+                <button class="btn-adopciones rounded-4 shadow-right"><h4>Adopciones</h4></button>
+            </a>
         </div>
     </div>
 
@@ -52,10 +52,10 @@
 
         <div class="col-6 formProte">
             <div class="shadow-right">
-                <?php if ($loggedIn): ?>
-                    <!-- Formulario para contactar con el administrador -->
+            <?php if (isset($_SESSION['nombre_protectora']) && $_SESSION['nombre_protectora'] == $protectora['nombre_protectora']): ?>
+                <!-- Formulario para contactar con el administrador -->
                     <form action="contactaAdministrador.php" method="post">
-                        <h2>Para cambiar el nombre de la protectora, la provincia o la comunidad autónoma, por favor, contacta con el administrador.</h2>
+                        <h4>Para cambiar el nombre de la protectora, la provincia o la comunidad autónoma, por favor, contacta con el administrador.</h4>
                         <textarea placeholder="Escribe aquí tu mensaje" name="mensajeContacto" required></textarea>
                         <button type="submit" class="rounded-3"><h5>Contacta con el administrador</h5></button>
                     </form>
