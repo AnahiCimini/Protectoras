@@ -96,26 +96,43 @@ class Protectora {
     }
        
 
-    public function updateProtectora($idProtectora, $direccion, $telefono, $poblacion, $web)
+    public function updateProtectora($id_protectora, $direccion, $telefono, $poblacion, $web)
     {
+        // Confirmar que el método se ha llamado
+        // echo "<script>alert('Método updateProtectora llamado.');</script>";
+    
         $query = "UPDATE protectoras 
-                SET direccion = :direccion, 
-                    telefono = :telefono, 
-                    poblacion = :poblacion, 
-                    web = :web 
-                WHERE id_protectora = :id";
-
+                  SET direccion = :direccion, 
+                      telefono = :telefono, 
+                      poblacion = :poblacion, 
+                      web = :web 
+                  WHERE id_protectora = :id_protectora";
+    
         $stmt = $this->conn->prepare($query);
-
-        // Vincular los parámetros
-        $stmt->bindParam(':direccion', $direccion, PDO::PARAM_STR);
-        $stmt->bindParam(':telefono', $telefono, PDO::PARAM_STR);
-        $stmt->bindParam(':poblacion', $poblacion, PDO::PARAM_STR);
-        $stmt->bindParam(':web', $web, PDO::PARAM_STR);
-        $stmt->bindParam(':id', $idProtectora, PDO::PARAM_INT);
-
+    
+        if (!$stmt) {
+            // Error al preparar la consulta
+            echo "<script>alert('Error al preparar la consulta SQL.');</script>";
+            return false; // Terminar si no se pudo preparar la consulta
+        }
+    
         // Ejecutar la consulta
-        return $stmt->execute();
+        $success = $stmt->execute([
+            ':direccion' => $direccion,
+            ':telefono' => $telefono,
+            ':poblacion' => $poblacion,
+            ':web' => $web,
+            ':id_protectora' => $id_protectora
+        ]);
+    
+        // Verificar si la consulta se ejecutó correctamente
+        if ($success) {
+            // Comentamos el alert de éxito para no mostrarlo, ya que el éxito se maneja en el controlador
+            return true;
+        } else {
+            echo "<script>alert('Error al ejecutar la consulta SQL.');</script>";
+            return false;
+        }
     }
    
 }
