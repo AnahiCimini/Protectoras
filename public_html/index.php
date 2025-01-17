@@ -12,8 +12,8 @@
         // Limpiar el mensaje después de mostrarlo
         unset($_SESSION['message']);
     }
-        
-
+    
+    
     require_once PROJECT_ROOT . '/config/config.php';
     require_once PROJECT_ROOT . '/src/models/Provincias.php';
     require_once PROJECT_ROOT . '/src/models/Protectora.php';    

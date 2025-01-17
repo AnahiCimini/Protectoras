@@ -36,14 +36,14 @@
 
         case 'detalleProtectora':
             // Manejar la lógica para el detalle de protectora
-            $name = $_GET['name'] ?? null;
+            $nombre_protectora = $_GET['nombre_protectora'] ?? null;
     
-            if ($name) {
+            if ($nombre_protectora) {
                 require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
                 $controller = new ProtectoraController($conn);
     
                 // Obtener la información de la protectora por nombre
-                $protectora = $controller->getProtectoraByName($name);
+                $protectora = $controller->getProtectoraByName($nombre_protectora);
     
                 if ($protectora) {
                     // Pasar los datos al índice para cargar la vista
@@ -57,9 +57,15 @@
                 }
             } else {
                 echo "Nombre de protectora no especificado.";
-                exit;
+                exit;       
             }
         
+        case 'actualizarDatosProtectora':
+            require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
+            $controller = new ProtectoraController($conn);
+            $controller->actualizarDatosProtectora($_POST);
+            break;
+    
         case 'addCase':
             exit;
 
@@ -78,10 +84,12 @@
         case 'buscarPorProtectora':
             require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
         
-            // Obtener el nombre de la protectora desde los parámetros de la URL
-            $nombre_protectora = isset($_GET['protectora']) ? $_GET['protectora'] : '';
-        
-            // Instanciar el controlador de animales y buscar los animales de esa protectora
+            $nombre_protectora = $_GET['nombre_protectora'] ?? null;
+
+            if (empty($nombre_protectora)) {
+                die('Nombre de protectora no especificado.');
+            }        
+
             $animalController = new AnimalController($conn);
             $animales = $animalController->buscarPorProtectora($nombre_protectora);
         

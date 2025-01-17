@@ -18,6 +18,24 @@ class Protectora {
         $this->conn = $db; // Almacena la conexión
     }
 
+    // Obtener todas las protectoras
+    public function getProtectoras() {
+        $query = "SELECT * FROM protectoras ORDER BY nombre_protectora ASC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Obtener las protectoras por provincia usando array_filter
+    public function getProtectorasByProvincia($id_provincia) {
+        $query = "SELECT * FROM protectoras WHERE id_provincia = :id_provincia";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id_provincia', $id_provincia, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }   
+
     //Buscar en la BBDD por email
     public function getProtectoraByEmail($email) {
         $query = "SELECT * FROM protectoras WHERE email = :email";
@@ -41,6 +59,7 @@ class Protectora {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['count'] > 0;
     }
+
     public function emailExists($email) {
         $query = "SELECT COUNT(*) as count FROM protectoras WHERE email = :email";
         $stmt = $this->conn->prepare($query);
@@ -75,27 +94,29 @@ class Protectora {
         }
         return false;
     }
-    
+       
 
+    public function updateProtectora($idProtectora, $direccion, $telefono, $poblacion, $web)
+    {
+        $query = "UPDATE protectoras 
+                SET direccion = :direccion, 
+                    telefono = :telefono, 
+                    poblacion = :poblacion, 
+                    web = :web 
+                WHERE id_protectora = :id";
 
-    // Obtener todas las protectoras
-    public function getProtectoras() {
-        $query = "SELECT * FROM protectoras ORDER BY nombre_protectora ASC";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
-    // Obtener las protectoras por provincia usando array_filter
-    public function getProtectorasByProvincia($id_provincia) {
-        $query = "SELECT * FROM protectoras WHERE id_provincia = :id_provincia";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id_provincia', $id_provincia, PDO::PARAM_INT);
-        $stmt->execute();
-        
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Vincular los parámetros
+        $stmt->bindParam(':direccion', $direccion, PDO::PARAM_STR);
+        $stmt->bindParam(':telefono', $telefono, PDO::PARAM_STR);
+        $stmt->bindParam(':poblacion', $poblacion, PDO::PARAM_STR);
+        $stmt->bindParam(':web', $web, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $idProtectora, PDO::PARAM_INT);
+
+        // Ejecutar la consulta
+        return $stmt->execute();
     }
-    
    
 }
 ?>

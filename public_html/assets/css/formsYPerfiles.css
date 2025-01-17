@@ -45,6 +45,47 @@
 }
 
 
+/* Detalle editable protectora */
+
+.input-group {
+    display: inline-flex;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    margin-right: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.input-group .form-control {
+    flex: 1;
+    width: auto;
+}
+
+.input-sin-borde, .no-editable {
+    border: none;
+    background: transparent;
+    outline: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: text;
+    width: fit-content;
+}
+
+.input-sin-borde::placeholder, .no-editable::placeholder {
+    color: #555;
+    font-style: italic;
+}
+
+.input-sin-borde:focus, .no-editable:focus{
+    outline: none;
+    border: none;
+}
+
+
 /* Formulario Prote */
 
 .form-switch {
@@ -86,8 +127,8 @@
 }
 
 .formProte button:hover{
-    background-color: rgb(255, 244, 237);
-    color:rgb(255, 115, 0);
+    background-color: #ffd5ba;
+    color: #cc5c00;
     font-weight: 500;
 }
 

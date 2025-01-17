@@ -46,3 +46,25 @@ a{
     margin-bottom: 75px !important;
 }
 
+.btn-standard{
+    background-color: #016e10;
+    color: #dcfcc7;
+    margin-bottom: 15px;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+.btn-standard:hover {
+    background-color: #ffd5ba;
+    color: #cc5c00;
+    font-weight: 500;
+}
+
+.text-extraSmall{
+    font-size: 0.9em !important;
+    font-style: italic;
+    line-height: 1;
+    margin-top: 10px;
+    text-align: justify;
+
+}

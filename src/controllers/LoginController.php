@@ -51,9 +51,10 @@ class LoginController {
             if ($user && password_verify($password, $user['password_user'])) {
                 // Credenciales válidas: iniciar sesión
                 $_SESSION['email'] = $user['email'];
+                $_SESSION['id_protectora'] = $user['id_protectora'];
                 $_SESSION['nombre_protectora'] = $user['nombre_protectora'];
 
-                header(header: 'Location: ' . BASE_URL . 'index.php?page=busquedaPorProtectoras');
+                header('Location: ' . BASE_URL . 'router.php?action=buscarPorProtectora&nombre_protectora='.$_SESSION['nombre_protectora']);
                 exit;
 
             } else {

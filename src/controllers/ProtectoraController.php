@@ -125,12 +125,12 @@ class ProtectoraController {
     }
 
 
-    public function getProtectoraByName($name)
+    public function getProtectoraByName($nombre_protectora)
     {
         try {
-            $query = "SELECT * FROM protectoras WHERE nombre_protectora = :name";
+            $query = "SELECT * FROM protectoras WHERE nombre_protectora = :nombre_protectora";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $stmt->bindParam(':nombre_protectora', $nombre_protectora, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -139,6 +139,53 @@ class ProtectoraController {
         }
     }
     
+    public function actualizarDatosProtectora()
+    {
+        session_start();
+
+        // Verificar si el usuario está autenticado
+        if (!isset($_SESSION['id_protectora'])) {
+            header('Location: ' . BASE_URL . 'index.php?page=login');
+            exit();
+        }
+
+        // Obtener el ID de la protectora desde la sesión
+        $idProtectora = $_SESSION['id_protectora'];
+
+        // Validar los datos enviados desde el formulario
+        $direccion = filter_input(INPUT_POST, 'direccion', FILTER_SANITIZE_STRING);
+        $telefono = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_STRING);
+        $poblacion = filter_input(INPUT_POST, 'poblacion', FILTER_SANITIZE_STRING);
+        $web = filter_input(INPUT_POST, 'web', FILTER_VALIDATE_URL);
+
+        // Validar que los campos obligatorios no estén vacíos
+        if (empty($direccion) || empty($telefono) || empty($poblacion)) {
+            echo "<script>
+                    alert('Los campos Dirección, Teléfono y Población son obligatorios.');
+                    window.history.back();
+                </script>";
+            exit();
+        }
+
+        // Llamar al modelo para actualizar los datos de la protectora
+        require_once PROJECT_ROOT . '/src/models/ProtectoraModel.php';
+        $protectoraModel = new ProtectoraModel($this->conn);
+
+        $actualizado = $protectoraModel->updateProtectora($idProtectora, $direccion, $telefono, $poblacion, $web);
+
+        // Manejar el resultado de la actualización
+        if ($actualizado) {
+            $_SESSION['success'] = 'Los datos de la protectora se han actualizado correctamente.';
+            header('Location: ' . BASE_URL . 'router.php?action=detalleProtectora&nombre_protectora=' . urlencode($_SESSION['nombre_protectora']));
+        } else {
+            echo "<script>
+                    alert('Hubo un error al actualizar los datos. Por favor, inténtalo de nuevo.');
+                    window.history.back();
+                </script>";
+        }
+
+        exit();
+    }
 
     
 }

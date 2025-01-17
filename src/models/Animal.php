@@ -23,7 +23,7 @@
         }
 
         public function getAnimalesPorFiltro($filtro, $valor) {
-            if ($filtro === "especie"){
+            if ($filtro = "especie"){
                 $query = "SELECT a.*, e.nombre_especie FROM animales a
                 JOIN especies e ON a.id_especie = e.id_especie
                 WHERE e.nombre_especie = :valor";
@@ -34,6 +34,7 @@
 
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }elseif ($filtro === "protectora") {
+
                 $query = "SELECT a.*, p.nombre_protectora FROM animales a
                 JOIN protectoras p ON a.id_protectora = p.id_protectora
                 WHERE p.nombre_protectora = :valor";
@@ -43,8 +44,6 @@
                 $stmt->execute();
 
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }else {
-                return []; // Retorna vacío si no coincide el filtro
             }
 
         }
