@@ -1,48 +1,32 @@
 <?php
-// src/utils/utils.php
 
-function validarEmail($email)
-{
-    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
-}
+    function subirImagen($archivo, $directorio, $prefijo = '') {
+        // Validación y configuración del directorio de subida
+        $uploadDir = $directorio;
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
 
-function generarHashSeguro($cadena)
-{
-    return password_hash($cadena, PASSWORD_BCRYPT);
-}
+        // Generar nombre único para el archivo
+        $fileName = $prefijo . uniqid() . '.' . pathinfo($archivo['name'], PATHINFO_EXTENSION);
+        $filePath = $uploadDir . $fileName;
 
-function verificarSesion()
-{
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
+        // Mostrar información de la imagen y el directorio para depuración
+        var_dump($archivo);
+        var_dump($filePath);
+        
+        // Validar el tipo de archivo (puedes agregar más tipos si es necesario)
+        $validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!in_array($archivo['type'], $validTypes)) {
+            return ['error' => 'Tipo de archivo no permitido.'];
+        }
+
+        // Intentar mover el archivo
+        if (move_uploaded_file($archivo['tmp_name'], $filePath)) {
+            return ['success' => $fileName];
+        }
+
+        return ['error' => 'Error al subir la imagen.'];
     }
 
-    if (!isset($_SESSION['id_protectora'])) {
-        header('Location: ' . BASE_URL . 'index.php?page=login');
-        exit();
-    }
-
-    $id_protectora = $_SESSION['id_protectora'] ?? null;
-
-    if ($id_protectora === null) {
-        echo "<script>alert('No se ha encontrado el ID de la protectora en la sesión.');</script>";
-        exit;
-    }
-
-    return $id_protectora;
-}
-
-function validarNoVacio($valor)
-{
-    return !empty($valor);
-}
-
-function emailExiste($conn, $email)
-{
-    $sql = "SELECT 1 FROM protectoras WHERE email = :email";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    
-    return $stmt->fetchColumn() > 0;
-}
+?>
