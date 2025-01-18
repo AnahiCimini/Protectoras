@@ -80,4 +80,5 @@ class LoginController {
         header(header: 'Location: ' . BASE_URL . 'index.php?page=home');
         exit;
     }
+
 }

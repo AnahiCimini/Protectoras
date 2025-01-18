@@ -65,6 +65,12 @@
             $controller = new ProtectoraController($conn);
             $controller->actualizarDatosProtectora($_POST);
             break;
+        
+        case 'actualizarLogoProtectora':
+            require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
+            $controller = new ProtectoraController($conn);
+            $controller->actualizarLogoProtectora($_POST);
+            break;
     
         case 'addCase':
             exit;

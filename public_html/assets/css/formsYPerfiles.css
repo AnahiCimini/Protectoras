@@ -21,9 +21,7 @@
 
 }
 
-
 /* Detalle Protectoras */
-
 .container-profileProte .row {
     margin-bottom: 20px;
 }
@@ -44,9 +42,7 @@
     font-size: 1.2em;
 }
 
-
 /* Detalle editable protectora */
-
 .input-group {
     display: inline-flex;
     margin-bottom: 15px;
@@ -61,6 +57,11 @@
 .input-group .form-control {
     flex: 1;
     width: auto;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+    height: auto; 
+    min-height: 40px;
+    padding: 10px;
 }
 
 .input-sin-borde, .no-editable {
@@ -80,11 +81,10 @@
     font-style: italic;
 }
 
-.input-sin-borde:focus, .no-editable:focus{
+.input-sin-borde:focus, .no-editable:focus {
     outline: none;
     border: none;
 }
-
 
 /* Formulario Prote */
 

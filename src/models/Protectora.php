@@ -26,47 +26,40 @@ class Protectora {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Obtener las protectoras por provincia usando array_filter
+    // Obtener las protectoras por provincia
     public function getProtectorasByProvincia($id_provincia) {
         $query = "SELECT * FROM protectoras WHERE id_provincia = :id_provincia";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id_provincia', $id_provincia, PDO::PARAM_INT);
         $stmt->execute();
-        
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }   
 
-    //Buscar en la BBDD por email
+    // Obtener las protectoras por nombre
+    public function getProtectoraByName($nombre_protectora) {
+        $query = "SELECT * FROM protectoras WHERE nombre_protectora = :nombre_protectora";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':nombre_protectora', $nombre_protectora, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Buscar en la BBDD por email
     public function getProtectoraByEmail($email) {
         $query = "SELECT * FROM protectoras WHERE email = :email";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-    
-        if ($stmt->execute()) {
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            var_dump($user); 
-            return $user;
-        }
-    
-        return false;
-    }
-    //Comprobar si el nombre ya existe
-    public function nombreExists($nombre_protectora) {
-        $query = "SELECT COUNT(*) as count FROM protectoras WHERE nombre_protectora = :nombre_protectora";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':nombre_protectora', $nombre_protectora, PDO::PARAM_STR);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['count'] > 0;
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: false; // Devuelve false si no encuentra nada
     }
 
-    public function emailExists($email) {
-        $query = "SELECT COUNT(*) as count FROM protectoras WHERE email = :email";
+
+    public function exists($field, $value) {
+        $query = "SELECT 1 FROM protectoras WHERE $field = :value";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':value', $value);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['count'] > 0;
+        return $stmt->fetchColumn() > 0;
     }
 
     public function registerProtectora() {
@@ -97,10 +90,7 @@ class Protectora {
        
 
     public function updateProtectora($id_protectora, $direccion, $telefono, $poblacion, $web)
-    {
-        // Confirmar que el método se ha llamado
-        // echo "<script>alert('Método updateProtectora llamado.');</script>";
-    
+    {    
         $query = "UPDATE protectoras 
                   SET direccion = :direccion, 
                       telefono = :telefono, 
@@ -113,7 +103,7 @@ class Protectora {
         if (!$stmt) {
             // Error al preparar la consulta
             echo "<script>alert('Error al preparar la consulta SQL.');</script>";
-            return false; // Terminar si no se pudo preparar la consulta
+            return false;
         }
     
         // Ejecutar la consulta
@@ -126,10 +116,7 @@ class Protectora {
         ]);
     
         // Verificar si la consulta se ejecutó correctamente
-        if ($success) {
-            // Comentamos el alert de éxito para no mostrarlo, ya que el éxito se maneja en el controlador
-            return true;
-        } else {
+        if (!$success) {
             echo "<script>alert('Error al ejecutar la consulta SQL.');</script>";
             return false;
         }
