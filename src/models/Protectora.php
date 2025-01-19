@@ -114,9 +114,11 @@ class Protectora {
             ':web' => $web,
             ':id_protectora' => $id_protectora
         ]);
-    
+
         // Verificar si la consulta se ejecutó correctamente
-        if (!$success) {
+        if ($success) {
+            return true;
+        } else {
             echo "<script>alert('Error al ejecutar la consulta SQL.');</script>";
             return false;
         }

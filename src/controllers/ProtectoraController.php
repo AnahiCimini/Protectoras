@@ -128,7 +128,20 @@ class ProtectoraController {
 
     public function actualizarDatosProtectora()
     {
-        $id_protectora = verificarSesion();
+        session_start();
+        // Verificar si el usuario está autenticado
+        if (!isset($_SESSION['id_protectora'])) {
+            header('Location: ' . BASE_URL . 'index.php?page=login');
+            exit();
+        }
+
+        // Obtener el ID de la protectora desde la sesión
+        $id_protectora = $_SESSION['id_protectora'] ?? null;
+
+        if ($id_protectora === null) {
+            echo "<script>alert('No se ha encontrado el ID de la protectora en la sesión.');</script>";
+            exit;
+        }
 
         // Validar los datos enviados desde el formulario
         $direccion = filter_input(INPUT_POST, 'direccion');
@@ -139,9 +152,9 @@ class ProtectoraController {
         // Verificar que los datos sean recibidos correctamente desde el formulario
         if (empty($direccion) || empty($telefono) || empty($poblacion) || empty($web)) {
             echo "<script>
-                    alert('Faltan datos en el formulario.');
-                    window.history.back();
-                </script>";
+                alert('Faltan datos en el formulario.');
+                window.history.back();
+            </script>";
             exit;
         }
 
@@ -163,7 +176,6 @@ class ProtectoraController {
                     window.history.back();
                 </script>";
         }
-
         exit();
     }
 
