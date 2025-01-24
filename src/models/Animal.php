@@ -11,7 +11,6 @@
         private $edad;
         private $estado_salud;
         private $foto_principal;
-        private $fotos_adicionales;
         private $adoptado;
         private $urgente;
         private $en_acogida;
@@ -61,6 +60,7 @@
             return null;
         }
     
+        /*
         public function createAnimal(
             $id_protectora, $id_especie, $nombre_animal, $descripcion, $raza, 
             $tamano, $sexo, $edad, $estado_salud, $foto_principal, 
@@ -87,7 +87,7 @@
         public function __destruct() {
             $this->conn->close();
         }
-
+        */
     }
 
 ?>

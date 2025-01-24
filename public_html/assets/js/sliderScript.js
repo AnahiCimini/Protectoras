@@ -4,3 +4,4 @@ var carousel = new bootstrap.Carousel(myCarousel, {
   ride: 'carousel'
 });
 
+console.log('Script cargado');  // Verifica si se ejecuta

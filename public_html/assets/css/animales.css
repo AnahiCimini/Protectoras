@@ -4,23 +4,15 @@
     max-height: calc(70vw);
     object-fit: cover;
 }
-  .urgent-case {
-    background-color: #f8d7da;
-    color: #721c24;
-    text-align: center;
-    font-weight: bold;
-    padding: 10px;
-    margin: 30px 0px 0px;
-  }
-  .urgent-case h3{
-    margin: 20px 0;    
-  }
+
   .history-section {
-    background-color: #d4edda;
+    background-color: #dcfcc7;
     color: #155724;
     text-align: center;
-    padding: 10px;
+    padding: 40px 0;
+    margin-bottom: 4%;
   }
+
   .btn-container {
     display: flex;
     justify-content: center;
@@ -33,3 +25,144 @@
     padding: 30px 10px;
     width: 80%;
   }
+
+/* Contenedor común para "CASO URGENTE" */
+.urgent-case {
+    color: #721c24; /* Texto oscuro */
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    margin: 30px 0px 0px;
+}
+
+/* Fondo cuando "urgente: no" está seleccionado */
+.urgent-case.urgente-noselected {
+    background-color: #e1e2e4dc; /* Gris muy claro */
+}
+
+/* Fondo cuando "urgente: sí" está seleccionado */
+.urgent-case.urgente-selected {
+    background-color: #f8d7da; /* Fondo rojo claro */
+}
+
+.urgent-case h3 {
+    margin: 20px 0;
+}
+
+
+
+/* TOGGLE URGENTE */
+
+/* Estilos para los botones seleccionados y no seleccionados */
+.btn-check-grey:checked + .btn {
+    background-color: #555;
+    color: #fff;
+    border-color: #555;
+}
+
+.btn-check-grey:not(:checked) + .btn {
+    background-color: transparent;
+    color: #555;
+    border-color: #555;
+}
+
+/* Estilo para el grupo de botones */
+.btn-group-grey {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 50%;
+}
+
+/* Estilo para los botones */
+.btn-group-grey .btn {
+    padding: 6px 0;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #555;
+    margin: 0;
+}
+
+/* Asegura que solo los lados exteriores tengan borde redondeado */
+.btn-group-grey .btn:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.btn-group-grey .btn:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Elimina el borde en la parte central del grupo */
+.btn-group-grey .btn:not(:first-child):not(:last-child) {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/* Estilo para los spans */
+.btn-group-grey span {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra el texto verticalmente */
+    margin-right: 10px; /* Da un espacio entre el span y el primer botón */
+    text-align: center;
+    width: 35%; /* Asegura que el span ocupe todo el ancho */
+}
+
+
+
+/* SECCIÓN SELECTORES TOOGLE VERDES */
+/* TOOGLES */
+
+/* Estilos para los botones seleccionados y no seleccionados */
+.btn-check-green:checked + .btn {
+    background-color: #016e10;
+    color: #dcfcc7;
+    border-color: #016e10;
+}
+.btn-check-green:not(:checked) + .btn {
+    background-color: #dcfcc7;
+    color: #016e10;
+    border-color: #016e10;
+}
+/* Estilo para el grupo de botones */
+.btn-group-green {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 70%;
+}
+/* Estilo para los botones */
+.btn-group-green .btn {
+    padding: 6px 0;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #016e10;
+    margin: 0;
+}
+/* Asegura que solo los lados exteriores tengan borde redondeado */
+.btn-group-green .btn:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.btn-group-green .btn:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+/* Elimina el borde en la parte central del grupo */
+.btn-group-green .btn:not(:first-child):not(:last-child) {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+/* Estilo para los spans */
+.btn-group-green span {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra el texto verticalmente */
+    margin-right: 10px; /* Da un espacio entre el span y el primer botón */
+    text-align: center;
+    width: 35%; /* Asegura que el span ocupe todo el ancho */
+}
