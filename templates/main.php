@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/customStyle.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/templates.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/formsYPerfiles.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/animales.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/slider.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/buscadores.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -18,7 +18,7 @@
                             <!-- Si está logueado, mostrar el botón de Logout -->
                             <a href="<?php echo BASE_URL; ?>router.php?action=logout" class="btn btn-dark">Logout</a>
                             <a href="<?php echo BASE_URL; ?>router.php?action=detalleProtectora&nombre_protectora=<?php echo urlencode($_SESSION['nombre_protectora']); ?>" class="btn btn-dark">Mi perfil</a>
-                            <a href="<?php echo BASE_URL; ?>router.php?action=addCase&proteEmail=<?php echo urlencode($_SESSION['email']); ?>" class="btn btn-dark">Añadir caso</a>
+                            <a href="<?php echo BASE_URL; ?>index.php?page=nuevoCaso" class="btn btn-dark">Añadir caso</a>
                         <?php else: ?>
                             <!-- Si no está logueado, mostrar los botones de Regístrate y Login -->
                             <a href="<?php echo BASE_URL; ?>?page=registro" class="btn btn-dark">Regístrate</a>

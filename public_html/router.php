@@ -66,15 +66,21 @@
             $controller->actualizarDatosProtectora($_POST);
             break;
         
+        /*
         case 'actualizarLogoProtectora':
             require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
             $controller = new ProtectoraController($conn);
             $controller->actualizarLogoProtectora($_POST);
             break;
-    
+        */
+        /*
         case 'addCase':
-            exit;
-
+            require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
+            $animalController = new AnimalController($conn);
+            $animalController->addCase($_POST);
+            break;
+        */
+            
         case 'buscarPorEspecie':
             require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
             $especie = isset($_GET['especie']) ? $_GET['especie'] : '';

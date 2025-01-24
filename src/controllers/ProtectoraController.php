@@ -69,7 +69,7 @@ class ProtectoraController {
                     $protectora->logo = $fileName;
                 } else {
                     $_SESSION['error'] = 'Error al subir el logo. Inténtalo de nuevo.';
-                    header("Location: " . BASE_URL . "/registro.php");
+                    header(header: 'Location: ' . BASE_URL . 'index.php?page=login');
                     exit;
                 }
             } else {
@@ -110,18 +110,19 @@ class ProtectoraController {
                     exit;
                 } else {
                     $_SESSION['error'] = 'No se pudo iniciar sesión tras el registro. Por favor, inicia sesión manualmente.';
-                    header("Location: " . BASE_URL . "/login.php");
+                    header(header: 'Location: ' . BASE_URL . 'index.php?page=login');
                     exit;
                 }
             } else {
-                $_SESSION['error'] = 'No se pudo registrar la protectora. Inténtalo de nuevo más tarde.';
-                header("Location: " . BASE_URL . "/registro.php");
-                exit;
+                echo "<script>
+                    alert('No se pudo registrar la protectora. Inténtalo de nuevo más tarde.');
+                    window.history.back();
+                </script>";
             }
         } else {
             // Manejo de método no permitido
             $_SESSION['error'] = 'Método no permitido.';
-            header("Location: " . BASE_URL . "/registro.php");
+            header(header: 'Location: ' . BASE_URL . 'index.php?page=registro');
             exit;
         }
     }

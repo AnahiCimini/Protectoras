@@ -21,6 +21,8 @@
             // Llamar al modelo de animales para obtener los resultados
             return $this->animalmodel->getAnimalesPorFiltro('nombre_protectora', $nombre_protectora);
         }
+
+        
     }
 
 
