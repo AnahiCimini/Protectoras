@@ -41,3 +41,69 @@ document.addEventListener("DOMContentLoaded", () => {
         btnEditar.classList.remove("d-none");
     });
 });
+
+/* BOTONES DE GUARDAR DATOS ANIMALES */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnGuardar = document.getElementById("guardarBtn");
+    const btnCancelar = document.getElementById("cancelarBtn");
+    const inputs = document.querySelectorAll("#form-editar-animal input");
+    
+    const valoresOriginales = {}; // Almacenamos los valores originales
+
+    // Guardamos los valores originales para cada campo
+    inputs.forEach(input => {
+        if (input.type === "radio") {
+            valoresOriginales[input.name] = document.querySelector(`input[name='${input.name}']:checked`)?.value || "";
+        } else {
+            valoresOriginales[input.id] = input.value;
+        }
+    });
+
+    // Función para habilitar los botones si algo ha cambiado
+    function detectChanges() {
+        let hasChanges = false;
+
+        inputs.forEach(input => {
+            let currentValue;
+            if (input.type === "radio") {
+                currentValue = document.querySelector(`input[name='${input.name}']:checked`)?.value || "";
+            } else {
+                currentValue = input.value;
+            }
+
+            const originalValue = valoresOriginales[input.type === "radio" ? input.name : input.id];
+            
+            if (currentValue !== originalValue) {
+                hasChanges = true;
+            }
+        });
+
+        // Habilitar o deshabilitar los botones
+        btnGuardar.disabled = !hasChanges;
+        btnCancelar.disabled = !hasChanges;
+
+        // Cambiar las clases para el estilo
+        if (hasChanges) {
+            btnGuardar.classList.remove('btn-disabled');
+            btnCancelar.classList.remove('btn-disabled');
+            btnGuardar.classList.add('btn-enabled');
+            btnCancelar.classList.add('btn-enabled');
+        } else {
+            btnGuardar.classList.remove('btn-enabled');
+            btnCancelar.classList.remove('btn-enabled');
+            btnGuardar.classList.add('btn-disabled');
+            btnCancelar.classList.add('btn-disabled');
+        }
+    }
+
+    // Asignar eventos a los inputs para detectar cambios
+    inputs.forEach(input => {
+        input.addEventListener('input', detectChanges);
+        input.addEventListener('change', detectChanges);
+    });
+
+    // Detectar cambios iniciales
+    detectChanges();
+});
+

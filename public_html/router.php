@@ -86,6 +86,12 @@
             include PROJECT_ROOT . '/public_html/index.php';
             exit;
             
+        case 'actualizarDatosAnimal':
+            require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
+            $animalController = new AnimalController($conn);
+            $controller->actualizarDatosAnimal($_POST);
+            break;
+
         case 'eliminarAnimal':
             $id_animal = $_GET['id_animal'] ?? null;
             require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';

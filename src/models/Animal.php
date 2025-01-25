@@ -115,6 +115,28 @@
             return $stmt->execute();
         }
         
+        public function actualizarDatosAnimal($id_animal, $data){
+            $raza = $data['raza'];
+            $edad = $data['edad'];
+            $tamano = $data['tamano'];
+            $estado_salud = $data['estado_salud'];
+            $sexo = $data['sexo'];
+            $esterilizado = $data['esterilizado'];
+            $urgente = $data['urgente'];
+            $adoptado = $data['adoptado'];
+            $en_acogida = $data['en_acogida'];
+            $historia = $data['historia'];
+        
+            // Preparar la consulta para actualizar
+            $query = "UPDATE animales SET raza = ?, edad = ?, tamano = ?, estado_salud = ?, sexo = ?, esterilizado = ?, urgente = ?, adoptado = ?, en_acogida = ?, historia = ? WHERE id_animal = ?";
+        
+            // Ejecutar la consulta con los datos recibidos
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$raza, $edad, $tamano, $estado_salud, $sexo, $esterilizado, $urgente, $adoptado, $en_acogida, $historia, $id_animal]);
+        
+            return true; // Devuelve un valor de éxito si la actualización se realiza correctamente
+        }
+        
     }
 
 ?>

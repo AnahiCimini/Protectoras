@@ -177,3 +177,24 @@
     text-align: center;
     width: 35%; /* Asegura que el span ocupe todo el ancho */
 }
+
+.guardadoDatos {
+    margin-top: 30px;
+}
+
+/* Estilos para los botones habilitados */
+.btn-enabled {
+    background-color: #016e10; /* Verde */
+    color: #dcfcc7;
+}
+
+.btn-enabled:hover {
+    background-color: #dcfcc7; /* Verde */
+    color: #016e10;
+}
+
+/* Estilos para los botones deshabilitados */
+.btn-disabled {
+    background-color: #6c757d; /* Gris */
+    color: white;
+}

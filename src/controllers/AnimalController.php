@@ -126,6 +126,26 @@
                 </script>';
             }
         }
+
+        public function actualizarDatosAnimal (){
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $id_animal = $_GET['id_animal'];
+                $data = $_POST; // Recibe los datos del formulario
+        
+                // Llama al modelo para actualizar los datos
+                $result = $this->animalmodel->actualizarDatosAnimal($id_animal, $data);
+        
+                if ($result) {
+                    // Redirige a la vista de edición después de guardar
+                    header('Location: router.php?action=editarAnimal&id_animal=' . $id_animal);
+                    exit();
+                } else {
+                    // Manejar error si la actualización falla
+                    echo "Error al guardar los cambios";
+                }
+            }
+        }
         
     }
 

@@ -67,6 +67,13 @@ a{
     font-weight: 500;
 }
 
+.btn-xl-standard{
+    width: 40%;
+    padding: 17px;
+    font-size: 1.3em;
+    border-radius: 20px;
+}
+
 .text-extraSmall{
     font-size: 0.9em !important;
     font-style: italic;
