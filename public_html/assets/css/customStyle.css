@@ -79,3 +79,8 @@ a{
 .customTitle {
     margin: 10px 0 25px;
 }
+
+footer {
+    border-top: 1px #ccc solid;
+    padding-top: 30px;
+}

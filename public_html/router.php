@@ -41,8 +41,6 @@
             if ($nombre_protectora) {
                 require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
                 $controller = new ProtectoraController($conn);
-    
-                // Obtener la información de la protectora por nombre
                 $protectora = $controller->getProtectoraByName($nombre_protectora);
     
                 if ($protectora) {
@@ -65,7 +63,29 @@
             $controller = new ProtectoraController($conn);
             $controller->actualizarDatosProtectora($_POST);
             break;
-        
+
+        case 'detalleAnimal':
+            $id_animal = $_GET['id_animal'] ?? null;
+
+            if ($id_animal) {
+                require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
+                $animalController = new AnimalController($conn);
+                $animal = $animalController->buscarPorID($id_animal);
+                
+                if($animal){
+                    $_GET['page'] = 'datosAnimal';
+                    $_GET['animal'] = $animal;
+                    include PROJECT_ROOT . '/public_html/index.php';
+                    exit;
+                } else {
+                    echo "Animal no encontrado.";
+                    exit;
+                }
+            } else {
+                echo "Error: ID del animal no especificado.";
+                exit;       
+            }
+            
         /*
         case 'actualizarLogoProtectora':
             require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';

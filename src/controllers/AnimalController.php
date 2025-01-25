@@ -22,7 +22,10 @@
             return $this->animalmodel->getAnimalesPorFiltro('nombre_protectora', $nombre_protectora);
         }
 
-        
+        public function buscarPorID($id_animal) {
+            $animal = $this->animalmodel->getAnimalesPorFiltro('id_animal', $id_animal);
+            return $animal;
+        }
     }
 
 

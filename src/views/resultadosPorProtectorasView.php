@@ -6,6 +6,12 @@
 
 ?>
 
+<div class="container">
+    <div class="text-end">
+        <button onclick="window.history.back();" class="btn btn-standard">Volver</button>
+    </div>
+</div>
+
 <!-- buscarPorEspecieView.php -->
 <h1>
     <?php 
@@ -26,10 +32,13 @@
                 <div class="col-md-3 mb-3">
                     <div class="animal animal card p-3 shadow-sm">
                         <h3><?php echo htmlspecialchars($animal['nombre_animal']); ?></h3>
+                        <?php if (!empty($animal['foto_principal'])): ?>
+                            <img src="<?php echo BASE_URL . $animal['foto_principal']; ?>" class="pet-profile-img">
+                        <?php endif; ?>
                         <p>Raza / especie: <?php echo htmlspecialchars($animal['raza']); ?></p>
                         <p>Edad: <?php echo htmlspecialchars($animal['edad']); ?></p>
                         <p>Descripción: <?php echo nl2br(htmlspecialchars($animal['descripcion'] ?? 'Descripción no disponible')); ?></p>
-                        <a href="casoIndividual.php?id=<?php echo $animal['id_animal']; ?>">Ver más</a>
+                        <a href="<?php echo BASE_URL; ?>router.php?action=detalleAnimal&id_animal=<?php echo $animal['id_animal']; ?>">Ver más</a>
                     </div>
                 </div>
             <?php endforeach; ?>

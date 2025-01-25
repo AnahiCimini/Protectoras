@@ -1,5 +1,3 @@
-console.log('Script cargado');  // Verifica si se ejecuta
-
 /* URGENTE */
 
 /* EN EL DETALLE DEL ANIMAL */

@@ -26,13 +26,16 @@
     width: 80%;
   }
 
+.infoBasica {
+    margin-bottom: 30px;
+}
+
 /* Contenedor común para "CASO URGENTE" */
 .urgent-case {
     color: #721c24; /* Texto oscuro */
     text-align: center;
     font-weight: bold;
     padding: 10px;
-    margin: 30px 0px 0px;
 }
 
 /* Fondo cuando "urgente: no" está seleccionado */
@@ -108,7 +111,7 @@
     align-items: center; /* Centra el texto verticalmente */
     margin-right: 10px; /* Da un espacio entre el span y el primer botón */
     text-align: center;
-    width: 35%; /* Asegura que el span ocupe todo el ancho */
+    width: 75%; /* Asegura que el span ocupe todo el ancho */
 }
 
 

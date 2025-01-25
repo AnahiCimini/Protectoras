@@ -9,6 +9,12 @@
     }
 ?>
 
+<div class="container">
+    <div class="text-end">
+        <button onclick="window.history.back();" class="btn btn-standard">Volver</button>
+    </div>
+</div>
+
 <div class="container container-profileProte">
     <div class="row align-items-center">
         <div class="col-6 align-self-center logoProte">
