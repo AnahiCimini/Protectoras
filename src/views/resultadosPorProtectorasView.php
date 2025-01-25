@@ -1,9 +1,10 @@
 <?php
     require_once PROJECT_ROOT . '/config/config.php';
+    require_once PROJECT_ROOT . '/src/models/Animal.php';
+    require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
 
     $animales = $data['animales'] ?? [];
     $nombre_protectora = $data['nombre_protectora'] ?? 'Nombre no disponible';
-
 ?>
 
 <div class="container">
@@ -30,7 +31,7 @@
             <!-- Aquí se cargarán los animales dinámicamente con PHP -->
             <?php foreach ($animales as $animal): ?>
                 <div class="col-md-3 mb-3">
-                    <div class="animal animal card p-3 shadow-sm animal_card">
+                    <div class="animal card p-3 shadow-sm animal_card">
                         <h3><?php echo htmlspecialchars($animal['nombre_animal']); ?></h3>
                         <?php if (!empty($animal['foto_principal'])): ?>
                             <img class="pet-profile-img" src="<?= BASE_URL . 'assets/img/uploads/animales/' . strtolower($animal['nombre_especie']) . '/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />

@@ -20,7 +20,15 @@
 
         public function buscarPorProtectora($nombre_protectora) {
             // Llamar al modelo de animales para obtener los resultados
-            return $this->animalmodel->getAnimalesPorFiltro('nombre_protectora', $nombre_protectora);
+            $animales = $this->animalmodel->getAnimalesPorFiltro('nombre_protectora', $nombre_protectora);
+            
+            // Recuperar el nombre de la especie para cada animal
+            foreach ($animales as &$animal) {
+                $animal['nombre_especie'] = $this->getNombreEspecieById($animal['id_especie']);
+            }
+        
+            // Devolver los datos, incluyendo el nombre de la especie
+            return $animales;
         }
 
         public function buscarPorID($id_animal) {
