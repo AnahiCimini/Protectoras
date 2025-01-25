@@ -1,5 +1,6 @@
 <?php
 
+    require_once PROJECT_ROOT . '/config/config.php';
     require_once PROJECT_ROOT . '/src/models/Animal.php';
 
 
@@ -27,6 +28,11 @@
             return $animal;
         }
 
+        public function getNombreEspecieById($idEspecie){
+            $nombre_especie = $this->animalmodel->getNombreEspecieById($idEspecie);
+            return $nombre_especie;
+        }
+
         public function addCase() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Recogemos los datos del formulario
@@ -43,6 +49,9 @@
                 $urgente = isset($_POST['urgente']) ? 1 : 0;
                 $en_acogida = isset($_POST['en_acogida']) ? 1 : 0;
     
+                $nombreEspecie = $_POST['nombre_especie']; // Supongamos que así recoges el dato del formulario
+                $id_especie = $this->animalmodel->getIdEspecieByNombre($nombreEspecie);
+
                 // Procesamos la subida de la foto principal
                 $foto_principal = null; // Iniciamos como null
                 if (isset($_FILES['foto_principal']) && $_FILES['foto_principal']['error'] === UPLOAD_ERR_OK) {
@@ -63,8 +72,10 @@
                     if (move_uploaded_file($_FILES['foto_principal']['tmp_name'], $filePath)) {
                         $foto_principal = $fileName;
                     } else {
-                        $_SESSION['error'] = 'Error al subir la foto. Inténtalo de nuevo.';
-                        header('Location: ' . BASE_URL . 'nuevoCaso.php');
+                        echo "<script>
+                            alert('Error al subir la foto. Inténtalo de nuevo.');
+                            window.history.back();
+                        </script>";
                         exit;
                     }
                 }

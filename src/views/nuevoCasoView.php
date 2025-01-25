@@ -8,7 +8,7 @@
 
 <div class="container mt-5">
     <h1 class="text-center">Añadir Nuevo Caso</h1>
-    <form action="<?= BASE_URL ?>router.php?action=nuevoCaso" method="POST" enctype="multipart/form-data" id="form_newcase">
+    <form action="<?php echo BASE_URL; ?>router.php?action=nuevoCaso" method="POST" enctype="multipart/form-data" id="form_newcase">
         
         <!-- Nombre del Animal y Foto Principal -->
         <div class="row align-items-center mb-4">
@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-6">
                 <label for="foto_principal">Foto Principal:</label>
-                <input type="file" id="foto_principal" name="foto_principal" class="form-control" required>
+                <input type="file" id="foto_principal" name="foto_principal" class="form-control" accept="image/*">
             </div>
         </div>
 
@@ -29,20 +29,15 @@
                 <input type="text" id="raza" name="raza" class="form-control">
             </div>
             <div class="col-md-6">
-                <label for="id_especie">Especie:</label>
-                <select id="id_especie" name="id_especie" class="form-select" required>
-                    <!-- Opciones para Especies -->
-                    <?php
-                    // Aquí podrías cargar las especies de la base de datos si se quieren cargar dinámicamente.
-                    // Esto es solo un ejemplo estático.
-                    ?>
-                    <option value="1">Perros</option>
-                    <option value="2">Gatos</option>
-                    <option value="3">Conejos</option>
-                    <option value="4">Pájaros</option>
-                    <option value="5">Roedores</option>
-                    <option value="6">Reptiles</option>
-                    <option value="7">Otras especies</option>
+                <label for="nombre_especie">Especie:</label>
+                <select id="nombre_especie" name="nombre_especie" class="form-select" required>
+                    <option value="Perros">Perros</option>
+                    <option value="Gatos">Gatos</option>
+                    <option value="Conejos">Conejos</option>
+                    <option value="Pájaros">Pájaros</option>
+                    <option value="Roedores">Roedores</option>
+                    <option value="Reptiles">Reptiles</option>
+                    <option value="Otras especies">Otras especies</option>
                 </select>
             </div>
         </div>

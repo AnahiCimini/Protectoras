@@ -1,6 +1,6 @@
 <?php
 class Protectora {
-    private $conn; // Conexión a la base de datos
+    private $conn;
     public $id_protectora;
     public $nombre_protectora;
     public $direccion;
@@ -79,7 +79,6 @@ class Protectora {
         $stmt->bindParam(':poblacion', $this->poblacion);
         $stmt->bindParam(':web', $this->web);
         $stmt->bindParam(':logo', $this->logo);
-        //$stmt->bindParam(':email_visible', $this->email_visible);
         $stmt->bindParam(':password_user', $hashedPassword, PDO::PARAM_STR);
 
         if ($stmt->execute()) {

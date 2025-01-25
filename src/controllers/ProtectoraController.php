@@ -2,7 +2,6 @@
 require_once PROJECT_ROOT . '/config/config.php';
 require_once PROJECT_ROOT . '/src/models/Provincias.php';
 require_once PROJECT_ROOT . '/src/models/Protectora.php';
-require_once PROJECT_ROOT . '/src/utils/utils.php';
 
 
 class ProtectoraController {

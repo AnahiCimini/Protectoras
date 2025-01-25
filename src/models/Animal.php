@@ -58,17 +58,22 @@
             }
         }
 
-        public function getEspecieIdByName($nombre) {
-            $query = "SELECT id_especie FROM especies WHERE nombre = ?";
-            $stmt = $this->conn->prepare($query);
-            $stmt->bind_param('s', $nombre);
+        public function getIdEspecieByNombre($nombreEspecie)
+        {
+            $sql = "SELECT id_especie FROM especies WHERE nombre_especie = :nombreEspecie";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':nombreEspecie', $nombreEspecie, PDO::PARAM_STR);
             $stmt->execute();
-            $result = $stmt->get_result();
-    
-            if ($row = $result->fetch_assoc()) {
-                return $row['id_especie'];
-            }
-            return null;
+            return $stmt->fetchColumn();
+        }
+
+        public function getNombreEspecieById($idEspecie)
+        {
+            $sql = "SELECT nombre_especie FROM especies WHERE id_especie = :idEspecie";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':idEspecie', $idEspecie, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchColumn();
         }
     
         public function addAnimal($id_protectora, $nombre_animal, $descripcion, $id_especie, $tamano, $sexo, $edad, $raza, $estado_salud, $foto_principal, $esterilizado, $urgente, $en_acogida) {

@@ -12,9 +12,10 @@
     <!-- Profile Card -->
     <div class="row align-items-center g-0">
         <!-- Pet Image -->
-        <div class="col-6">
+        <!-- Pet Image -->
+        <div class="col-6 imgAnimal">
             <?php if (!empty($animal['foto_principal'])): ?>
-                <img src="<?php echo BASE_URL . $animal['foto_principal']; ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
+                <img src="<?= BASE_URL . 'assets/img/uploads/animales/' . strtolower($animal['nombre_especie']) . '/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
             <?php else: ?>
                 <p>No hay imágenes de este animal.</p>
             <?php endif; ?>

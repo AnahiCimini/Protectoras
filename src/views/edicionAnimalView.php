@@ -17,25 +17,25 @@
     <!-- Profile Card -->
     <div class="row align-items-center g-0">
         <!-- Pet Image -->
-        <div class="col-6">
+        <div class="col-6 imgAnimal">
             <?php if (!empty($animal['foto_principal'])): ?>
-                <img src="<?php echo BASE_URL . $animal['foto_principal']; ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
+                <img src="<?= BASE_URL . 'assets/img/uploads/animales/' . strtolower($animal['nombre_especie']) . '/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
             <?php else: ?>
                 <p>No hay imágenes de este animal.</p>
             <?php endif; ?>
         </div>
         <!-- Pet Details -->
-        <div class="col-6 text-center">
+        <div class="col-6 text-center datosContainer">
             <div class="datosAnimal text-center col-6">
                 <div class="row">
                     <div class="col-6">
                         <ul class="list-unstyled text-end">
-                            <li><strong>Raza:</strong></li>
-                            <li><strong>Edad:</strong></li>
-                            <li><strong>Tamaño:</strong></li>
-                            <li><strong>Salud:</strong></li>
-                            <li><strong>Sexo:</strong></li>
-                            <li><strong>Esterilización:</strong></li>
+                            <li class="form-control-titles"><strong>Raza:</strong></li>
+                            <li class="form-control-titles"><strong>Edad:</strong></li>
+                            <li class="form-control-titles"><strong>Tamaño:</strong></li>
+                            <li class="form-control-titles"><strong>Salud:</strong></li>
+                            <li class="form-control-titles"><strong>Sexo:</strong></li>
+                            <li class="form-control-titles"><strong>Esterilización:</strong></li>
                         </ul>
                     </div>
                     <div class="col-6">

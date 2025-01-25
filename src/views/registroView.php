@@ -24,14 +24,6 @@
         <div class="col-8">
             <input type="email" class="form-control" id="email" name="email" autocomplete="email" required>
         </div>
-        <!--<div class="col-1 d-flex justify-content-center align-items-center">
-            <div class="col-1 d-flex flex-column justify-content-center align-items-center">
-                <label class="form-check-label" for="email_visible">Visible</label>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="email_visible" name="email_visible" checked>
-                </div>
-            </div>
-        </div>-->
     </div>
 
     <!-- Teléfono -->
@@ -87,6 +79,7 @@
         </div>
     </div>
 
+    <!-- Password -->
     <div class="row mb-3 align-items-center">
         <label for="password" class="col-4 col-form-label">Contraseña <span class="text-danger">*</span></label>
         <div class="col-8">

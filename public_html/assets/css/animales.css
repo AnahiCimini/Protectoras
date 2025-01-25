@@ -5,6 +5,10 @@
     object-fit: cover;
 }
 
+.imgAnimal img{
+    max-width: 100%;
+}
+
   .history-section {
     background-color: #dcfcc7;
     color: #155724;
@@ -21,9 +25,12 @@
   }
 
   .datosAnimal {
-    background-color: #e9ecef;
     padding: 30px 10px;
-    width: 80%;
+    width: 88%;
+  }
+
+  .datosContainer {
+    background-color: #e9ecefde;
   }
 
 .infoBasica {

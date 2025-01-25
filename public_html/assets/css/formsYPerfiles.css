@@ -76,6 +76,22 @@
     width: fit-content;
 }
 
+.form-control-titles {
+    display: block;
+    width: 100%;
+    padding: .44rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
 .input-sin-borde::placeholder, .no-editable::placeholder {
     color: #555;
     font-style: italic;
