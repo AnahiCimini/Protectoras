@@ -97,13 +97,12 @@
             $controller->actualizarLogoProtectora($_POST);
             break;
         */
-        /*
-        case 'addCase':
+
+        case 'nuevoCaso':
             require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
             $animalController = new AnimalController($conn);
             $animalController->addCase($_POST);
             break;
-        */
             
         case 'buscarPorEspecie':
             require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';

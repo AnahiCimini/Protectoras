@@ -8,7 +8,7 @@
 
 <div class="container mt-5">
     <h1 class="text-center">Añadir Nuevo Caso</h1>
-    <form action="<?= BASE_URL ?>router.php?action=addCase" method="POST" enctype="multipart/form-data" id="form_newcase">
+    <form action="<?= BASE_URL ?>router.php?action=nuevoCaso" method="POST" enctype="multipart/form-data" id="form_newcase">
         
         <!-- Nombre del Animal y Foto Principal -->
         <div class="row align-items-center mb-4">
