@@ -103,7 +103,7 @@
     
     <!-- Botón de Enviar -->
     <div class="text-center mt-4">
-        <button type="submit" class="btn btn-primary">Registrar Protectora</button>
+        <button type="submit" class="btn btn-standard">Registrar Protectora</button>
     </div>
 
 </form>

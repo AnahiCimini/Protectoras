@@ -16,7 +16,7 @@
       </div>
 
       <!-- Botón Login -->
-      <button type="submit" class="btn btn-primary btn-block">Login</button>
+      <button type="submit" class="btn btn-standard btn-block login-btn">Login</button>
 
       <!-- Enlace Olvidó la contraseña -->
       <div class="mt-2 text-center">

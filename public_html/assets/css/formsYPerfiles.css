@@ -158,3 +158,10 @@
     box-shadow: -15px 15px 10px rgba(0, 0, 0, 0.4);
   }
   
+  #form_newcase {
+    margin-top: 50px !important;
+  }
+
+  .login-btn {
+    margin-top: 20px;
+  }

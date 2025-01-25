@@ -30,12 +30,12 @@
                     </div>
                     <div class="col-6">
                         <ul class="list-unstyled text-start">
-                            <li><?php echo htmlspecialchars($animal['raza']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['edad']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['tamano']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['estado_salud']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['sexo']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['esterilizado']); ?></li>
+                            <li><input type="text" name="raza" value="<?= htmlspecialchars($animal['raza']) ?>" id="raza" class="form-control"></li>
+                            <li><input type="text" name="edad" value="<?= htmlspecialchars($animal['edad']) ?>" id="edad" class="form-control"></li>
+                            <li><input type="text" name="tamano" value="<?= htmlspecialchars($animal['tamano']) ?>" id="tamano" class="form-control"></li>
+                            <li><input type="text" name="estado_salud" value="<?= htmlspecialchars($animal['estado_salud']) ?>" id="estado_salud" class="form-control"></li>
+                            <li><input type="text" name="sexo" value="<?= htmlspecialchars($animal['sexo']) ?>" id="sexo" class="form-control"></li>
+                            <li><input type="text" name="esterilizado" value="<?= htmlspecialchars($animal['esterilizado']) ?>" id="esterilizado" class="form-control"></li>
                         </ul>
                     </div>
                 </div>

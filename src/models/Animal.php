@@ -21,24 +21,6 @@
             $this->conn = $db; // Almacena la conexión
         }
 
-        /**
-         * Verifica si un animal pertenece a una protectora específica
-         * 
-         * @param int $idAnimal El ID del animal
-         * @param int $idProtectora El ID de la protectora
-         * @return bool Devuelve true si el animal pertenece a la protectora, false en caso contrario
-         */
-        public function verificarPropiedadAnimal($idAnimal, $idProtectora) {
-            $sql = "SELECT COUNT(*) as count FROM animales WHERE id_animal = :idAnimal AND id_protectora = :idProtectora";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':idAnimal', $idAnimal, PDO::PARAM_INT);
-            $stmt->bindParam(':idProtectora', $idProtectora, PDO::PARAM_INT);
-            $stmt->execute();
-
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            return $result['count'] > 0; // Devuelve true si hay al menos un registro
-        }
 
         public function getAnimalesPorFiltro($filtro, $valor) {
             if ($filtro === "especie"){
@@ -89,34 +71,34 @@
             return null;
         }
     
-        /*
-        public function createAnimal(
-            $id_protectora, $id_especie, $nombre_animal, $descripcion, $raza, 
-            $tamano, $sexo, $edad, $estado_salud, $foto_principal, 
-            $urgente, $en_acogida, $esterilizado, $fallecido
-        ) {
-            $query = "INSERT INTO animal (
-                id_protectora, id_especie, nombre_animal, descripcion, raza, tamano, sexo, edad, 
-                estado_salud, foto_principal, urgente, en_acogida, esterilizado, fallecido
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            
+        public function addAnimal($nombre_animal, $descripcion, $id_especie, $tamano, $sexo, $edad, $raza, $estado_salud, $foto_principal, $urgente, $en_acogida) {
+            // SQL para insertar un nuevo animal en la base de datos
+            $query = "INSERT INTO animales (nombre_animal, descripcion, id_especie, tamano, sexo, edad, raza, estado_salud, foto_principal, urgente, en_acogida) 
+                      VALUES (:nombre_animal, :descripcion, :id_especie, :tamano, :sexo, :edad, :raza, :estado_salud, :foto_principal, :urgente, :en_acogida)";
+    
+            // Preparamos la consulta
             $stmt = $this->conn->prepare($query);
-            $stmt->bind_param(
-                'iissssssssiiis', $id_protectora, $id_especie, $nombre_animal, $descripcion, $raza, 
-                $tamano, $sexo, $edad, $estado_salud, $foto_principal, 
-                $urgente, $en_acogida, $esterilizado, $fallecido
-            );
-            $stmt->execute();
     
-            if ($stmt->error) {
-                die("Error al crear el animal: " . $stmt->error);
+            // Vinculamos los parámetros
+            $stmt->bindParam(':nombre_animal', $nombre_animal);
+            $stmt->bindParam(':descripcion', $descripcion);
+            $stmt->bindParam(':id_especie', $id_especie);
+            $stmt->bindParam(':tamano', $tamano);
+            $stmt->bindParam(':sexo', $sexo);
+            $stmt->bindParam(':edad', $edad);
+            $stmt->bindParam(':raza', $raza);
+            $stmt->bindParam(':estado_salud', $estado_salud);
+            $stmt->bindParam(':foto_principal', $foto_principal);
+            $stmt->bindParam(':urgente', $urgente);
+            $stmt->bindParam(':en_acogida', $en_acogida);
+    
+            // Ejecutamos la consulta
+            if ($stmt->execute()) {
+                return true;
             }
+            return false;
         }
-    
-        public function __destruct() {
-            $this->conn->close();
-        }
-        */
+            
     }
 
 ?>
