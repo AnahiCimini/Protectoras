@@ -14,7 +14,7 @@
         <!-- Pet Image -->
         <div class="col-6">
             <?php if (!empty($animal['foto_principal'])): ?>
-                <img src="<?php echo BASE_URL . $animal['foto_principal']; ?>" class="pet-profile-img">
+                <img src="<?php echo BASE_URL . $animal['foto_principal']; ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
             <?php else: ?>
                 <p>No hay imágenes de este animal.</p>
             <?php endif; ?>

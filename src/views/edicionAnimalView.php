@@ -2,6 +2,16 @@
     require_once PROJECT_ROOT . '/config/config.php';
 ?>
 
+<div class="container">
+    <div class="row">
+        <form class="text-start col-6" action="router.php?action=eliminarAnimal&id_animal=<?php echo $animal['id_animal']; ?>" method="POST">
+            <button type="submit" class="btn btn-danger">Eliminar Animal</button>
+        </form>
+        <div class="text-end col-6">
+            <button onclick="window.history.back();" class="btn btn-standard">Volver</button>
+        </div>
+    </div>
+</div>
 
 <div class="container mt-5 infoBasica">
     <!-- Profile Card -->
@@ -9,7 +19,7 @@
         <!-- Pet Image -->
         <div class="col-6">
             <?php if (!empty($animal['foto_principal'])): ?>
-                <img src="<?php echo BASE_URL . $animal['foto_principal']; ?>" class="pet-profile-img">
+                <img src="<?php echo BASE_URL . $animal['foto_principal']; ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
             <?php else: ?>
                 <p>No hay imágenes de este animal.</p>
             <?php endif; ?>
@@ -45,29 +55,29 @@
 </div>
 
 <!-- Urgent Case Section -->
-<div class="urgent-case row urgente-noselected" id="urgentCase">
+<div class="urgent-case row" id="urgentCase">
     <div class="titleUrgente col-md-8">
         <h3>CASO URGENTE</h3>
     </div>
 
     <div class="col-md-4 d-flex align-items-center justify-content-center">
         <div class="btn-group btn-group-grey btn-group-toggle" data-toggle="buttons" role="group" aria-label="Urgente">
-            <input  type="radio"
-                    class="btn-check btn-check-grey"
-                    name="urgente"
-                    id="urgente-no"
-                    value="no"
-                    autocomplete="off"
-                    <?php echo ($animal['urgente'] == 0) ? 'checked' : ''; ?>>
+            <input type="radio"
+                class="btn-check btn-check-grey"
+                name="urgente"
+                id="urgente-no"
+                value="no"
+                autocomplete="off"
+                <?php echo ($animal['urgente'] == 0) ? 'checked' : ''; ?>>
             <label class="btn" for="urgente-no">No</label>
 
-            <input  type="radio"
-                    class="btn-check btn-check-grey"
-                    name="urgente"
-                    id="urgente-si"
-                    value="si"
-                    autocomplete="off"
-                    <?php echo ($animal['urgente'] == 1) ? 'checked' : ''; ?>>
+            <input type="radio"
+                class="btn-check btn-check-grey"
+                name="urgente"
+                id="urgente-si"
+                value="si"
+                autocomplete="off"
+                <?php echo ($animal['urgente'] == 1) ? 'checked' : ''; ?>>
             <label class="btn" for="urgente-si">Sí</label>
         </div>
     </div>

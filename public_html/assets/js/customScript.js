@@ -10,6 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    // Obtén el valor inicial del campo 'urgente' (si es "si" o "no")
+    var urgenteValue = document.querySelector('input[name="urgente"]:checked')?.value;
+
+    // Aplica las clases correctas al cargar la página
+    if (urgenteValue === "si") {
+        urgentCaseDiv.classList.add('urgente-selected');
+        urgentCaseDiv.classList.remove('urgente-noselected');
+    } else {
+        urgentCaseDiv.classList.add('urgente-noselected');
+        urgentCaseDiv.classList.remove('urgente-selected');
+    }
+
     // Al seleccionar "No"
     document.getElementById('urgente-no').addEventListener('change', function () {
         urgentCaseDiv.classList.add('urgente-noselected');
@@ -22,3 +34,4 @@ document.addEventListener('DOMContentLoaded', function () {
         urgentCaseDiv.classList.remove('urgente-noselected');
     });
 });
+

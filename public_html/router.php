@@ -76,10 +76,6 @@
             $animalController = new AnimalController($conn);
             $animal = $animalController->buscarPorID($id_animal);
 
-            // Depuración para verificar los valores
-            var_dump($_SESSION['id_protectora']);  // Verificar si existe el id de protectora en la sesión
-            var_dump($animal['id_protectora']);    // Verificar el id de la protectora asociado al animal
-
             if (isset($_SESSION['id_protectora']) && $_SESSION['id_protectora'] === $animal['id_protectora']) {
                 $_GET['page'] = 'edicionAnimal'; 
                 include PROJECT_ROOT . '/public_html/index.php';
@@ -90,13 +86,11 @@
             include PROJECT_ROOT . '/public_html/index.php';
             exit;
             
-        /*
-        case 'actualizarLogoProtectora':
-            require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
-            $controller = new ProtectoraController($conn);
-            $controller->actualizarLogoProtectora($_POST);
-            break;
-        */
+        case 'eliminarAnimal':
+            $id_animal = $_GET['id_animal'] ?? null;
+            require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
+            $animalController = new AnimalController($conn);
+            $animal = $animalController->eliminarAnimal($id_animal);
 
         case 'nuevoCaso':
             require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
