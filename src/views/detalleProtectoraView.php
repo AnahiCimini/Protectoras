@@ -1,12 +1,5 @@
 <?php
     require_once PROJECT_ROOT . '/config/config.php';
-
-    // Verificar si el usuario está logado, puedes usar tu lógica de sesión aquí
-    $loggedIn = isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true;
-
-    if (isset($_GET['protectora'])) {
-        $protectora = $_GET['protectora'];
-    }
 ?>
 
 <div class="container">

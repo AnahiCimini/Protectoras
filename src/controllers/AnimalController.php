@@ -26,7 +26,6 @@
             $animal = $this->animalmodel->getAnimalesPorFiltro('id_animal', $id_animal);
             return $animal;
         }
+        
     }
 
-
-?>

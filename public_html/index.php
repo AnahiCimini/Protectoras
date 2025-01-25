@@ -3,7 +3,9 @@
         define('PROJECT_ROOT', dirname(__DIR__));
     }
 
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
     if (isset($_SESSION['message'])) {
         echo "<script>
@@ -16,9 +18,8 @@
     
     require_once PROJECT_ROOT . '/config/config.php';
     require_once PROJECT_ROOT . '/src/models/Provincias.php';
+    require_once PROJECT_ROOT . '/src/models/Protectora.php';    
     require_once PROJECT_ROOT . '/src/models/CCAA.php';    
-    require_once PROJECT_ROOT . '/src/models/Protectora.php';
-    require_once PROJECT_ROOT . '/src/models/Animal.php';        
     require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
 
 
@@ -31,7 +32,6 @@
     $CCAAController = new CCAA($conn);
     $ccaas = $CCAAController->getCCAA();
 
-    $animalModel = new Animal($conn); // Pasa la conexión
 
     $page = $_GET['page'] ?? 'home';
 
@@ -55,24 +55,10 @@
             $view = '../src/views/detalleProtectoraView.php';
             break;
         case 'datosAnimal':
-            if (isset($_SESSION['id_protectora'])) {
-                $idProtectoraLogada = $_SESSION['id_protectora'];
-                $idAnimal = $_GET['id'] ?? null;
-        
-                if ($idAnimal) {
-                    $esPropietaria = $animalModel->verificarPropiedadAnimal($idAnimal, $idProtectoraLogada);
-        
-                    if ($esPropietaria) {
-                        // Establecer un mensaje en sesión para mostrar en la vista
-                        $_SESSION['message'] = 'Vas a editar este animal';
-                        $view = '../src/views/edicionAnimalView.php';
-                        break;
-                    }
-                }
-            }
-        
-            // Redirigir a detalles si no es propietaria o no está logada
             $view = '../src/views/detalleAnimalView.php';
+            break;
+        case 'edicionAnimal':
+            $view = '../src/views/edicionAnimalView.php';
             break;
         case 'nuevoCaso':
             $view = '../src/views/nuevoCasoView.php';

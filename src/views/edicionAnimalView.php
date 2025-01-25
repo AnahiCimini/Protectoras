@@ -1,17 +1,7 @@
 <?php
-    // Verifica si hay un mensaje en la sesión para mostrar la alerta
-    if (isset($_SESSION['message'])) {
-        echo "<script>alert('" . $_SESSION['message'] . "');</script>";
-        // Limpiar el mensaje para no mostrarlo más de una vez
-        unset($_SESSION['message']);
-    }
+    require_once PROJECT_ROOT . '/config/config.php';
 ?>
 
-<div class="container">
-    <div class="text-end">
-        <button onclick="window.history.back();" class="btn btn-standard">Volver</button>
-    </div>
-</div>
 
 <div class="container mt-5 infoBasica">
     <!-- Profile Card -->

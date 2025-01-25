@@ -1,6 +1,11 @@
 <?php
+
     if (!defined('PROJECT_ROOT')) {
         define('PROJECT_ROOT', dirname(__DIR__));
+    }
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
     }
 
     require_once PROJECT_ROOT . '/config/config.php';
@@ -66,25 +71,24 @@
 
         case 'detalleAnimal':
             $id_animal = $_GET['id_animal'] ?? null;
+            
+            require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
+            $animalController = new AnimalController($conn);
+            $animal = $animalController->buscarPorID($id_animal);
 
-            if ($id_animal) {
-                require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
-                $animalController = new AnimalController($conn);
-                $animal = $animalController->buscarPorID($id_animal);
-                
-                if($animal){
-                    $_GET['page'] = 'datosAnimal';
-                    $_GET['animal'] = $animal;
-                    include PROJECT_ROOT . '/public_html/index.php';
-                    exit;
-                } else {
-                    echo "Animal no encontrado.";
-                    exit;
-                }
-            } else {
-                echo "Error: ID del animal no especificado.";
-                exit;       
+            // Depuración para verificar los valores
+            var_dump($_SESSION['id_protectora']);  // Verificar si existe el id de protectora en la sesión
+            var_dump($animal['id_protectora']);    // Verificar el id de la protectora asociado al animal
+
+            if (isset($_SESSION['id_protectora']) && $_SESSION['id_protectora'] === $animal['id_protectora']) {
+                $_GET['page'] = 'edicionAnimal'; 
+                include PROJECT_ROOT . '/public_html/index.php';
+                exit; 
             }
+        
+            $_GET['page'] = 'datosAnimal'; 
+            include PROJECT_ROOT . '/public_html/index.php';
+            exit;
             
         /*
         case 'actualizarLogoProtectora':
