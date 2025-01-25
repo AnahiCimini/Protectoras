@@ -56,3 +56,9 @@
     background-color: rgb(255, 115, 0);
     color:  rgb(248, 192, 159);
 }
+
+/* RESULTADOS BUSQUEDA ANIMALES */
+
+.animal_card {
+    background-color: aliceblue;
+}

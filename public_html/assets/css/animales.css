@@ -3,6 +3,7 @@
     height: auto;
     max-height: calc(70vw);
     object-fit: cover;
+    margin: 0 auto;
 }
 
 .imgAnimal img{
