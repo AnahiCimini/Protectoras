@@ -37,6 +37,11 @@ class ProtectoraController {
         return $protectoras;
     }
 
+    public function getProtectoraById($id_protectora) {
+        $protectora = new Protectora($this->conn);
+        $protectoras = $protectora->getProtectoraById($id_protectora);
+        return $protectoras;
+    }
     
     public function register($data) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

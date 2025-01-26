@@ -72,6 +72,21 @@ a{
     padding: 17px;
     font-size: 1.3em;
     border-radius: 20px;
+    background-color:#155724;
+    color: #dcfcc7;
+}
+
+.btn-xl-standard:hover{
+    background-color: #dcfcc7;
+    color: #155724;
+}
+
+.btn-xl-alto{
+    padding: 5% 0;
+}
+
+.botones-bottom {
+    margin-top: 5%;
 }
 
 .text-extraSmall{

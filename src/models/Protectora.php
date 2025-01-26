@@ -35,6 +35,16 @@ class Protectora {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }   
 
+    public function getProtectoraById($id) {
+        $query = "SELECT * FROM protectoras WHERE id_protectora = :id";
+        $stmt = $this->conn->prepare($query); // Prepara la consulta con PDO
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT); // Asocia el parámetro con el valor
+        $stmt->execute(); // Ejecuta la consulta
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Devuelve un resultado como array asociativo
+    }
+    
+
+
     // Obtener las protectoras por nombre
     public function getProtectoraByName($nombre_protectora) {
         $query = "SELECT * FROM protectoras WHERE nombre_protectora = :nombre_protectora";

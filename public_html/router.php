@@ -44,26 +44,29 @@
 
         case 'detalleProtectora':
             // Manejar la lógica para el detalle de protectora
+            $id_protectora = $_GET['id_protectora'] ?? null;
             $nombre_protectora = $_GET['nombre_protectora'] ?? null;
+
+            require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
+            $controller = new ProtectoraController($conn);        
     
-            if ($nombre_protectora) {
-                require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
-                $controller = new ProtectoraController($conn);
+            if ($id_protectora) {
+                $protectora = $controller->getProtectoraById($id_protectora);
+            } elseif ($nombre_protectora) {
                 $protectora = $controller->getProtectoraByName($nombre_protectora);
-    
-                if ($protectora) {
-                    // Pasar los datos al índice para cargar la vista
-                    $_GET['page'] = 'datosProtectora';
-                    $_GET['protectora'] = $protectora;
-                    include PROJECT_ROOT . '/public_html/index.php';
-                    exit;
-                } else {
-                    echo "Protectora no encontrada.";
-                    exit;
-                }
             } else {
-                echo "Nombre de protectora no especificado.";
-                exit;       
+                echo "ID o nombre de protectora no especificado.";
+                exit;
+            }
+        
+            if ($protectora) {
+                $_GET['page'] = 'datosProtectora';
+                $_GET['protectora'] = $protectora;
+                include PROJECT_ROOT . '/public_html/index.php';
+                exit;
+            } else {
+                echo "Protectora no encontrada.";
+                exit;
             }
         
         case 'actualizarDatosProtectora':
