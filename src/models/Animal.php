@@ -145,6 +145,27 @@
             return true;
         }
         
+        public function eliminarImagenAnterior($id_animal) {
+            $query = "SELECT foto_principal FROM animales WHERE id_animal = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$id_animal]);
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+            if ($resultado && !empty($resultado['foto_principal'])) {
+                $rutaImagen = PROJECT_ROOT . '/public_html/assets/img/uploads/animales/' . $resultado['foto_principal'];
+        
+                if (file_exists($rutaImagen)) {
+                    if (unlink($rutaImagen)) {
+                        error_log("Imagen eliminada: " . $rutaImagen);
+                    } else {
+                        error_log("Error al eliminar la imagen: " . $rutaImagen);
+                    }
+                } else {
+                    error_log("La imagen no existe: " . $rutaImagen);
+                }
+            }
+        }
+        
     }
 
 ?>

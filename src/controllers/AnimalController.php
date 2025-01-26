@@ -135,11 +135,18 @@
         }
         public function actualizarDatosAnimal($data) {
             $id_animal = $_GET['id_animal'] ?? null;
-        
+            
+            $animal = $this->animalmodel->getAnimalesPorFiltro('id_animal', $id_animal);
+
             if (isset($_FILES['foto_principal']) && $_FILES['foto_principal']['error'] === UPLOAD_ERR_OK) {
                 $foto_principal = $this->subirImagenAnimal($_FILES['foto_principal']);
+                $this->animalmodel->eliminarImagenAnterior($id_animal);
                 $data['foto_principal'] = $foto_principal;
+            }else{
+                $foto_principal = $animal['foto_principal'];
             }
+
+            $data['foto_principal'] = $foto_principal;
 
             // Actualizamos los datos del animal en la base de datos
             $resultado = $this->animalmodel->actualizarDatosAnimal($id_animal, $data);
