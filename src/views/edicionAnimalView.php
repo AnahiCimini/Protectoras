@@ -27,6 +27,7 @@
             </div>
             <!-- Pet Details -->
             <div class="col-6 text-center datosContainer">
+                <h4 class="customTitle"><input type="text" name="nombre_animal" id="nombre_animal-editable" class="form-control textarea-transparente" value="<?= htmlspecialchars($animal['nombre_animal']) ?>"></h4>
                 <div class="datosAnimal text-center col-6">
                     <div class="row">
                         <div class="col-6">
@@ -116,11 +117,11 @@
 <div class="history-section">
     <h5>Historia</h5>
     <textarea 
-        id="historia" 
-        name="historia" 
-        class="form-control textarea-transparente" 
+        id="descripcion" 
+        name="descripcion" 
+        class="form-control textarea-transparente text-center" 
         rows="5" 
-        placeholder="Este animal aún no tiene una historia registrada. Para añadir alguna descripción o historia, escribe aquí"><?= !empty($animal['historia']) ? htmlspecialchars($animal['historia']) : ''; ?></textarea>
+        placeholder="Este animal aún no tiene una historia registrada. Para añadir alguna descripción o historia, escribe aquí"><?= !empty($animal['descripcion']) ? htmlspecialchars($animal['descripcion']) : ''; ?></textarea>
 </div>
 
 
@@ -156,15 +157,7 @@
 
     <div class="container mt-4 guardadoDatos">
     <div class="row">
-        <!-- Botón Cancelar -->
-        <div class="col-md-6 text-end">
-            <button id="cancelarBtn" type="button" class="btn btn-xl-standard btn-disabled" disabled>
-                Cancelar
-            </button>
-        </div>
-
-        <!-- Botón Guardar Cambios -->
-        <div class="col-md-6 text-start">
+        <div class="">
             <button id="guardarBtn" type="submit" class="btn btn-xl-standard btn-disabled" disabled>
                 Guardar Cambios
             </button>

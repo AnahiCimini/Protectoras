@@ -206,3 +206,20 @@
     outline: none;
     box-shadow: none;
 }
+
+#nombre_animal-editable {
+        border: none;
+        background: transparent;
+        font-size: 1.5rem;
+        font-weight: bold; 
+        font-family: inherit;
+        display: inline;
+        padding: 0;
+        outline: none;
+        text-align: center;
+}
+
+#nombre_animal-editable:focus {
+    outline: none; /* Elimina el contorno cuando el campo está enfocado */
+    background: transparent; /* Mantiene el fondo transparente */
+}

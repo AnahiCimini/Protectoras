@@ -46,21 +46,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const btnGuardar = document.getElementById("guardarBtn");
-    const btnCancelar = document.getElementById("cancelarBtn");
     const inputs = document.querySelectorAll("#form-editar-animal input, #form-editar-animal select, #form-editar-animal textarea");
-    
-    const valoresOriginales = {}; // Almacenamos los valores originales
 
-    // Guardamos los valores originales para cada campo
+    // Almacenamos los valores originales
+    const valoresOriginales = {};
     inputs.forEach(input => {
         if (input.tagName === "SELECT" || input.tagName === "TEXTAREA") {
-            // Para selects y textareas
             valoresOriginales[input.name] = input.value;
         } else if (input.type === "radio" || input.type === "checkbox") {
-            // Para radio buttons y checkboxes
-            valoresOriginales[input.name] = document.querySelector(`input[name='${input.name}']:checked`)?.value || "";
+            valoresOriginales[input.name] = input.checked;
         } else {
-            // Para otros campos de texto
             valoresOriginales[input.id] = input.value;
         }
     });
@@ -73,17 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
             let currentValue;
             if (input.tagName === "SELECT" || input.tagName === "TEXTAREA") {
                 currentValue = input.value;
-            } else if (input.type === "radio") {
-                currentValue = document.querySelector(`input[name='${input.name}']:checked`)?.value || "";
-            } else if (input.type === "checkbox") {
+            } else if (input.type === "radio" || input.type === "checkbox") {
                 currentValue = input.checked;
             } else {
                 currentValue = input.value;
             }
 
             const originalValue = valoresOriginales[input.name] || valoresOriginales[input.id];
-            
-            // Detectamos si hubo un cambio
+
             if (currentValue !== originalValue) {
                 hasChanges = true;
             }
@@ -91,19 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Habilitar o deshabilitar los botones
         btnGuardar.disabled = !hasChanges;
-        btnCancelar.disabled = !hasChanges;
 
-        // Cambiar las clases para el estilo de los botones
+        // Cambiar las clases para el estilo
         if (hasChanges) {
             btnGuardar.classList.remove('btn-disabled');
-            btnCancelar.classList.remove('btn-disabled');
             btnGuardar.classList.add('btn-enabled');
-            btnCancelar.classList.add('btn-enabled');
         } else {
             btnGuardar.classList.remove('btn-enabled');
-            btnCancelar.classList.remove('btn-enabled');
             btnGuardar.classList.add('btn-disabled');
-            btnCancelar.classList.add('btn-disabled');
         }
     }
 
@@ -113,6 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
         input.addEventListener('change', detectChanges);
     });
 
-    // Detectar cambios iniciales y deshabilitar botones al cargar
+    // Detectar cambios iniciales
     detectChanges();
 });

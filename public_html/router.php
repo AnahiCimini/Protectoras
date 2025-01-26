@@ -94,7 +94,6 @@
             $animalController = new AnimalController($conn);
             
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                var_dump($_POST); // Verifica los datos enviados
                 $animalController->actualizarDatosAnimal($_POST);
             } else {
                 echo "Método no permitido.";

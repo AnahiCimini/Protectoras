@@ -27,22 +27,22 @@
                 <div class="row">
                     <div class="col-6">
                         <ul class="list-unstyled text-end">
-                            <li><strong>Raza / Especie:</strong></li>
-                            <li><strong>Edad:</strong></li>
-                            <li><strong>Tamaño:</strong></li>
-                            <li><strong>Salud:</strong></li>
-                            <li><strong>Sexo:</strong></li>
-                            <li><strong>Esterilización:</strong></li>
+                            <li class="form-control-titles"><strong>Raza / Especie:</strong></li>
+                            <li class="form-control-titles"><strong>Edad:</strong></li>
+                            <li class="form-control-titles"><strong>Tamaño:</strong></li>
+                            <li class="form-control-titles"><strong>Salud:</strong></li>
+                            <li class="form-control-titles"><strong>Sexo:</strong></li>
+                            <li class="form-control-titles"><strong>Esterilización:</strong></li>
                         </ul>
                     </div>
                     <div class="col-6">
                         <ul class="list-unstyled text-start">
-                            <li><?php echo htmlspecialchars($animal['raza']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['edad']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['tamano']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['estado_salud']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['sexo']); ?></li>
-                            <li><?php echo htmlspecialchars($animal['esterilizado']); ?></li>
+                            <li class="form-control-titles"><?php echo htmlspecialchars($animal['raza']); ?></li>
+                            <li class="form-control-titles"><?php echo htmlspecialchars($animal['edad']); ?></li>
+                            <li class="form-control-titles"><?php echo htmlspecialchars($animal['tamano']); ?></li>
+                            <li class="form-control-titles"><?php echo htmlspecialchars($animal['estado_salud']); ?></li>
+                            <li class="form-control-titles"><?php echo htmlspecialchars($animal['sexo']); ?></li>
+                            <li class="form-control-titles"><?php echo htmlspecialchars($animal['esterilizado']); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
 <!-- History Section -->
 <div class="history-section">
     <h5>Historia</h5>
-    <p>
+    <p class="text-center">
         <?php echo !empty($animal['descripcion']) ? htmlspecialchars($animal['descripcion']) : 'Este animal aún no tiene una historia registrada.'; ?>
     </p>
 </div>

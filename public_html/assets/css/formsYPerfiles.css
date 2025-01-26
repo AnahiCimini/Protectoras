@@ -79,8 +79,8 @@
 .form-control-titles {
     display: block;
     width: 100%;
-    padding: .44rem .75rem;
-    font-size: 1rem;
+    padding: .3rem .75rem;
+    font-size: 1.2rem;
     font-weight: 400;
     line-height: 1.5;
     color: var(--bs-body-color);
