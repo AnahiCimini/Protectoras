@@ -181,3 +181,68 @@
   .login-btn {
     margin-top: 20px;
   }
+
+
+
+  /* FORM POPUP */
+
+  /* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos del popup */
+#popUp {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#popUp:target {
+    display: flex;
+}
+
+#popUp .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+}
+
+.close-btn {
+    text-align: right;
+    font-size: 2rem;
+    color: #016e10;
+    font-weight: 600;
+    font-family: cursive;
+    position: absolute;
+    top: 3%;
+    right: 4%;
+}
+
+.popup-title{
+    color: #016e10;
+    margin-bottom: 8%;
+}
+
+#popUp .popup-content input, #popUp .popup-content textarea {
+    text-align: center;
+    padding: 2% 1%;
+    background-color: #dcfcc7;
+}
+
+#popUp .btn-standard {
+    padding:3% 10%;
+    margin-top: 8%;
+}

@@ -22,7 +22,7 @@
         <!-- Pet Details -->
         <div class="col-6 text-center">
             <div class="datosAnimal text-center col-6">
-                <h4 class="customTitle"><?php echo htmlspecialchars($animal['nombre_animal']); ?></h4>
+                <h1 class="customTitle"><?php echo htmlspecialchars($animal['nombre_animal']); ?></h1>
                 <div class="row">
                     <div class="col-6">
                         <ul class="list-unstyled text-end">
@@ -95,16 +95,24 @@
 
 <div class="container botones-bottom">
     <div class="row">
+        <!-- Botón para abrir el popup con el formulario -->
+        <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
+            <a href="#popUp" class="btn w-100 btn-xl-standard btn-xl-alto" id="solicitar-info-btn" data-id="<?php echo $animal['id_animal']; ?>">
+                Solicitar Información
+            </a>
+        </div>
         <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
             <a href="<?php echo BASE_URL; ?>router.php?action=detalleProtectora&id_protectora=<?php echo urlencode($animal['id_protectora']); ?>"
             class="btn w-100 btn-xl-standard btn-xl-alto">Ver Detalles de la Protectora</a>
         </div>
+    </div>
+</div>
 
-        <!-- Botón para abrir el popup con el formulario -->
-        <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
-            <button type="button" class="btn w-100 btn-xl-standard btn-xl-alto" data-bs-toggle="modal" data-bs-target="#solicitarInfoModal">
-                Solicitar Información
-            </button>
-        </div>
+<!-- Contenido del popup -->
+<div id="popUp">
+    <div class="popup-content">
+        <!-- Cerrar el popup -->
+        <a href="#" class="close-btn">X</a>
+        <?php include 'solicitarInformacion.php'; ?>
     </div>
 </div>

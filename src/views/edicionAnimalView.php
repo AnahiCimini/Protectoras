@@ -37,7 +37,7 @@
             </div>
             <!-- Pet Details -->
             <div class="col-6 text-center datosContainer">
-                <h4 class="customTitle"><input type="text" name="nombre_animal" id="nombre_animal-editable" class="form-control textarea-transparente" value="<?= htmlspecialchars($animal['nombre_animal']) ?>"></h4>
+                <h1 class="customTitle"><input type="text" name="nombre_animal" id="nombre_animal-editable" class="form-control textarea-transparente" value="<?= htmlspecialchars($animal['nombre_animal']) ?>"></h1>
                 <div class="datosAnimal text-center col-6">
                     <div class="row">
                         <div class="col-6">
