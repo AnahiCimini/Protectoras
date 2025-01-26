@@ -126,11 +126,12 @@
     <div class="container mt-4 guardadoDatos">
         <div class="row">
             <div class="col-md-6 text-end">
-                <button id="cancelarBtn" class="btn btn-xl-standard" disabled onclick="window.location.href = 'router.php?action=editarAnimal&id_animal=<?= $animal['id_animal']; ?>';">Cancelar</button>
+                <button id="cancelarBtn" class="btn btn-xl-standard" disabled onclick="window.location.href = 'router.php?action=actualizarDatosAnimal&id_animal=<?= $animal['id_animal']; ?>';">Cancelar</button>
             </div>
             <div class="col-md-6 text-start">
-                <button id="guardarBtn" class="btn btn-xl-standard" disabled>Guardar Cambios</button>
+                <button id="guardarBtn" class="btn btn-xl-standard" disabled onclick="guardarCambios()">Guardar Cambios</button>
             </div>
         </div>
     </div>
+
 </form>

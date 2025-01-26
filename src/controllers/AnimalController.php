@@ -138,7 +138,7 @@
         
                 if ($result) {
                     // Redirige a la vista de edición después de guardar
-                    header('Location: router.php?action=editarAnimal&id_animal=' . $id_animal);
+                    header('Location: router.php?action=actualizarDatosAnimal&id_animal=' . $id_animal);
                     exit();
                 } else {
                     // Manejar error si la actualización falla

@@ -89,7 +89,7 @@
         case 'actualizarDatosAnimal':
             require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
             $animalController = new AnimalController($conn);
-            $controller->actualizarDatosAnimal($_POST);
+            $animalController->actualizarDatosAnimal($_POST);
             break;
 
         case 'eliminarAnimal':
