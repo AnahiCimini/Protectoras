@@ -12,10 +12,9 @@
     <!-- Profile Card -->
     <div class="row align-items-center g-0">
         <!-- Pet Image -->
-        <!-- Pet Image -->
         <div class="col-6 imgAnimal">
             <?php if (!empty($animal['foto_principal'])): ?>
-                <img src="<?= BASE_URL . 'assets/img/uploads/animales/' . strtolower($animal['nombre_especie']) . '/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
+                <img src="<?= BASE_URL . 'assets/img/uploads/animales/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
             <?php else: ?>
                 <p>No hay imágenes de este animal.</p>
             <?php endif; ?>
@@ -75,8 +74,8 @@
         <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
             <div class="btn-group btn-group-green" role="group" aria-label="Adoptado">
                 <span class="me-2 fs-4">Adoptado:</span>
-                <span class="badge fs-5 bg-<?php echo ($animal['adoptado'] == 'si') ? 'success' : 'secondary'; ?>">
-                    <?php echo ($animal['adoptado'] == 'si') ? 'Sí' : 'No'; ?>
+                <span class="badge fs-5 bg-<?php echo ($animal['adoptado'] == '1') ? 'success' : 'secondary'; ?>">
+                    <?php echo ($animal['adoptado'] == '1') ? 'Sí' : 'No'; ?>
                 </span>
             </div>
         </div>
@@ -85,8 +84,8 @@
         <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
             <div class="btn-group btn-group-green" role="group" aria-label="En Acogida">
                 <span class="me-2 fs-4">En Acogida:</span>
-                <span class="badge fs-5 bg-<?php echo ($animal['en_acogida'] == 'si') ? 'success' : 'secondary'; ?>">
-                    <?php echo ($animal['en_acogida'] == 'si') ? 'Sí' : 'No'; ?>
+                <span class="badge fs-5 bg-<?php echo ($animal['en_acogida'] == '1') ? 'success' : 'secondary'; ?>">
+                    <?php echo ($animal['en_acogida'] == '1') ? 'Sí' : 'No'; ?>
                 </span>
             </div>
         </div>

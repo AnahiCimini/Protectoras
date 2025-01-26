@@ -18,7 +18,7 @@
         private $esterilizado;
 
         public function __construct($db) {
-            $this->conn = $db; // Almacena la conexión
+            $this->conn = $db;
         }
 
 
@@ -77,14 +77,11 @@
         }
     
         public function addAnimal($id_protectora, $nombre_animal, $descripcion, $id_especie, $tamano, $sexo, $edad, $raza, $estado_salud, $foto_principal, $esterilizado, $urgente, $en_acogida) {
-            // SQL para insertar un nuevo animal en la base de datos
             $query = "INSERT INTO animales (id_protectora, nombre_animal, descripcion, id_especie, tamano, sexo, edad, raza, estado_salud, foto_principal, esterilizado, urgente, en_acogida) 
                       VALUES (:id_protectora, :nombre_animal, :descripcion, :id_especie, :tamano, :sexo, :edad, :raza, :estado_salud, :foto_principal, :esterilizado, :urgente, :en_acogida)";
     
-            // Preparamos la consulta
             $stmt = $this->conn->prepare($query);
     
-            // Vinculamos los parámetros
             $stmt->bindParam(':id_protectora', $id_protectora);
             $stmt->bindParam(':nombre_animal', $nombre_animal);
             $stmt->bindParam(':descripcion', $descripcion);
@@ -99,7 +96,6 @@
             $stmt->bindParam(':urgente', $urgente);
             $stmt->bindParam(':en_acogida', $en_acogida);
     
-            // Ejecutamos la consulta
             if ($stmt->execute()) {
                 return true;
             }
@@ -111,11 +107,11 @@
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id_animal', $id_animal);
         
-            // Ejecutamos la consulta
             return $stmt->execute();
         }
         
         public function actualizarDatosAnimal($id_animal, $data){
+            $foto_principal = $data['foto_principal'];
             $nombre_animal = $data['nombre_animal'];
             $raza = $data['raza'];
             $edad = $data['edad'];
@@ -128,8 +124,8 @@
             $en_acogida = $data['en_acogida'];
             $descripcion = $data['descripcion'];
         
-            // Preparar la consulta para actualizar
             $query = "UPDATE animales SET 
+                    foto_principal = ?,
                     nombre_animal = ?,
                     raza = ?, 
                     edad = ?, 
@@ -143,11 +139,10 @@
                     descripcion = ? 
                     WHERE id_animal = ?";
         
-            // Ejecutar la consulta con los datos recibidos
             $stmt = $this->conn->prepare($query);
-            $stmt->execute([$nombre_animal, $raza, $edad, $tamano, $estado_salud, $sexo, $esterilizado, $urgente, $adoptado, $en_acogida, $descripcion, $id_animal]);
+            $stmt->execute([$foto_principal, $nombre_animal, $raza, $edad, $tamano, $estado_salud, $sexo, $esterilizado, $urgente, $adoptado, $en_acogida, $descripcion, $id_animal]);
         
-            return true; // Devuelve un valor de éxito si la actualización se realiza correctamente
+            return true;
         }
         
     }

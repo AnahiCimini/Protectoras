@@ -23,7 +23,7 @@
                     <div class="animal card p-3 shadow-sm animal_card">
                         <h3><?php echo htmlspecialchars($animal['nombre_animal']); ?></h3>
                         <?php if (!empty($animal['foto_principal'])): ?>
-                            <img class="pet-profile-img" src="<?= BASE_URL . 'assets/img/uploads/animales/' . htmlspecialchars($especie) . '/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
+                            <img class="pet-profile-img" src="<?= BASE_URL . 'assets/img/uploads/animales/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
                         <?php endif; ?>
                         <span>Raza / especie: <?php echo htmlspecialchars($animal['raza']); ?></span>
                         <span>Edad: <?php echo htmlspecialchars($animal['edad']); ?></span>

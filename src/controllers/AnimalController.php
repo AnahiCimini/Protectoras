@@ -41,6 +41,38 @@
             return $nombre_especie;
         }
 
+        public function subirImagenAnimal($archivo) {
+            $foto_principal = null; // Iniciamos como null
+            
+            // Verificar si se ha enviado un archivo
+            if (isset($archivo) && $archivo['error'] === UPLOAD_ERR_OK) {
+                // Definir el directorio de destino
+                $uploadDir = PROJECT_ROOT . '/public_html/assets/img/uploads/animales/';
+        
+                // Crear la subcarpeta si no existe
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+        
+                // Nombre del archivo único
+                $fileName = uniqid('animal_') . '.' . pathinfo($archivo['name'], PATHINFO_EXTENSION);
+                $filePath = $uploadDir . $fileName;
+        
+                // Intentamos mover el archivo subido
+                if (move_uploaded_file($archivo['tmp_name'], $filePath)) {
+                    $foto_principal = $fileName;
+                } else {
+                    echo "<script>
+                        alert('Error al subir la foto. Inténtalo de nuevo.');
+                        window.history.back();
+                    </script>";
+                    exit;
+                }
+            }
+        
+            return $foto_principal;
+        }
+        
         public function addCase() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Recogemos los datos del formulario
@@ -57,36 +89,11 @@
                 $urgente = isset($_POST['urgente']) ? 1 : 0;
                 $en_acogida = isset($_POST['en_acogida']) ? 1 : 0;
     
-                $nombreEspecie = $_POST['nombre_especie']; // Supongamos que así recoges el dato del formulario
+                $nombreEspecie = $_POST['nombre_especie'];
                 $id_especie = $this->animalmodel->getIdEspecieByNombre($nombreEspecie);
 
-                // Procesamos la subida de la foto principal
-                $foto_principal = null; // Iniciamos como null
-                if (isset($_FILES['foto_principal']) && $_FILES['foto_principal']['error'] === UPLOAD_ERR_OK) {
-                    // Obtener el nombre de la especie desde el dropdown
-                    $especie = $_POST['nombre_especie']; // Tomamos el texto seleccionado del dropdown
-                    $uploadDir = PROJECT_ROOT . '/public_html/assets/img/uploads/animales/' . ($especie) . '/';
+                $foto_principal = $this->subirImagenAnimal($_FILES['foto_principal']);
 
-                    // Crear la subcarpeta si no existe
-                    if (!is_dir($uploadDir)) {
-                        mkdir($uploadDir, 0777, true);
-                    }
-
-                    // Nombre del archivo único
-                    $fileName = uniqid('animal_') . '.' . pathinfo($_FILES['foto_principal']['name'], PATHINFO_EXTENSION);
-                    $filePath = $uploadDir . $fileName;
-
-                    // Intentamos mover el archivo subido
-                    if (move_uploaded_file($_FILES['foto_principal']['tmp_name'], $filePath)) {
-                        $foto_principal = $fileName;
-                    } else {
-                        echo "<script>
-                            alert('Error al subir la foto. Inténtalo de nuevo.');
-                            window.history.back();
-                        </script>";
-                        exit;
-                    }
-                }
 
                 // Llamamos al modelo de Animal y pasamos los datos a la función para añadir el nuevo caso
                 $this->animalmodel->addAnimal(
@@ -126,22 +133,23 @@
                 </script>';
             }
         }
-
-        public function actualizarDatosAnimal ($data){
-
+        public function actualizarDatosAnimal($data) {
             $id_animal = $_GET['id_animal'] ?? null;
+        
+            if (isset($_FILES['foto_principal']) && $_FILES['foto_principal']['error'] === UPLOAD_ERR_OK) {
+                $foto_principal = $this->subirImagenAnimal($_FILES['foto_principal']);
+                $data['foto_principal'] = $foto_principal;
+            }
 
+            // Actualizamos los datos del animal en la base de datos
             $resultado = $this->animalmodel->actualizarDatosAnimal($id_animal, $data);
-
-
+        
             if ($resultado) {
                 header('Location: router.php?action=detalleAnimal&id_animal=' . $id_animal);
                 exit();
             } else {
                 echo "Error al actualizar los datos del animal.";
             }
-
         }
-        
     }
 

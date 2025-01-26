@@ -13,16 +13,20 @@
         </div>
     </div>
 
-<form action="router.php?action=actualizarDatosAnimal&id_animal=<?= $animal['id_animal']; ?>" method="POST" id="form-editar-animal">
+<form action="router.php?action=actualizarDatosAnimal&id_animal=<?= $animal['id_animal']; ?>" method="POST" id="form-editar-animal" enctype="multipart/form-data">
     <div class="container mt-5 infoBasica">
         <!-- Profile Card -->
         <div class="row align-items-center g-0">
             <!-- Pet Image -->
             <div class="col-6 imgAnimal">
                 <?php if (!empty($animal['foto_principal'])): ?>
-                    <img src="<?= BASE_URL . 'assets/img/uploads/animales/' . strtolower($animal['nombre_especie']) . '/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
+                    <img src="<?= BASE_URL . 'assets/img/uploads/animales/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
+                    <label for="foto_principal"></label>
+                    <input type="file" name="foto_principal" placeholder="Cambiar foto" id="foto_principal" class="form-control" accept="image/*">
                 <?php else: ?>
                     <p>No hay imágenes de este animal.</p>
+                    <label for="foto_principal"></label>
+                    <input type="file" name="foto_principal" id="foto_principal" class="form-control" accept="image/*" placeholder="Subir una foto">
                 <?php endif; ?>
             </div>
             <!-- Pet Details -->
@@ -95,7 +99,7 @@
                     class="btn-check btn-check-grey"
                     name="urgente"
                     id="urgente-no"
-                    value="no"
+                    value="0"
                     autocomplete="off"
                     <?php echo ($animal['urgente'] == 0) ? 'checked' : ''; ?>>
                 <label class="btn" for="urgente-no">No</label>
@@ -104,7 +108,7 @@
                     class="btn-check btn-check-grey"
                     name="urgente"
                     id="urgente-si"
-                    value="si"
+                    value="1"
                     autocomplete="off"
                     <?php echo ($animal['urgente'] == 1) ? 'checked' : ''; ?>>
                 <label class="btn" for="urgente-si">Sí</label>
@@ -133,10 +137,12 @@
             <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
                 <div class="btn-group btn-group-green" role="group" aria-label="Adoptado">
                     <span class="me-2 fs-4">Adoptado</span>
-                    <input type="radio" class="btn-check btn-check-green" name="adoptado" id="adoptado-no" value="no" autocomplete="off" checked>
+                    <input type="radio" class="btn-check btn-check-green" name="adoptado" id="adoptado-no" value="0" autocomplete="off" 
+                        <?php echo ($animal['adoptado'] == 0) ? 'checked' : ''; ?>>
                     <label class="btn" for="adoptado-no">No</label>
 
-                    <input type="radio" class="btn-check btn-check-green" name="adoptado" id="adoptado-si" value="si" autocomplete="off">
+                    <input type="radio" class="btn-check btn-check-green" name="adoptado" id="adoptado-si" value="1" autocomplete="off"
+                        <?php echo ($animal['adoptado'] == 1) ? 'checked' : ''; ?>>
                     <label class="btn" for="adoptado-si">Sí</label>
                 </div>
             </div>
@@ -145,10 +151,12 @@
             <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
                 <div class="btn-group btn-group-green" role="group" aria-label="En Acogida">
                     <span class="me-2 fs-4">En Acogida</span>
-                    <input type="radio" class="btn-check btn-check-green" name="en_acogida" id="en_acogida-no" value="no" autocomplete="off" checked>
+                    <input type="radio" class="btn-check btn-check-green" name="en_acogida" id="en_acogida-no" value="0" autocomplete="off"
+                        <?php echo ($animal['en_acogida'] == 0) ? 'checked' : ''; ?>>
                     <label class="btn" for="en_acogida-no">No</label>
 
-                    <input type="radio" class="btn-check btn-check-green" name="en_acogida" id="en_acogida-si" value="si" autocomplete="off">
+                    <input type="radio" class="btn-check btn-check-green" name="en_acogida" id="en_acogida-si" value="1" autocomplete="off"
+                        <?php echo ($animal['en_acogida'] == 1) ? 'checked' : ''; ?>>
                     <label class="btn" for="en_acogida-si">Sí</label>
                 </div>
             </div>
