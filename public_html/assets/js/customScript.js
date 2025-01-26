@@ -4,17 +4,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     var urgentCaseDiv = document.getElementById('urgentCase');
 
-    // Asegúrate de que el contenedor existe
-    if (!urgentCaseDiv) {
-        console.error('El contenedor con id "urgentCase" no se encontró.');
-        return;
-    }
 
-    // Obtén el valor inicial del campo 'urgente' (si es "si" o "no")
+    // No es necesario manipular las clases con el valor de "urgente" desde PHP
     var urgenteValue = document.querySelector('input[name="urgente"]:checked')?.value;
 
-    // Aplica las clases correctas al cargar la página
-    if (urgenteValue === "si") {
+    // Verificar el valor y asegurarse de que las clases sean consistentes
+    if (urgenteValue === "1") {
         urgentCaseDiv.classList.add('urgente-selected');
         urgentCaseDiv.classList.remove('urgente-noselected');
     } else {

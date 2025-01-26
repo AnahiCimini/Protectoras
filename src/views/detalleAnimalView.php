@@ -52,7 +52,7 @@
 
 <!-- Urgent Case Section -->
 <?php if ($animal['urgente'] == 1): ?>
-    <div class="urgent-case row urgente-selected" id="urgentCase">
+    <div class="urgent-case row caso-urgente" id="urgentCase">
         <div class="titleUrgente">
             <h3>CASO URGENTE</h3>
         </div>

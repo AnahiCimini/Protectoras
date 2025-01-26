@@ -39,6 +39,7 @@
 }
 
 /* "CASO URGENTE" */
+
 .urgent-case {
     color: #721c24; /* Texto oscuro */
     text-align: center;
@@ -52,8 +53,8 @@
 }
 
 /* Fondo cuando "urgente: sí" está seleccionado */
-.urgent-case.urgente-selected {
-    background-color: #f8d7da; /* Fondo rojo claro */
+.urgent-case.urgente-selected, .caso-urgente{
+    background-color: #f8d7da !important; /* Fondo rojo claro */
 }
 
 .urgent-case h3 {
