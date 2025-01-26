@@ -128,7 +128,18 @@
             $descripcion = $data['descripcion'];
         
             // Preparar la consulta para actualizar
-            $query = "UPDATE animales SET raza = ?, edad = ?, tamano = ?, estado_salud = ?, sexo = ?, esterilizado = ?, urgente = ?, adoptado = ?, en_acogida = ?, descripcion = ? WHERE id_animal = ?";
+            $query = "UPDATE animales SET 
+                    raza = ?, 
+                    edad = ?, 
+                    tamano = ?, 
+                    estado_salud = ?, 
+                    sexo = ?, 
+                    esterilizado = ?, 
+                    urgente = ?, 
+                    adoptado = ?, 
+                    en_acogida = ?, 
+                    descripcion = ? 
+                    WHERE id_animal = ?";
         
             // Ejecutar la consulta con los datos recibidos
             $stmt = $this->conn->prepare($query);

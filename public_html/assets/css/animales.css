@@ -38,7 +38,7 @@
     margin-bottom: 30px;
 }
 
-/* Contenedor común para "CASO URGENTE" */
+/* "CASO URGENTE" */
 .urgent-case {
     color: #721c24; /* Texto oscuro */
     text-align: center;
@@ -59,8 +59,6 @@
 .urgent-case h3 {
     margin: 20px 0;
 }
-
-
 
 /* TOGGLE URGENTE */
 
@@ -197,4 +195,14 @@
 .btn-disabled {
     background-color: #6c757d; /* Gris */
     color: white;
+}
+
+/* HISTORY EDITABLE */
+
+.textarea-transparente, .textarea-transparente:focus {
+    border: none;
+    background: transparent;
+    padding: 2% 3% 0;
+    outline: none;
+    box-shadow: none;
 }

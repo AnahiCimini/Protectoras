@@ -32,21 +32,48 @@
                         <div class="col-6">
                             <ul class="list-unstyled text-end">
                                 <li class="form-control-titles"><strong>Raza:</strong></li>
-                                <li class="form-control-titles"><strong>Edad:</strong></li>
-                                <li class="form-control-titles"><strong>Tamaño:</strong></li>
-                                <li class="form-control-titles"><strong>Salud:</strong></li>
-                                <li class="form-control-titles"><strong>Sexo:</strong></li>
-                                <li class="form-control-titles"><strong>Esterilización:</strong></li>
+                                <li class="form-control-titles"><strong><label for="edad">Edad:</label></strong></li>
+                                <li class="form-control-titles"><strong><label for="tamano">Tamaño:</label></strong></li>
+                                <li class="form-control-titles"><strong><label for="estado_salud">Salud:</label></strong></li>
+                                <li class="form-control-titles"><strong><label for="sexo">Sexo:</label></strong></li>
+                                <li class="form-control-titles"><strong><label for="esterilizado">Esterilizado:</label></strong></li>
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul class="list-unstyled text-start">
                                 <li><input type="text" name="raza" value="<?= htmlspecialchars($animal['raza']) ?>" id="raza" class="form-control"></li>
-                                <li><input type="text" name="edad" value="<?= htmlspecialchars($animal['edad']) ?>" id="edad" class="form-control"></li>
-                                <li><input type="text" name="tamano" value="<?= htmlspecialchars($animal['tamano']) ?>" id="tamano" class="form-control"></li>
-                                <li><input type="text" name="estado_salud" value="<?= htmlspecialchars($animal['estado_salud']) ?>" id="estado_salud" class="form-control"></li>
-                                <li><input type="text" name="sexo" value="<?= htmlspecialchars($animal['sexo']) ?>" id="sexo" class="form-control"></li>
-                                <li><input type="text" name="esterilizado" value="<?= htmlspecialchars($animal['esterilizado']) ?>" id="esterilizado" class="form-control"></li>
+                                <li><select id="edad" name="edad" class="form-select" required>
+                                        <option value="bebé" <?= $animal['edad'] === 'Bebé' ? 'selected' : '' ?>>Bebé</option>
+                                        <option value="joven" <?= $animal['edad'] === 'Joven' ? 'selected' : '' ?>>Joven</option>
+                                        <option value="adulto" <?= $animal['edad'] === 'Adulto' ? 'selected' : '' ?>>Adulto</option>
+                                        <option value="anciano" <?= $animal['edad'] === 'Anciano' ? 'selected' : '' ?>>Anciano</option>
+                                    </select>
+                                </li>
+                                <li><select id="tamano" name="tamano" class="form-select" required>
+                                        <option value="enano" <?= $animal['tamano'] === 'Enano' ? 'selected' : '' ?>>Enano</option>
+                                        <option value="pequeño" <?= $animal['tamano'] === 'Pequeño' ? 'selected' : '' ?>>Pequeño</option>
+                                        <option value="mediano" <?= $animal['tamano'] === 'Mediano' ? 'selected' : '' ?>>Mediano</option>
+                                        <option value="grande" <?= $animal['tamano'] === 'Grande' ? 'selected' : '' ?>>Grande</option>
+                                        <option value="gigante" <?= $animal['tamano'] === 'Gigante' ? 'selected' : '' ?>>Gigante</option>
+                                    </select>
+                                </li>
+                                <li><select id="estado_salud" name="estado_salud" class="form-select" required>
+                                        <option value="Bueno" <?= $animal['estado_salud'] === 'Bueno' ? 'selected' : '' ?>>Bueno</option>
+                                        <option value="Enfermedad crónica" <?= $animal['estado_salud'] === 'Enfermedad crónica' ? 'selected' : '' ?>>Enfermedad crónica</option>
+                                        <option value="Malo" <?= $animal['estado_salud'] === 'Enano' ? 'Malo' : '' ?>>Malo</option>
+                                        <option value="Otros (consultar)" <?= $animal['estado_salud'] === 'Otros (consultar)' ? 'selected' : '' ?>>Otros (consultar)</option>
+                                    </select>
+                                </li>
+                                <li><select id="sexo" name="sexo" class="form-select" required>
+                                        <option value="Macho" <?= $animal['sexo'] === 'Macho' ? 'selected' : '' ?>>Macho</option>
+                                        <option value="Hembra" <?= $animal['sexo'] === 'Hembra' ? 'selected' : '' ?>>Hembra</option>
+                                    </select>
+                                </li>
+                                <li><select id="esterilizado" name="esterilizado" class="form-select" required>
+                                        <option value="Sí" <?= $animal['esterilizado'] === 'Sí' ? 'selected' : '' ?>>Sí</option>
+                                        <option value="Con compromiso de esterilización" <?= $animal['esterilizado'] === 'Con compromiso de esterilización' ? 'selected' : '' ?>>Con compromiso de esterilización</option>
+                                    </select>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -85,13 +112,17 @@
     </div>
 
 
-    <!-- History Section -->
-    <div class="history-section">
-        <h5>Historia</h5>
-        <p>
-            <?php echo !empty($animal['historia']) ? htmlspecialchars($animal['historia']) : 'Este animal aún no tiene una historia registrada.'; ?>
-        </p>
-    </div>
+<!-- History Section -->
+<div class="history-section">
+    <h5>Historia</h5>
+    <textarea 
+        id="historia" 
+        name="historia" 
+        class="form-control textarea-transparente" 
+        rows="5" 
+        placeholder="Este animal aún no tiene una historia registrada. Para añadir alguna descripción o historia, escribe aquí"><?= !empty($animal['historia']) ? htmlspecialchars($animal['historia']) : ''; ?></textarea>
+</div>
+
 
 
     <!-- Botones -->
@@ -124,14 +155,21 @@
     </div>
 
     <div class="container mt-4 guardadoDatos">
-        <div class="row">
-            <div class="col-md-6 text-end">
-                <button id="cancelarBtn" class="btn btn-xl-standard" disabled onclick="window.location.href = 'router.php?action=actualizarDatosAnimal&id_animal=<?= $animal['id_animal']; ?>';">Cancelar</button>
-            </div>
-            <div class="col-md-6 text-start">
-                <button id="guardarBtn" class="btn btn-xl-standard" disabled onclick="guardarCambios()">Guardar Cambios</button>
-            </div>
+    <div class="row">
+        <!-- Botón Cancelar -->
+        <div class="col-md-6 text-end">
+            <button id="cancelarBtn" type="button" class="btn btn-xl-standard btn-disabled" disabled>
+                Cancelar
+            </button>
+        </div>
+
+        <!-- Botón Guardar Cambios -->
+        <div class="col-md-6 text-start">
+            <button id="guardarBtn" type="submit" class="btn btn-xl-standard btn-disabled" disabled>
+                Guardar Cambios
+            </button>
         </div>
     </div>
+</div>
 
 </form>

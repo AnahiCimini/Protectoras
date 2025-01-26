@@ -1,5 +1,8 @@
 <?php
 
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+
     if (!defined('PROJECT_ROOT')) {
         define('PROJECT_ROOT', dirname(__DIR__));
     }
@@ -89,7 +92,14 @@
         case 'actualizarDatosAnimal':
             require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
             $animalController = new AnimalController($conn);
-            $animalController->actualizarDatosAnimal($_POST);
+            
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                var_dump($_POST); // Verifica los datos enviados
+                $animalController->actualizarDatosAnimal($_POST);
+            } else {
+                echo "Método no permitido.";
+            }
+            
             break;
 
         case 'eliminarAnimal':
