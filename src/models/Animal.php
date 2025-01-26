@@ -45,15 +45,16 @@
 
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else if ($filtro === "id_animal") {
-                $query = "SELECT a.*, e.nombre_especie, p.nombre_protectora FROM animales a
-                          JOIN especies e ON a.id_especie = e.id_especie
-                          JOIN protectoras p ON a.id_protectora = p.id_protectora
-                          WHERE a.id_animal = :valor";
-        
+                $query = "SELECT a.*, e.nombre_especie, p.nombre_protectora, p.email 
+                    FROM animales a
+                    JOIN especies e ON a.id_especie = e.id_especie
+                    JOIN protectoras p ON a.id_protectora = p.id_protectora
+                    WHERE a.id_animal = :valor";
+
                 $stmt = $this->conn->prepare($query);
                 $stmt->bindParam(':valor', $valor);
                 $stmt->execute();
-        
+
                 return $stmt->fetch(PDO::FETCH_ASSOC);
             }
         }
@@ -164,6 +165,13 @@
                     error_log("La imagen no existe: " . $rutaImagen);
                 }
             }
+        }
+
+        public function getAnimalesUrgentes() {
+            $query = "SELECT * FROM animales WHERE urgente = 1";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
     }

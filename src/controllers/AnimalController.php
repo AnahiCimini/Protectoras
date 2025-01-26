@@ -2,19 +2,21 @@
 
     require_once PROJECT_ROOT . '/config/config.php';
     require_once PROJECT_ROOT . '/src/models/Animal.php';
+    require_once PROJECT_ROOT . '/src/models/Protectora.php';
 
 
     class AnimalController {
         private $conn;
         public $animalmodel;
+        public $protectoramodel;
         
         public function __construct($conn) {
             $this->conn = $conn;
             $this->animalmodel = new Animal($this->conn);
+            $this->protectoramodel = new Protectora($this->conn);
         }
 
         public function buscarPorEspecie($especie) {
-            // Llamar al modelo de animales para obtener los resultados
             return $this->animalmodel->getAnimalesPorFiltro('especie', $especie);
         }
 
@@ -40,6 +42,8 @@
             $nombre_especie = $this->animalmodel->getNombreEspecieById($idEspecie);
             return $nombre_especie;
         }
+
+        
 
         public function subirImagenAnimal($archivo) {
             $foto_principal = null; // Iniciamos como null
@@ -159,5 +163,13 @@
                 echo "Error al actualizar los datos del animal.";
             }
         }
+
+        public function buscarAnimalesUrgentes() {
+            // Obtener los animales urgentes del modelo
+            $animalesUrgentes = $this->animalmodel->getAnimalesUrgentes();
+            return $animalesUrgentes;
+        }
+        
+        
     }
 

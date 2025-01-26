@@ -95,15 +95,15 @@
 
 <div class="container botones-bottom">
     <div class="row">
+        <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
+            <a href="<?php echo BASE_URL; ?>router.php?action=detalleProtectora&id_protectora=<?php echo urlencode($animal['id_protectora']); ?>"
+            class="btn w-100 btn-xl-standard btn-xl-alto">INFO PROTECTORA</a>
+        </div>
         <!-- Botón para abrir el popup con el formulario -->
         <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
             <a href="#popUp" class="btn w-100 btn-xl-standard btn-xl-alto" id="solicitar-info-btn" data-id="<?php echo $animal['id_animal']; ?>">
-                Solicitar Información
+                CONTACTAR
             </a>
-        </div>
-        <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
-            <a href="<?php echo BASE_URL; ?>router.php?action=detalleProtectora&id_protectora=<?php echo urlencode($animal['id_protectora']); ?>"
-            class="btn w-100 btn-xl-standard btn-xl-alto">Ver Detalles de la Protectora</a>
         </div>
     </div>
 </div>

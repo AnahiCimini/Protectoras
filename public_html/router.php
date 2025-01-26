@@ -174,6 +174,12 @@
             $controller->procesarContacto();
             break;
 
+        case 'solicitarInformacion':
+            require_once PROJECT_ROOT . '/src/controllers/FormulariosController.php';
+            $controller = new FormulariosController();
+            $controller->peticionInformacionCaso();
+            break;
+
         // Otros casos para diferentes acciones
         default:
             echo "Acción no encontrada.";

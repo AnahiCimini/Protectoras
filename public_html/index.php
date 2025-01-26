@@ -21,6 +21,7 @@
     require_once PROJECT_ROOT . '/src/models/Protectora.php';    
     require_once PROJECT_ROOT . '/src/models/CCAA.php';    
     require_once PROJECT_ROOT . '/src/controllers/ProtectoraController.php';
+    require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
 
 
     $database = new Database();
@@ -32,6 +33,8 @@
     $CCAAController = new CCAA($conn);
     $ccaas = $CCAAController->getCCAA();
 
+    $AnimalController = new AnimalController($conn);
+    $animalesUrgentes = $AnimalController->buscarAnimalesUrgentes();
 
     $page = $_GET['page'] ?? 'home';
 

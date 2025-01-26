@@ -13,17 +13,20 @@ if (isset($_GET['id_animal'])) {
     <h3 class="popup-title">CONTACTA</h3>
     <form action="<?php echo BASE_URL; ?>router.php?action=solicitarInformacion" method="POST" id="form-infoAnimal">
         <input type="hidden" name="id_animal" value="<?php echo $id_animal; ?>">
+        <input type="hidden" name="nombre_animal" value="<?php echo $animal['nombre_animal']; ?>">
+        <input type="hidden" name="mail_protectora" value="<?php echo htmlspecialchars($animal['email']); ?>">
+
         <div class="mb-3">
             <label for="nombre" class="form-label"></label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe aquí tu nombre" required>
+            <input type="text" class="form-control" id="nombre" name="nombreInteresado" placeholder="Escribe aquí tu nombre*" required>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label"></label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico" required>
+            <input type="email" class="form-control" id="email" name="emailInteresado" placeholder="Correo electrónico*" required>
         </div>
         <div class="mb-3">
             <label for="telefono" class="form-label"></label>
-            <input type="telefono" class="form-control" id="telefono" name="telefono" placeholder="Teléfono de contacto">
+            <input type="telefono" class="form-control" id="telefono" name="telefonoInteresado" placeholder="Teléfono de contacto">
         </div>
         <div class="mb-3">
             <label for="mensaje" class="form-label"></label>

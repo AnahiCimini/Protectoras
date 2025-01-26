@@ -4,10 +4,12 @@
 
 <!-- SLIDER -->
 <div class="slider">
-    <?php include 'sliderView.php'; ?>
+    <?php include PROJECT_ROOT . '/src/views/sliderView.php'; ?>
 </div>
+
 <div class="selectorEspecies">
     <?php include 'selectorEspeciesView.php'; ?>
 </div>
+
 
 

@@ -23,6 +23,10 @@
     margin: 0 auto; /* Centrar el contenido */
 }
 
+.carousel-image{
+    max-width: 50%;
+}
+
 .carousel-image img {
     max-width: 100%; /* Imagen ajusta a su contenedor */
     height: auto; /* Mantener proporción */

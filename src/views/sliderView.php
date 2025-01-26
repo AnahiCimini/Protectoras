@@ -1,50 +1,33 @@
 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="8000">
-
     <!-- Indicadores -->
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <?php if (!empty($animalesUrgentes)) : ?>
+            <?php foreach ($animalesUrgentes as $index => $animal): ?>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="<?php echo $index; ?>" class="<?php echo $index === 0 ? 'active' : ''; ?>" aria-current="true" aria-label="Slide <?php echo $index + 1; ?>"></button>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No hay animales urgentes disponibles.</p>
+        <?php endif; ?>
     </div>
 
     <!-- Contenido del Slider -->
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="carousel-content">
-                <div class="carousel-image">
-                    <img src="https://via.placeholder.com/600x400" alt="Imagen 1">
+        <?php if (!empty($animalesUrgentes)) : ?>
+            <?php foreach ($animalesUrgentes as $index => $animal): ?>
+                <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                    <div class="carousel-content">
+                        <div class="carousel-image">
+                            <img src="<?= BASE_URL . 'assets/img/uploads/animales/' . htmlspecialchars($animal['foto_principal']); ?>" alt="<?php echo $animal['nombre_animal']; ?>">
+                        </div>
+                        <div class="carousel-data">
+                            <h3><?php echo $animal['nombre_animal']; ?></h3>
+                            <p><?php echo $animal['descripcion'] ?? ''; ?></p>
+                            <a href="<?php echo BASE_URL; ?>router.php?action=detalleAnimal&id_animal=<?php echo $animal['id_animal']; ?>" class="btn btn-success">¡Conoce a <?php echo $animal['nombre_animal']; ?>!</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="carousel-data">
-                    <h3>Título del Slide 1</h3>
-                    <p>Descripción del Slide 1. Aquí puedes incluir cualquier dato relevante.</p>
-                    <a href="#" class="btn btn-success">¡Conoce a Coquito!</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="carousel-content">
-                <div class="carousel-image">
-                    <img src="https://via.placeholder.com/600x400" alt="Imagen 2">
-                </div>
-                <div class="carousel-data">
-                    <h3>Título del Slide 2</h3>
-                    <p>Descripción del Slide 2. Puedes añadir más información si lo necesitas.</p>
-                    <a href="#" class="btn btn-success">¡Conoce a Bizcochito!</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="carousel-content">
-                <div class="carousel-image">
-                    <img src="https://via.placeholder.com/600x400" alt="Imagen 3">
-                </div>
-                <div class="carousel-data">
-                    <h3>Título del Slide 3</h3>
-                    <p>Descripción del Slide 3. ¡Personalízalo a tu gusto!</p>
-                    <a href="#" class="btn btn-success">¡Conoce a Naranjito!</a>
-                </div>
-            </div>
-        </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 
     <!-- Controles de Navegación -->
