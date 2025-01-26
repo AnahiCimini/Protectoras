@@ -18,13 +18,15 @@ class Formularios {
             $mail->Port = 587;
 
             // Remitente y destinatario
-            $mail->setFrom($email, $nombre);  // Correo del remitente
+            $mail->setFrom('noetrip84@gmail.com', $nombre);  // Correo del remitente
             $mail->addAddress($correoProtectora);  // Correo de la protectora
 
             // Contenido del correo
             $mail->isHTML(true);
             $mail->Subject = 'Nuevo mensaje de contacto desde el sitio web';
             $mail->Body = "Nombre: $nombre<br>Email: $email<br>Mensaje:<br>$mensaje";
+            $mail->addReplyTo($email);
+
 
             // Enviar el correo
             $mail->send();
@@ -48,13 +50,14 @@ class Formularios {
             $mail->Port = 587;
 
             // Remitente y destinatario
-            $mail->setFrom($correoProtectora, 'Protectora');  // Correo de la protectora
-            $mail->addAddress('noelia.cimini@gmail.com');  // Correo del administrador
+            $mail->setFrom('noetrip84@gmail.com', $correoProtectora);  // Correo de la protectora
+            $mail->addAddress('noeliacimini@gmail.com');  // Correo del administrador
 
             // Contenido del correo
             $mail->isHTML(true);
             $mail->Subject = 'Solicitud de cambio en la protectora';
             $mail->Body = "Mensaje:<br>$mensaje";
+            $mail->addReplyTo($correoProtectora);
 
             // Enviar el correo
             $mail->send();
