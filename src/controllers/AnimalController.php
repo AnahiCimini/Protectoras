@@ -152,6 +152,7 @@
             $resultado = $this->animalmodel->actualizarDatosAnimal($id_animal, $data);
         
             if ($resultado) {
+                $_SESSION['success'] = '¡Los cambios se han guardado con éxito!';
                 header('Location: router.php?action=detalleAnimal&id_animal=' . $id_animal);
                 exit();
             } else {

@@ -2,6 +2,12 @@
     require_once PROJECT_ROOT . '/config/config.php';
 ?>
 
+<?php if (isset($_SESSION['success'])): ?>
+    <script>
+        alert('<?php echo $_SESSION['success']; ?>');
+    </script>
+<?php unset($_SESSION['success']); endif; ?>
+
     <div class="container">
         <div class="row">
             <form class="text-start col-6" action="router.php?action=eliminarAnimal&id_animal=<?php echo $animal['id_animal']; ?>" method="POST">
