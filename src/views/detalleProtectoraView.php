@@ -100,20 +100,22 @@
 
         <div class="col-6 formProte">
             <div class="shadow-right">
-            <?php if (isset($_SESSION['nombre_protectora']) && $_SESSION['nombre_protectora'] == $protectora['nombre_protectora']): ?>
+                <?php if (isset($_SESSION['nombre_protectora']) && $_SESSION['nombre_protectora'] == $protectora['nombre_protectora']): ?>
                 <!-- Formulario para contactar con el administrador -->
-                    <form action="contactaAdministrador.php" method="post">
+                    <form action="router.php?action=enviarFormularioAdministrador" method="post">
                         <h4>Para cambiar el nombre de la protectora, la provincia o la comunidad autónoma, por favor, contacta con el administrador.</h4>
                         <textarea placeholder="Escribe aquí tu mensaje" name="mensajeContacto" required></textarea>
                         <button type="submit" class="rounded-3 btn"><h5>Contacta con el administrador</h5></button>
+                        <input type="hidden" name="correoProtectora" value="<?= htmlspecialchars($protectora['email']) ?>">                    
                     </form>
                 <?php else: ?>
                     <!-- Formulario original de contacto -->
-                    <form>
+                    <form action="router.php?action=enviarFormularioProtectora" method="post">
                         <h2>Contacta</h2>
                         <input placeholder="Escribe aquí tu nombre" name="nombreContacto" type="text">
                         <input placeholder="Email de contacto*" name="emailContacto" type="email" required>
-                        <textarea placeholder="Escribe aquí el mensaje para la protectora" name="mensajeContacto" type="textarea"></textarea>                    
+                        <textarea placeholder="Escribe aquí el mensaje para la protectora" name="mensajeContacto" type="textarea"></textarea>
+                        <input type="hidden" name="correoProtectora" value="<?= htmlspecialchars($protectora['email']) ?>">                    
                         <button type="submit" class="rounded-3"><h5>Enviar</h5></button>
                     </form>
                 <?php endif; ?>

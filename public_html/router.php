@@ -154,10 +154,22 @@
             
         case 'listadoProtectoras':
             $id_provincia = $_GET['id_provincia'] ?? null;
-            $controller = new ProtectoraController($conn);
+            $controller = new ProtectoraController(conn: $conn);
             $controller->getProtectorasByProvincia($id_provincia);
                 break;
         
+
+        case 'enviarFormularioAdministrador':
+            require_once PROJECT_ROOT . '/src/controllers/FormulariosController.php';
+            $controller = new FormulariosController();
+            $controller->procesarFormularioAdministrador();
+            break;
+
+        case 'enviarFormularioProtectora':
+            require_once PROJECT_ROOT . '/src/controllers/FormulariosController.php';
+            $controller = new FormulariosController();
+            $controller->procesarContacto();
+            break;
 
         // Otros casos para diferentes acciones
         default:
