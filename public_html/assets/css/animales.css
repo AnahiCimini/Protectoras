@@ -38,10 +38,14 @@
     margin-bottom: 30px;
 }
 
+.selectEspecies h3 {
+    color:#016e10;
+}
+
 /* "CASO URGENTE" */
 
 .urgent-case {
-    color: #721c24; /* Texto oscuro */
+    color: #721c24;
     text-align: center;
     font-weight: bold;
     padding: 10px;
@@ -49,12 +53,12 @@
 
 /* Fondo cuando "urgente: no" está seleccionado */
 .urgent-case.urgente-noselected {
-    background-color: #e1e2e4dc; /* Gris muy claro */
+    background-color: #e1e2e4dc;
 }
 
 /* Fondo cuando "urgente: sí" está seleccionado */
 .urgent-case.urgente-selected, .caso-urgente{
-    background-color: #f8d7da !important; /* Fondo rojo claro */
+    background-color: #f8d7da !important;
 }
 
 .urgent-case h3 {
@@ -62,7 +66,6 @@
 }
 
 /* TOGGLE URGENTE */
-
 /* Estilos para los botones seleccionados y no seleccionados */
 .btn-check-grey:checked + .btn {
     background-color: #555;
@@ -115,11 +118,10 @@
 .btn-group-grey span {
     display: flex;
     justify-content: center;
-    align-items: center; /* Centra el texto verticalmente */
-    margin-right: 10px; /* Da un espacio entre el span y el primer botón */
+    align-items: center;
+    margin-right: 10px;
     text-align: center;
-    width: 75%; /* Asegura que el span ocupe todo el ancho */
-}
+    width: 75%;}
 
 
 
@@ -171,10 +173,10 @@
 .btn-group-green span {
     display: flex;
     justify-content: center;
-    align-items: center; /* Centra el texto verticalmente */
-    margin-right: 10px; /* Da un espacio entre el span y el primer botón */
+    align-items: center;
+    margin-right: 10px;
     text-align: center;
-    width: 35%; /* Asegura que el span ocupe todo el ancho */
+    width: 35%;
 }
 
 .guardadoDatos {
@@ -183,18 +185,18 @@
 
 /* Estilos para los botones habilitados */
 .btn-enabled {
-    background-color: #016e10; /* Verde */
+    background-color: #016e10;
     color: #dcfcc7;
 }
 
 .btn-enabled:hover {
-    background-color: #dcfcc7; /* Verde */
+    background-color: #dcfcc7;
     color: #016e10;
 }
 
 /* Estilos para los botones deshabilitados */
 .btn-disabled {
-    background-color: #6c757d; /* Gris */
+    background-color: #6c757d;
     color: white;
 }
 
@@ -221,6 +223,6 @@
 }
 
 #nombre_animal-editable:focus {
-    outline: none; /* Elimina el contorno cuando el campo está enfocado */
-    background: transparent; /* Mantiene el fondo transparente */
+    outline: none;
+    background: transparent;
 }

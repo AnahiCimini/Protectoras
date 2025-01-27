@@ -40,6 +40,10 @@ a{
     text-decoration: none !important;
 }
 
+h1 {
+    margin-bottom: 3%;
+}
+
 .content_image_home{
     padding: 15px;
     margin: 10px;
@@ -112,3 +116,25 @@ footer {
     margin-bottom: 20px;
 }
 
+/* NosotrosView */
+
+.nosotrosPage {
+    background-image: url('../img/huellasPajaro.png');
+    background-size: contain;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    padding: 3%;
+}
+
+.nosotrosPage h1 {
+    font-size: 3.5rem;
+    margin-bottom: 2%;
+}
+
+.text-nosotros {
+    padding: 10%;
+}
+
+.perro_nosotros {
+    max-width: 80%;
+}

@@ -16,10 +16,10 @@
             <?php foreach ($animalesUrgentes as $index => $animal): ?>
                 <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
                     <div class="carousel-content">
-                        <div class="carousel-image">
+                        <div class="carousel-image col-6">
                             <img src="<?= BASE_URL . 'assets/img/uploads/animales/' . htmlspecialchars($animal['foto_principal']); ?>" alt="<?php echo $animal['nombre_animal']; ?>">
                         </div>
-                        <div class="carousel-data">
+                        <div class="carousel-data col-6">
                             <h3><?php echo $animal['nombre_animal']; ?></h3>
                             <p><?php echo $animal['descripcion'] ?? ''; ?></p>
                             <a href="<?php echo BASE_URL; ?>router.php?action=detalleAnimal&id_animal=<?php echo $animal['id_animal']; ?>" class="btn btn-success">¡Conoce a <?php echo $animal['nombre_animal']; ?>!</a>

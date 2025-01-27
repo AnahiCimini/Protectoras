@@ -62,3 +62,19 @@
 .animal_card {
     background-color: aliceblue;
 }
+
+/* CASOS URGENTES CARD */
+
+.urgent-label {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    position: absolute;
+    top: -17px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
