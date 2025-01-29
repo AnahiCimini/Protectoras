@@ -78,3 +78,12 @@
     transform: translateX(-50%);
     z-index: 10;
 }
+
+.protectoras_lista {
+    font-weight: 550;
+    margin: 2%;
+}
+
+.protectoras_lista a {
+    color: rgb(255, 115, 0);
+}

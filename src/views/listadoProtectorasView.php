@@ -31,13 +31,13 @@
                                             <?php if (!empty($protectoras)): ?>
                                                 <?php foreach ($protectoras as $protectora): ?>
                                                     <div class="col-12 mb-3">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">
+                                                        <div class="">
+                                                            <div class="">
+                                                                <h4 class="protectoras_lista">
                                                                     <a href="<?php echo BASE_URL; ?>router.php?action=detalleProtectora&nombre_protectora=<?php echo urlencode($protectora['nombre_protectora']); ?>">
                                                                         <?php echo htmlspecialchars($protectora['nombre_protectora']); ?>
                                                                     </a>
-                                                                </h5>
+                                                                </h4>
                                                             </div>
                                                         </div>
                                                     </div>
