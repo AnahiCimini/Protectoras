@@ -170,35 +170,31 @@
         }  
         
         public function buscarPorProtectoraConFiltros() {
-            // Obtener el nombre de la protectora desde la sesión o el formulario
-            $nombreProtectora = $_SESSION['nombre_protectora'] ?? $_POST['nombre_protectora'] ?? null;
-            if (!$nombreProtectora) {
-                echo "Error: No se ha seleccionado ninguna protectora.";
-                return [];
-            }
             
-            $arrayProtectoras = $this->protectoramodel->getProtectoraByName($nombreProtectora);
-            if (empty($arrayProtectoras)) {
-                echo "Error: No se encontró la protectora.";
-                return [];
+            // MANTENER LA PRESELECCIÓN DE LA PROTECTORA
+            $nombreProtectora = $_SESSION['nombre_protectora'] ?? $_POST['nombre_protectora'] ?? null;
+            $animalesBase = $this->buscarPorProtectora($nombreProtectora);
+
+            
+            // OBTENER LOS VALORES DEL FILTRO ESPECIES
+            $nombreEspecie = $_POST['especie'] ?? '';
+            $idEspecie = null;
+
+            // Si se ha seleccionado una especie específica, obtener su id
+            if ($nombreEspecie && $nombreEspecie !== 'Cualquiera') {
+                $idEspecie = $this->animalmodel->getIdEspecieByNombre($nombreEspecie);
             }
         
-            $idProtectora = $arrayProtectoras['id_protectora'];
-        
-            $nombreEspecie = $_POST['especie'];
-            $idEspecie = $this->animalmodel-> getIdEspecieByNombre($nombreEspecie);
-        
-            $animalesBase = $this->buscarPorEspecie($nombreEspecie);
         
             // Filtrar los animales según los filtros recibidos en el formulario
-            $animalesFiltrados = array_filter($animalesBase, function($animal) use ($idProtectora, $idEspecie) {
+            $animalesFiltrados = array_filter($animalesBase, function($animal) use ($nombreProtectora, $idEspecie) {
                 $valid = true;
         
                 // Filtrar por protectora (id_protectora) siempre
-                $valid = $valid && $animal['id_protectora'] === $idProtectora;
+                $valid = $valid && $animal['nombre_protectora'] === $nombreProtectora;
         
                 // Filtrar por especie si se ha seleccionado
-                if ($idEspecie) {
+                if ($idEspecie !== null) {
                     $valid = $valid && $animal['id_especie'] === $idEspecie;
                 }
         

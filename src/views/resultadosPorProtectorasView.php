@@ -19,51 +19,59 @@
 
 <!-- BUSCADORES EXTRA -->
 
-<form action="" method="POST">
+<form action="" method="POST" id="form_filtrosEnProtectoras">
     <input type="hidden" name="nombre_protectora" value="<?php echo $nombre_protectora; ?>">
-    <label for="especie">Especie:</label>
-    <select name="especie">
-        <option value="">Cualquiera</option>
-        <option value="Perros" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Perros' ? 'selected' : ''; ?>>Perros</option>
-        <option value="Gatos" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Gatos' ? 'selected' : ''; ?>>Gatos</option>
-        <option value="Conejos" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Conejos' ? 'selected' : ''; ?>>Conejos</option>
-        <option value="Pájaros" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Pájaros' ? 'selected' : ''; ?>>Pájaros</option>
-        <option value="Roedores" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Roedores' ? 'selected' : ''; ?>>Roedores</option>
-        <option value="Reptiles" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Reptiles' ? 'selected' : ''; ?>>Reptiles</option>
-        <option value="Otras especies" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Otras especies' ? 'selected' : ''; ?>>Otras especies</option>
-    </select>
 
-    <label for="tamano">Tamaño:</label>
-    <select name="tamano">
-        <option value="">Cualquiera</option>
-        <option value="Enano" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Enano' ? 'selected' : ''; ?>>Enano</option>
-        <option value="Pequeño" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Pequeño' ? 'selected' : ''; ?>>Pequeño</option>
-        <option value="Mediano" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Mediano' ? 'selected' : ''; ?>>Mediano</option>
-        <option value="Grande" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Grande' ? 'selected' : ''; ?>>Grande</option>
-        <option value="Gigante" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Gigante' ? 'selected' : ''; ?>>Gigante</option>
-    </select>
-
-    <label for="sexo">Sexo:</label>
-    <select name="sexo">
-        <option value="">Cualquiera</option>
-        <option value="Macho" <?php echo isset($_POST['sexo']) && $_POST['sexo'] == 'Macho' ? 'selected' : ''; ?>>Macho</option>
-        <option value="Hembra" <?php echo isset($_POST['sexo']) && $_POST['sexo'] == 'Hembra' ? 'selected' : ''; ?>>Hembra</option>
-    </select>
-
-    <label for="edad">Edad:</label>
-    <select name="edad">
-        <option value="">Cualquiera</option>
-        <option value="Bebé" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Bebé' ? 'selected' : ''; ?>>Bebé</option>
-        <option value="Joven" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Joven' ? 'selected' : ''; ?>>Joven</option>
-        <option value="Adulto" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Adulto' ? 'selected' : ''; ?>>Adulto</option>
-        <option value="Anciano" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Anciano' ? 'selected' : ''; ?>>Anciano</option>
-    </select>
-
-    <label>
-        <input type="checkbox" name="urgente" value="1" <?php echo isset($_POST['urgente']) && $_POST['urgente'] == 1 ? 'checked' : ''; ?>> Urgente
-    </label>
-
-    <button type="submit">Buscar</button>
+    <div class="container">
+        <div class="row g-3 d-flex justify-content-center">
+            <div class="col-12 col-md-2">
+                <select class="form-select" name="especie">
+                    <option value="">Especie</option>
+                    <option value="Perros" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Perros' ? 'selected' : ''; ?>>Perros</option>
+                    <option value="Gatos" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Gatos' ? 'selected' : ''; ?>>Gatos</option>
+                    <option value="Conejos" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Conejos' ? 'selected' : ''; ?>>Conejos</option>
+                    <option value="Pájaros" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Pájaros' ? 'selected' : ''; ?>>Pájaros</option>
+                    <option value="Roedores" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Roedores' ? 'selected' : ''; ?>>Roedores</option>
+                    <option value="Reptiles" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Reptiles' ? 'selected' : ''; ?>>Reptiles</option>
+                    <option value="Otras especies" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Otras especies' ? 'selected' : ''; ?>>Otras especies</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-2">
+                <select class="form-select" name="tamano">
+                    <option value="">Tamaño</option>
+                    <option value="Enano" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Enano' ? 'selected' : ''; ?>>Enano</option>
+                    <option value="Pequeño" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Pequeño' ? 'selected' : ''; ?>>Pequeño</option>
+                    <option value="Mediano" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Mediano' ? 'selected' : ''; ?>>Mediano</option>
+                    <option value="Grande" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Grande' ? 'selected' : ''; ?>>Grande</option>
+                    <option value="Gigante" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Gigante' ? 'selected' : ''; ?>>Gigante</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-2">
+                <select class="form-select" name="sexo">
+                    <option value="">Sexo</option>
+                    <option value="Macho" <?php echo isset($_POST['sexo']) && $_POST['sexo'] == 'Macho' ? 'selected' : ''; ?>>Macho</option>
+                    <option value="Hembra" <?php echo isset($_POST['sexo']) && $_POST['sexo'] == 'Hembra' ? 'selected' : ''; ?>>Hembra</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-2">
+                <select class="form-select" name="edad">
+                    <option value="">Edad</option>
+                    <option value="Bebé" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Bebé' ? 'selected' : ''; ?>>Bebé</option>
+                    <option value="Joven" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Joven' ? 'selected' : ''; ?>>Joven</option>
+                    <option value="Adulto" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Adulto' ? 'selected' : ''; ?>>Adulto</option>
+                    <option value="Anciano" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Anciano' ? 'selected' : ''; ?>>Anciano</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-2">
+                <label>
+                    <input type="checkbox" name="urgente" value="1" <?php echo isset($_POST['urgente']) && $_POST['urgente'] == 1 ? 'checked' : ''; ?>> Urgente
+                </label>
+            </div>
+            <div class="col-12 col-md-2">
+                <button type="submit">Buscar</button>
+            </div>
+        </div>
+    </div>
 </form>
 
 

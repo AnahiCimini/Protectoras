@@ -63,6 +63,10 @@
     background-color: aliceblue;
 }
 
+#form_filtrosEnProtectoras {
+    margin-bottom: 5%;
+}
+
 /* CASOS URGENTES CARD */
 
 .urgent-label {
