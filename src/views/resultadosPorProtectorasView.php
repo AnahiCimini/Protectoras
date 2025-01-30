@@ -23,13 +23,86 @@
 </h1>
 <br>
 
+<!-- BUSCADORES EXTRA -->
+
+<form action="" method="POST">
+    <input type="hidden" name="nombre_protectora" value="<?php echo $nombre_protectora; ?>">
+    <label for="especie">Especie:</label>
+    <select name="especie">
+        <option value="">Selecciona una especie</option>
+        <option value="Perros" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Perros' ? 'selected' : ''; ?>>Perros</option>
+        <option value="Gatos" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Gatos' ? 'selected' : ''; ?>>Gatos</option>
+        <option value="Conejos" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Conejos' ? 'selected' : ''; ?>>Conejos</option>
+        <option value="Pájaros" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Pájaros' ? 'selected' : ''; ?>>Pájaros</option>
+        <option value="Roedores" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Roedores' ? 'selected' : ''; ?>>Roedores</option>
+        <option value="Reptiles" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Reptiles' ? 'selected' : ''; ?>>Reptiles</option>
+        <option value="Otras especies" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Otras especies' ? 'selected' : ''; ?>>Otras especies</option>
+    </select>
+
+    <label for="tamano">Tamaño:</label>
+    <select name="tamano">
+        <option value="">Cualquiera</option>
+        <option value="Enano" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Enano' ? 'selected' : ''; ?>>Enano</option>
+        <option value="Pequeño" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Pequeño' ? 'selected' : ''; ?>>Pequeño</option>
+        <option value="Mediano" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Mediano' ? 'selected' : ''; ?>>Mediano</option>
+        <option value="Grande" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Grande' ? 'selected' : ''; ?>>Grande</option>
+        <option value="Gigante" <?php echo isset($_POST['tamano']) && $_POST['tamano'] == 'Gigante' ? 'selected' : ''; ?>>Gigante</option>
+    </select>
+
+    <label for="sexo">Sexo:</label>
+    <select name="sexo">
+        <option value="">Cualquiera</option>
+        <option value="Macho" <?php echo isset($_POST['sexo']) && $_POST['sexo'] == 'Macho' ? 'selected' : ''; ?>>Macho</option>
+        <option value="Hembra" <?php echo isset($_POST['sexo']) && $_POST['sexo'] == 'Hembra' ? 'selected' : ''; ?>>Hembra</option>
+    </select>
+
+    <label for="edad">Edad:</label>
+    <select name="edad">
+        <option value="">Cualquiera</option>
+        <option value="Bebé" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Bebé' ? 'selected' : ''; ?>>Bebé</option>
+        <option value="Joven" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Joven' ? 'selected' : ''; ?>>Joven</option>
+        <option value="Adulto" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Adulto' ? 'selected' : ''; ?>>Adulto</option>
+        <option value="Anciano" <?php echo isset($_POST['edad']) && $_POST['edad'] == 'Anciano' ? 'selected' : ''; ?>>Anciano</option>
+    </select>
+
+    <label>
+        <input type="checkbox" name="urgente" value="1" <?php echo isset($_POST['urgente']) && $_POST['urgente'] == 1 ? 'checked' : ''; ?>> Urgente
+    </label>
+
+    <button type="submit">Buscar</button>
+</form>
+
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Capturar los valores del formulario
+    $nombre_protectora = $_POST['nombre_protectora'] ?? '';
+    $especie = $_POST['especie'] ?? '';
+    $tamano = $_POST['tamano'] ?? '';
+    $sexo = $_POST['sexo'] ?? '';
+    $edad = $_POST['edad'] ?? '';
+    $urgente = isset($_POST['urgente']) ? 1 : 0;
+
+    // Construir la consulta SQL con filtros
+    require_once PROJECT_ROOT . '/src/models/Animal.php';
+    $animalController = new AnimalController ($conn);
+    $animalesFiltrados = $animalController->buscarPorProtectoraConFiltros();
+}
+?>
+
+
+<!-- CONTENEDOR DE RESULTADOS -->
+
 <div id="animales-list" class="container">
     <div id="animales-container" class="row">
-        <?php if (empty($animales)): ?>
-            <p>No se encontraron animales para esta protectora.</p>
+        <?php
+        // Determinar si se han aplicado filtros o si se muestran todos los animales
+        $listaAnimales = isset($animalesFiltrados) ? $animalesFiltrados : $animales;
+
+        if (empty($listaAnimales)): ?>
+            <p>No se encontraron animales para esta búsqueda.</p>
         <?php else: ?>
-            <!-- Aquí se cargarán los animales dinámicamente con PHP -->
-            <?php foreach ($animales as $animal): ?>
+            <?php foreach ($listaAnimales as $animal): ?>
                 <div class="col-md-3 mb-3">
                     <div class="animal card p-3 shadow-sm animal_card">
                         <?php if ($animal['urgente'] == 1): ?>

@@ -174,6 +174,23 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
+        public function aplicarFiltrosExtras($animalesBase, $datosFiltro) {
+            return array_filter($animalesBase, function($animal) use ($datosFiltro) {
+                if (!empty($datosFiltro['tamano']) && $animal['tamano'] !== $datosFiltro['tamano']) {
+                    return false;
+                }
+                if (!empty($datosFiltro['sexo']) && $animal['sexo'] !== $datosFiltro['sexo']) {
+                    return false;
+                }
+                if (!empty($datosFiltro['edad']) && $animal['edad'] !== $datosFiltro['edad']) {
+                    return false;
+                }
+                if (!empty($datosFiltro['urgente']) && $animal['urgente'] != 1) {
+                    return false;
+                }
+                return true;
+            });
+        }
     }
 
 ?>

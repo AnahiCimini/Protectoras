@@ -179,6 +179,7 @@
             $controller = new FormulariosController();
             $controller->peticionInformacionCaso();
             break;
+        
 
         // Otros casos para diferentes acciones
         default:

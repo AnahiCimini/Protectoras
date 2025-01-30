@@ -16,34 +16,6 @@
             $this->protectoramodel = new Protectora($this->conn);
         }
 
-        public function buscarPorEspecie($especie) {
-            return $this->animalmodel->getAnimalesPorFiltro('especie', $especie);
-        }
-
-        public function buscarPorProtectora($nombre_protectora) {
-            // Llamar al modelo de animales para obtener los resultados
-            $animales = $this->animalmodel->getAnimalesPorFiltro('nombre_protectora', $nombre_protectora);
-            
-            // Recuperar el nombre de la especie para cada animal
-            foreach ($animales as &$animal) {
-                $animal['nombre_especie'] = $this->getNombreEspecieById($animal['id_especie']);
-            }
-        
-            // Devolver los datos, incluyendo el nombre de la especie
-            return $animales;
-        }
-
-        public function buscarPorID($id_animal) {
-            $animal = $this->animalmodel->getAnimalesPorFiltro('id_animal', $id_animal);
-            return $animal;
-        }
-
-        public function getNombreEspecieById($idEspecie){
-            $nombre_especie = $this->animalmodel->getNombreEspecieById($idEspecie);
-            return $nombre_especie;
-        }
-
-        
 
         public function subirImagenAnimal($archivo) {
             $foto_principal = null; // Iniciamos como null
@@ -169,7 +141,92 @@
             $animalesUrgentes = $this->animalmodel->getAnimalesUrgentes();
             return $animalesUrgentes;
         }
+
+        public function buscarPorEspecie($especie) {
+            return $this->animalmodel->getAnimalesPorFiltro('especie', $especie);
+        }
+
+        public function buscarPorProtectora($nombre_protectora) {
+            // Llamar al modelo de animales para obtener los resultados
+            $animales = $this->animalmodel->getAnimalesPorFiltro('nombre_protectora', $nombre_protectora);
+            
+            // Recuperar el nombre de la especie para cada animal
+            foreach ($animales as &$animal) {
+                $animal['nombre_especie'] = $this->getNombreEspecieById($animal['id_especie']);
+            }
         
+            // Devolver los datos, incluyendo el nombre de la especie
+            return $animales;
+        }
+
+        public function buscarPorID($id_animal) {
+            $animal = $this->animalmodel->getAnimalesPorFiltro('id_animal', $id_animal);
+            return $animal;
+        }
+
+        public function getNombreEspecieById($idEspecie){
+            $nombre_especie = $this->animalmodel->getNombreEspecieById($idEspecie);
+            return $nombre_especie;
+        }  
         
+        public function buscarPorProtectoraConFiltros() {
+            // Obtener el nombre de la protectora desde la sesión o el formulario
+            $nombreProtectora = $_SESSION['nombre_protectora'] ?? $_POST['nombre_protectora'] ?? null;
+            if (!$nombreProtectora) {
+                echo "Error: No se ha seleccionado ninguna protectora.";
+                return [];
+            }
+            
+            $arrayProtectoras = $this->protectoramodel->getProtectoraByName($nombreProtectora);
+            if (empty($arrayProtectoras)) {
+                echo "Error: No se encontró la protectora.";
+                return [];
+            }
+        
+            $idProtectora = $arrayProtectoras['id_protectora'];
+        
+            $nombreEspecie = $_POST['especie'];
+            $idEspecie = $this->animalmodel-> getIdEspecieByNombre($nombreEspecie);
+        
+            $animalesBase = $this->buscarPorEspecie($nombreEspecie);
+        
+            // Filtrar los animales según los filtros recibidos en el formulario
+            $animalesFiltrados = array_filter($animalesBase, function($animal) use ($idProtectora, $idEspecie) {
+                $valid = true;
+        
+                // Filtrar por protectora (id_protectora) siempre
+                $valid = $valid && $animal['id_protectora'] === $idProtectora;
+        
+                // Filtrar por especie si se ha seleccionado
+                if ($idEspecie) {
+                    $valid = $valid && $animal['id_especie'] === $idEspecie;
+                }
+        
+                // Filtrar por tamaño si se ha seleccionado
+                if (!empty($_POST['tamano']) && $_POST['tamano'] !== "Cualquiera") {
+                    $valid = $valid && $animal['tamano'] === $_POST['tamano'];
+                }
+        
+                // Filtrar por sexo si se ha seleccionado
+                if (!empty($_POST['sexo']) && $_POST['sexo'] !== "Cualquiera") {
+                    $valid = $valid && $animal['sexo'] === $_POST['sexo'];
+                }
+        
+                // Filtrar por edad si se ha seleccionado
+                if (!empty($_POST['edad']) && $_POST['edad'] !== "Cualquiera") {
+                    $valid = $valid && $animal['edad'] === $_POST['edad'];
+                }
+        
+                // Filtrar por urgente si se ha marcado
+                if (isset($_POST['urgente']) && $_POST['urgente'] == "1") {
+                    $valid = $valid && $animal['urgente'] == 1;
+                }
+        
+                return $valid;
+            });
+        
+            // Devolver los animales filtrados
+            return $animalesFiltrados;
+        }
     }
 

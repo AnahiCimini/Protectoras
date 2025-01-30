@@ -12,6 +12,9 @@
 <h1><?php echo htmlspecialchars($especie); ?> en adopción</h1>
 <br>
 
+
+<!-- RESULTADOS -->
+
 <div id="animales-list" class="container">
     <div id="animales-container" class="row">
         <?php if (empty($animales)): ?>
@@ -19,6 +22,7 @@
         <?php else: ?>
             <!-- Aquí se cargarán los animales dinámicamente con PHP -->
             <?php foreach ($animales as $animal): ?>
+
                 <div class="col-md-3 mb-3">
                     <div class="animal card p-3 shadow-sm animal_card">
                         <?php if ($animal['urgente'] == 1): ?>

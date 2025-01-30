@@ -20,13 +20,13 @@ class Provincias {
 
 
     // Obtener provincias por Comunidad Autónoma (id_ccaa)
-public function getProvinciasByCCAA($id_ccaa) {
-    $query = "SELECT * FROM provincias WHERE id_ccaa = :id_ccaa ORDER BY nombre_provincia ASC";
-    $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(':id_ccaa', $id_ccaa, PDO::PARAM_INT);
-    $stmt->execute();
-    $provincias = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $provincias;
-}
+    public function getProvinciasByCCAA($id_ccaa) {
+        $query = "SELECT * FROM provincias WHERE id_ccaa = :id_ccaa ORDER BY nombre_provincia ASC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id_ccaa', $id_ccaa, PDO::PARAM_INT);
+        $stmt->execute();
+        $provincias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $provincias;
+    }
 }
 ?>
