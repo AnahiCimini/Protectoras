@@ -2,12 +2,6 @@
     require_once PROJECT_ROOT . '/config/config.php';
 ?>
 
-<div class="container">
-    <div class="text-end">
-        <button onclick="window.history.back();" class="btn btn-standard">Volver</button>
-    </div>
-</div>
-
 <!-- buscarPorEspecieView.php -->
 <h1><?php echo htmlspecialchars($especie); ?> en adopción</h1>
 <br>

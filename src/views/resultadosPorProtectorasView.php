@@ -7,12 +7,6 @@
     $nombre_protectora = $data['nombre_protectora'] ?? 'Nombre no disponible';
 ?>
 
-<div class="container">
-    <div class="text-end">
-        <button onclick="window.history.back();" class="btn btn-standard">Volver</button>
-    </div>
-</div>
-
 <!-- buscarPorEspecieView.php -->
 <h1>
     <?php 
@@ -29,7 +23,7 @@
     <input type="hidden" name="nombre_protectora" value="<?php echo $nombre_protectora; ?>">
     <label for="especie">Especie:</label>
     <select name="especie">
-        <option value="">Selecciona una especie</option>
+        <option value="">Cualquiera</option>
         <option value="Perros" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Perros' ? 'selected' : ''; ?>>Perros</option>
         <option value="Gatos" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Gatos' ? 'selected' : ''; ?>>Gatos</option>
         <option value="Conejos" <?php echo isset($_POST['especie']) && $_POST['especie'] == 'Conejos' ? 'selected' : ''; ?>>Conejos</option>
