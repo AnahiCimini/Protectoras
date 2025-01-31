@@ -97,3 +97,9 @@
     border: none;
     padding: 4% 12%;
 }
+
+/* CARD */
+
+.content-card {
+    margin: 7% 0;
+}
