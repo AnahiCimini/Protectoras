@@ -68,7 +68,7 @@
                 </label>
             </div>
             <div class="col-12 col-md-2">
-                <button type="submit">Buscar</button>
+                <button type="submit" class="btn-standard rounded-4 btn-filtros">Buscar</button>
             </div>
         </div>
     </div>

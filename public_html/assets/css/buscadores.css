@@ -39,7 +39,6 @@
 /*botones provincias*/
 
 .provincias_collapse {
-    width: 100%;  /* Ocupa todo el ancho disponible de la página */
     background-color: #dcfcc7;
     padding: 20px 0 0 0;
     margin: 0 0 20px;
@@ -86,4 +85,15 @@
 
 .protectoras_lista a {
     color: rgb(255, 115, 0);
+}
+
+/* FILTROS EXTRA */
+
+#form_filtrosEnProtectoras {
+    margin-bottom: 5%;
+}
+
+.btn-filtros {
+    border: none;
+    padding: 4% 12%;
 }

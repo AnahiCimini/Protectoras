@@ -39,7 +39,7 @@
                                                                     </a>
                                                                 </h4>
                                                             </div>
-                                                        </div>
+                                                        </div> 
                                                     </div>
                                                 <?php endforeach; ?>
                                             <?php else: ?>
