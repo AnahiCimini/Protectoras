@@ -25,7 +25,9 @@
                 <select class="form-select" name="provincia">
                     <option value="">Provincia</option>
                     <?php foreach ($provincias as $rowProvincia): ?>
-                        <option value="<?= $rowProvincia['id_provincia'] ?>"><?= $rowProvincia['nombre_provincia'] ?></option>
+                        <option value="<?= $rowProvincia['id_provincia'] ?>" <?php echo isset($_POST['provincia']) && $_POST['provincia'] == $rowProvincia['id_provincia'] ? 'selected' : ''; ?>>
+                            <?= $rowProvincia['nombre_provincia'] ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -66,6 +68,7 @@
         </div>
     </div>
 </form>
+
 
 
 <?php
