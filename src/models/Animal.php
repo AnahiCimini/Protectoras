@@ -23,7 +23,7 @@
 
 
         public function getAnimalesPorFiltro($filtro, $valor) {
-            if ($filtro === "especie"){
+            if ($filtro === "nombre_especie"){
                 $query = "SELECT a.*, e.nombre_especie FROM animales a
                 JOIN especies e ON a.id_especie = e.id_especie
                 WHERE e.nombre_especie = :valor";
@@ -33,8 +33,8 @@
                 $stmt->execute();
 
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }else if ($filtro === "nombre_protectora") {
 
+            }else if ($filtro === "nombre_protectora") {
                 $query = "SELECT a.*, p.nombre_protectora FROM animales a
                 JOIN protectoras p ON a.id_protectora = p.id_protectora
                 WHERE p.nombre_protectora = :valor";
@@ -44,6 +44,7 @@
                 $stmt->execute();
 
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
             } else if ($filtro === "id_animal") {
                 $query = "SELECT a.*, e.nombre_especie, p.nombre_protectora, p.email 
                     FROM animales a
@@ -56,7 +57,20 @@
                 $stmt->execute();
 
                 return $stmt->fetch(PDO::FETCH_ASSOC);
+
+            } else if ($filtro === "id_provincia"){
+                $query = "SELECT a.*, p.id_provincia FROM animales a
+                JOIN protectoras p ON a.id_protectora = p.id_protectora
+                WHERE p.id_provincia = :valor";
+
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':valor', $valor);
+                $stmt->execute();
+
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
+
+            return [];
         }
 
         public function getIdEspecieByNombre($nombreEspecie)
@@ -173,28 +187,7 @@
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-
-        public function getAnimalesPorProvincia($provincia) {
-            // Si provincia está vacía, no filtra por provincia
-            $sql = "SELECT a.*, p.id_provincia 
-                    FROM animales a
-                    JOIN protectoras p ON a.id_protectora = p.id_protectora";
         
-            // Si se ha pasado provincia, añadirla al WHERE
-            if (!empty($provincia)) {
-                $sql .= " WHERE p.id_provincia = :provincia";
-            }
-        
-            $stmt = $this->conn->prepare($sql);
-            if (!empty($provincia)) {
-                $stmt->bindParam(':provincia', $provincia, PDO::PARAM_INT);
-            }
-            $stmt->execute();
-        
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-        
-    
     }
 
 ?>

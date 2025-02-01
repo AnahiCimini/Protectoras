@@ -95,7 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div id="animales-list" class="container">
     <div id="animales-container" class="row">
         <?php
-        // Determinar si se han aplicado filtros o si se muestran todos los animales
         $listaAnimales = isset($animalesFiltrados) ? $animalesFiltrados : $animales;
 
         if (empty($listaAnimales)): ?>
@@ -112,8 +111,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <img class="pet-profile-img" src="<?= BASE_URL . 'assets/img/uploads/animales/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
                         <?php endif; ?>
                         <div class="content-card">
-                            <span>Raza / especie: <?php echo htmlspecialchars($animal['raza']); ?></span>
-                            <span>Edad: <?php echo htmlspecialchars($animal['edad']); ?></span>
+                            <span>Raza / especie: <?php echo htmlspecialchars($animal['raza']); ?></span><br>
+                            <span>Edad: <?php echo htmlspecialchars($animal['edad']); ?></span><br>
+                            <span>Sexo: <?php echo htmlspecialchars($animal['sexo']); ?></span><br>
                             <span>Descripción: <?php echo nl2br(htmlspecialchars($animal['descripcion'] ?? 'Descripción no disponible')); ?></span>
                         </div>
                         <span><a class="btn-standard rounded-3 btn-filtros" href="<?php echo BASE_URL; ?>router.php?action=detalleAnimal&id_animal=<?php echo $animal['id_animal']; ?>">Ver más</a></span>

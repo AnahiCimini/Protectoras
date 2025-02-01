@@ -3,10 +3,15 @@
     require_once PROJECT_ROOT . '/src/models/Provincias.php';
     require_once PROJECT_ROOT . '/src/models/Animal.php';
     require_once PROJECT_ROOT . '/src/controllers/AnimalController.php';
+
+    $animales = $data['animales'] ?? [];
+    $especie = $data['especie'] ?? 'Nombre no disponible';
 ?>
 
 <!-- buscarPorEspecieView.php -->
-<h1><?php echo htmlspecialchars($especie); ?> en adopción</h1>
+<h1>
+    <?php echo htmlspecialchars($especie); ?> en adopción
+</h1>
 <br>
 
 <!-- BUSCADORES EXTRA -->
@@ -82,11 +87,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div id="animales-list" class="container">
     <div id="animales-container" class="row">
-        <?php if (empty($animales)): ?>
+        <?php
+            $listaAnimales = isset($animalesFiltrados) ? $animalesFiltrados : $animales;
+            if (empty($animales)): ?>
             <p>No se encontraron animales para esta especie.</p>
         <?php else: ?>
             <!-- Aquí se cargarán los animales dinámicamente con PHP -->
-            <?php foreach ($animales as $animal): ?>
+            <?php foreach ($listaAnimales as $animal): ?>
                 <div class="col-md-3 mb-3">
                     <div class="animal card p-3 shadow-sm animal_card">
                         <?php if ($animal['urgente'] == 1): ?>
@@ -97,8 +104,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <img class="pet-profile-img" src="<?= BASE_URL . 'assets/img/uploads/animales/' . htmlspecialchars($animal['foto_principal']); ?>" alt="Foto principal de <?php echo $animal['nombre_animal']; ?>" />
                         <?php endif; ?>
                         <div class="content-card">
-                            <span>Raza / especie: <?php echo htmlspecialchars($animal['raza']); ?></span>
-                            <span>Edad: <?php echo htmlspecialchars($animal['edad']); ?></span>
+                            <span>Raza / especie: <?php echo htmlspecialchars($animal['raza']); ?></span><br>
+                            <span>Edad: <?php echo htmlspecialchars($animal['edad']); ?></span><br>
+                            <span>Sexo: <?php echo htmlspecialchars($animal['sexo']); ?></span><br>
                             <span>Descripción: <?php echo nl2br(htmlspecialchars($animal['descripcion'] ?? 'Descripción no disponible')); ?></span>
                         </div>
                         <span><a class="btn-standard rounded-3 btn-filtros" href="<?php echo BASE_URL; ?>router.php?action=detalleAnimal&id_animal=<?php echo $animal['id_animal']; ?>">Ver más</a></span>

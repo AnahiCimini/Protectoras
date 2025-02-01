@@ -4,7 +4,6 @@
     require_once PROJECT_ROOT . '/src/models/Animal.php';
     require_once PROJECT_ROOT . '/src/models/Protectora.php';
 
-
     class AnimalController {
         private $conn;
         public $animalmodel;
@@ -143,7 +142,11 @@
         }
 
         public function buscarPorEspecie($especie) {
-            return $this->animalmodel->getAnimalesPorFiltro('especie', $especie);
+            return $this->animalmodel->getAnimalesPorFiltro('nombre_especie', $especie);
+        }
+
+        public function buscarPorProvincia($id_provincia) {
+            return $this->animalmodel->getAnimalesPorFiltro('id_provincia', $id_provincia);
         }
 
         public function buscarPorProtectora($nombre_protectora) {
@@ -209,22 +212,25 @@
 
         public function buscarPorEspecieConFiltros() {
             $nombreEspecie = $_POST['nombre_especie'] ?? $_SESSION['nombre_especie'] ?? null;
-            if (!$nombreEspecie) { 
-                return [];
-            }
-            $_SESSION['nombre_especie'] = $nombreEspecie;
-        
             $animalesBase = $this->buscarPorEspecie($nombreEspecie);
-            
-            $provinciaSeleccionada = $_POST['provincia'] ?? '';
-            $animalesConProvincia = $this->animalmodel->getAnimalesPorProvincia($provinciaSeleccionada);
-        
-            $animalesFiltrados = array_filter($animalesBase, function($animal) use ($animalesConProvincia) {
-                $valid = true;
-        
-                if (!empty($_POST['provincia'])) {
-                    $valid = $valid && in_array($animal['id_animal'], array_column($animalesConProvincia, 'id_animal'));
+
+            if (!empty($_POST['provincia'])) {
+                $idProvincia = $_POST['provincia'];
+                $animalesPorProvincia = $this->buscarPorProvincia($idProvincia);
+                $animalesBaseFiltrados = [];
+                foreach ($animalesBase as $animalBase) {
+                    foreach ($animalesPorProvincia as $animalPorProvincia) {
+                        if ($animalBase['id_animal'] === $animalPorProvincia['id_animal']) {
+                            $animalesBaseFiltrados[] = $animalBase;
+                        }
+                    }
                 }
+                $animalesBase = $animalesBaseFiltrados;
+            }
+
+            $animalesFiltrados = array_values(array_filter($animalesBase, function($animal) {
+                $valid = true;
+                
                 if (!empty($_POST['tamano'])) {
                     $valid = $valid && $animal['tamano'] == $_POST['tamano'];
                 }
@@ -237,10 +243,10 @@
                 if (isset($_POST['urgente']) && $_POST['urgente'] == "1") {
                     $valid = $valid && $animal['urgente'] == 1;
                 }
-        
+                
                 return $valid;
-            });
-        
+            }));
+            
             return $animalesFiltrados;
         }
         

@@ -28,5 +28,6 @@ class Provincias {
         $provincias = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $provincias;
     }
+
 }
 ?>
