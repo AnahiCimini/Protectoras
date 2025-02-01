@@ -25,7 +25,7 @@
                         <div class="carousel-data col-6">
                             <h3><?php echo $animal['nombre_animal']; ?></h3>
                             <p><?php echo $animal['descripcion'] ?? ''; ?></p>
-                            <a href="<?php echo BASE_URL; ?>router.php?action=detalleAnimal&id_animal=<?php echo $animal['id_animal']; ?>" class="btn btn-standard-invert">¡Conoce a <?php echo $animal['nombre_animal']; ?>!</a>
+                            <a href="<?php echo BASE_URL; ?>router.php?action=detalleAnimal&id_animal=<?php echo $animal['id_animal']; ?>" class="btn btn-standard">¡Conoce a <?php echo $animal['nombre_animal']; ?>!</a>
                         </div>
                     </div>
                 </div>

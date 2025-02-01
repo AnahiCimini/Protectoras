@@ -75,21 +75,6 @@
     margin-bottom: 5%;
 }
 
-.btn-standard-invert{
-    color: #016e10;
-    background-color: #dcfcc7;
-    margin-bottom: 15px;
-    margin: 0 auto;
-    font-weight: 500;
-}
-
-.btn-standard-invert:hover {
-    background-color: #ffd5ba;
-    color: #cc5c00;
-    font-weight: 500;
-}
-
-
 .carousel-navigation{
     width: 6%;
 }
