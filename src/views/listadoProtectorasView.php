@@ -11,9 +11,9 @@
             <!-- Contenedor de provincias colapsable -->
             <div id="collapse<?php echo $ccaa['id_ccaa']; ?>" class="collapse provincias_collapse" data-bs-parent="#accordionCCAA">
                 <div class="container-fluid">
-                <div class="row d-flex" id="accordionProvincias<?php echo $ccaa['id_ccaa']; ?>">
-                    <?php
-                        foreach ($provincias as $provincia):
+                    <div class="row d-flex" id="accordionProvincias<?php echo $ccaa['id_ccaa']; ?>">
+                        <?php
+                            foreach ($provincias as $provincia):
                             if ($provincia['id_ccaa'] == $ccaa['id_ccaa']):
                                 $protectoraModel = new Protectora($conn);
                                 $protectoras = $protectoraModel->getProtectorasByProvincia($provincia['id_provincia']);

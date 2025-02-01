@@ -19,7 +19,7 @@
 
 <!-- BUSCADORES EXTRA -->
 
-<form action="" method="POST" id="form_filtrosEnProtectoras">
+<form action="" method="POST" class="form_filtros">
     <input type="hidden" name="nombre_protectora" value="<?php echo $nombre_protectora; ?>">
 
     <div class="container">
@@ -77,7 +77,6 @@
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Capturar los valores del formulario
     $nombre_protectora = $_POST['nombre_protectora'] ?? '';
     $especie = $_POST['especie'] ?? '';
     $tamano = $_POST['tamano'] ?? '';
@@ -85,8 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $edad = $_POST['edad'] ?? '';
     $urgente = isset($_POST['urgente']) ? 1 : 0;
 
-    // Construir la consulta SQL con filtros
-    require_once PROJECT_ROOT . '/src/models/Animal.php';
     $animalController = new AnimalController ($conn);
     $animalesFiltrados = $animalController->buscarPorProtectoraConFiltros();
 }

@@ -171,49 +171,32 @@
         
         public function buscarPorProtectoraConFiltros() {
             
-            // MANTENER LA PRESELECCIÓN DE LA PROTECTORA
             $nombreProtectora = $_SESSION['nombre_protectora'] ?? $_POST['nombre_protectora'] ?? null;
             $animalesBase = $this->buscarPorProtectora($nombreProtectora);
 
-            
-            // OBTENER LOS VALORES DEL FILTRO ESPECIES
             $nombreEspecie = $_POST['especie'] ?? '';
             $idEspecie = null;
 
-            // Si se ha seleccionado una especie específica, obtener su id
             if ($nombreEspecie && $nombreEspecie !== 'Cualquiera') {
                 $idEspecie = $this->animalmodel->getIdEspecieByNombre($nombreEspecie);
             }
         
-        
-            // Filtrar los animales según los filtros recibidos en el formulario
             $animalesFiltrados = array_filter($animalesBase, function($animal) use ($nombreProtectora, $idEspecie) {
                 $valid = true;
         
-                // Filtrar por protectora (id_protectora) siempre
                 $valid = $valid && $animal['nombre_protectora'] === $nombreProtectora;
-        
-                // Filtrar por especie si se ha seleccionado
                 if ($idEspecie !== null) {
                     $valid = $valid && $animal['id_especie'] === $idEspecie;
                 }
-        
-                // Filtrar por tamaño si se ha seleccionado
                 if (!empty($_POST['tamano']) && $_POST['tamano'] !== "Cualquiera") {
                     $valid = $valid && $animal['tamano'] === $_POST['tamano'];
                 }
-        
-                // Filtrar por sexo si se ha seleccionado
                 if (!empty($_POST['sexo']) && $_POST['sexo'] !== "Cualquiera") {
                     $valid = $valid && $animal['sexo'] === $_POST['sexo'];
                 }
-        
-                // Filtrar por edad si se ha seleccionado
                 if (!empty($_POST['edad']) && $_POST['edad'] !== "Cualquiera") {
                     $valid = $valid && $animal['edad'] === $_POST['edad'];
                 }
-        
-                // Filtrar por urgente si se ha marcado
                 if (isset($_POST['urgente']) && $_POST['urgente'] == "1") {
                     $valid = $valid && $animal['urgente'] == 1;
                 }
@@ -221,8 +204,45 @@
                 return $valid;
             });
         
-            // Devolver los animales filtrados
             return $animalesFiltrados;
         }
+
+        public function buscarPorEspecieConFiltros() {
+            $nombreEspecie = $_POST['nombre_especie'] ?? $_SESSION['nombre_especie'] ?? null;
+            if (!$nombreEspecie) { 
+                return [];
+            }
+            $_SESSION['nombre_especie'] = $nombreEspecie;
+        
+            $animalesBase = $this->buscarPorEspecie($nombreEspecie);
+            
+            $provinciaSeleccionada = $_POST['provincia'] ?? '';
+            $animalesConProvincia = $this->animalmodel->getAnimalesPorProvincia($provinciaSeleccionada);
+        
+            $animalesFiltrados = array_filter($animalesBase, function($animal) use ($animalesConProvincia) {
+                $valid = true;
+        
+                if (!empty($_POST['provincia'])) {
+                    $valid = $valid && in_array($animal['id_animal'], array_column($animalesConProvincia, 'id_animal'));
+                }
+                if (!empty($_POST['tamano'])) {
+                    $valid = $valid && $animal['tamano'] == $_POST['tamano'];
+                }
+                if (!empty($_POST['sexo'])) {
+                    $valid = $valid && $animal['sexo'] == $_POST['sexo'];
+                }
+                if (!empty($_POST['edad'])) {
+                    $valid = $valid && $animal['edad'] == $_POST['edad'];
+                }
+                if (isset($_POST['urgente']) && $_POST['urgente'] == "1") {
+                    $valid = $valid && $animal['urgente'] == 1;
+                }
+        
+                return $valid;
+            });
+        
+            return $animalesFiltrados;
+        }
+        
     }
 

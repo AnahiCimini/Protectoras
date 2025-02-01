@@ -173,24 +173,28 @@
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
+        public function getAnimalesPorProvincia($provincia) {
+            // Si provincia está vacía, no filtra por provincia
+            $sql = "SELECT a.*, p.id_provincia 
+                    FROM animales a
+                    JOIN protectoras p ON a.id_protectora = p.id_protectora";
         
-        public function aplicarFiltrosExtras($animalesBase, $datosFiltro) {
-            return array_filter($animalesBase, function($animal) use ($datosFiltro) {
-                if (!empty($datosFiltro['tamano']) && $animal['tamano'] !== $datosFiltro['tamano']) {
-                    return false;
-                }
-                if (!empty($datosFiltro['sexo']) && $animal['sexo'] !== $datosFiltro['sexo']) {
-                    return false;
-                }
-                if (!empty($datosFiltro['edad']) && $animal['edad'] !== $datosFiltro['edad']) {
-                    return false;
-                }
-                if (!empty($datosFiltro['urgente']) && $animal['urgente'] != 1) {
-                    return false;
-                }
-                return true;
-            });
+            // Si se ha pasado provincia, añadirla al WHERE
+            if (!empty($provincia)) {
+                $sql .= " WHERE p.id_provincia = :provincia";
+            }
+        
+            $stmt = $this->conn->prepare($sql);
+            if (!empty($provincia)) {
+                $stmt->bindParam(':provincia', $provincia, PDO::PARAM_INT);
+            }
+            $stmt->execute();
+        
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        
+    
     }
 
 ?>
