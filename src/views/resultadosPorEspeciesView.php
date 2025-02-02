@@ -92,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="animales-container" class="row">
         <?php
             $listaAnimales = isset($animalesFiltrados) ? $animalesFiltrados : $animales;
-            if (empty($animales)): ?>
-            <p>No se encontraron animales para esta especie.</p>
+            if (empty($listaAnimales)): ?>
+            <p>No se encontraron animales con estos filtros.</p>
         <?php else: ?>
             <!-- Aquí se cargarán los animales dinámicamente con PHP -->
             <?php foreach ($listaAnimales as $animal): ?>
