@@ -10,9 +10,11 @@
                     <!-- Row1 -->
                     <div class="row mb-8 align-items-center slide_footer">
                         <div class="col-3 especiePerros">
-                            <div class="content_image_footer">
-                                <img src="<?php echo BASE_URL; ?>assets/img/huella_color.png">
-                            </div>
+                            <a href="<?php echo BASE_URL; ?>index_html?page=home">
+                                <div class="content_image_footer">
+                                    <img src="<?php echo BASE_URL; ?>assets/img/huella_color.png">
+                                </div>
+                            </a>
                         </div>
 
                         <div class="col-3 especieGatos">
